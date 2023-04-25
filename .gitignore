@@ -1,0 +1,18 @@
+
+.idea/
+/vendor/
+/sessions/
+/logs/
+.env
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+testvam.php
+testvam2.php
+
