@@ -1,45 +1,52 @@
 # php-skype
 
-php-skype is a library that makes it easy for developers to use Skype Web API. The library is designed to be user-friendly and comes with comprehensive documentation and examples to help integrate Skype functionality into projects quickly and easily.
+php-skype is a library that wraps Skype Web API. The library is designed to be user-friendly and comes with comprehensive documentation and examples to help integrate Skype functionality into projects quickly and easily.
 
 ## Installation
 
 Use the package manager composer to install php-skype.
 
 ```bash
-$ php composer.phar require a-kbv/php-skype
+$ composer require akbv/php-skype
 ```
 
 
 ## Usage
 ```PHP
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
 
-$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-use Akbv\PhpSkype\SkypeClient;
-use Akbv\PhpSkype\Services\SessionManager;
-
-$sessionManager = new SessionManager(
+/** Create session manager
+ * @return Akbv\PhpSkype\Services\SessionManager $sessionManager*/
+$sessionManager = new \Akbv\PhpSkype\Services\SessionManager(
     __DIR__ . '/sessions',
-    Akbv\PhpSkype\Utils\EnvUtil::getSecret()
+    "hardToGuessSecretKeyUpTo32Characters"
 );
-/** @var Akbv\PhpSkype\SkypeClient $client*/
-$client = new SkypeClient($sessionManager);
 
-$account = new Akbv\PhpSkype\Models\Account(Akbv\PhpSkype\Utils\EnvUtil::getEmail(), Akbv\PhpSkype\Utils\EnvUtil::getPassword());
-$session = $client->login($account);
+/** Create account Object
+ * @return Akbv\PhpSkype\Models\Account $account*/
+$account = new Akbv\PhpSkype\Models\Account(
+    'email@example.com',
+    'password'
+);
 
-/** @var Akbv\PhpSkype\Models\Contact[] $contacts*/
-$contacts = $client->loadAllContacts($session);
+/** Login
+ * @return Akbv\PhpSkype\Models\Account $account*/
+$client = new Akbv\PhpSkype\SkypeClient($sessionManager);
+$client->login($account);
 
-$conversation = new Akbv\PhpSkype\Models\Conversation($contacts[0]->getProfile()['skype_handle'], 'skype');
-$client->sendMessage($session, $conversation, 'Hello World!');
+/** Get contacts list
+ * @return Akbv\PhpSkype\Models\Contact[] $contacts */
+$client->getAllContacts();
+
+/** Start chat with contact
+ * @return Akbv\PhpSkype\Models\Chat $chat */
+$chat = $client->chat('8:live:example');
+
+/** Send message to chat
+ * @return Akbv\PhpSkype\Models\Message $message */
+$message = $chat->sendMessage('Hello world!'); 
 
 ```
-
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
