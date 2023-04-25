@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 //env handler
-$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
 
 if (\Akbv\PhpSkype\Utils\EnvUtil::isDebug())

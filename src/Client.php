@@ -362,7 +362,7 @@ final class Client implements ClientInterface
             $endpoint = $data['endpoint'];
             DebugUtil::log("Obtained endpoint data", $endpoint, 200);
             $this->session->setRegistrationToken($registrationToken);
-            $profile = $this->loadMyProfile();
+            $profile = $this->getMyProfile();
             DebugUtil::log("Obtained profile Info", $profile, 200);
             $conversation = new Conversation($profile['username'], $profile['firstname'] . ' ' . $profile['lastname']);
             DebugUtil::log("Create self conversation", $conversation, 200);
@@ -391,7 +391,7 @@ final class Client implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function loadMyProperties(): array
+    public function getMyProperties(): array
     {
         $url = sprintf('%s/users/ME/properties', $this->getSession()->getRegistrationToken()->getMessengerUrl());
         $response = $this->request('GET', $url, [
@@ -404,7 +404,7 @@ final class Client implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function loadMyProfile(): array
+    public function getMyProfile(): array
     {
         $url = 'https://api.skype.com/users/self/profile';
         $response = $this->request('GET', $url, [
@@ -417,7 +417,7 @@ final class Client implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function loadMyInvites(): array
+    public function getMyInvites(): array
     {
         $url = 'https://edge.skype.com/pcs/contacts/v2/users/self/invites';
         $response = $this->request('GET', $url, [
@@ -445,7 +445,7 @@ final class Client implements ClientInterface
             '/v1/users/ME/conversations/ALL/properties'
         ];
 
-        $contacts = $this->loadAllContacts();
+        $contacts = $this->getAllContacts();
         foreach ($contacts as $contact) {
             $resources[] = '/v1/users/ME/contacts/'. $contact->getPersonId();
         }
@@ -479,7 +479,7 @@ final class Client implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function loadAllContacts(): array
+    public function getAllContacts(): array
     {
         $url = 'https://contacts.skype.com/contacts/v2/users/' . $this->getSession()->getAccount()->getConversation()->getName();
         $response = $this->request('GET', $url, [

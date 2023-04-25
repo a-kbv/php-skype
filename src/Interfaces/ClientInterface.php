@@ -48,46 +48,46 @@ interface ClientInterface
     public function login(Account $account, DateTime $now = null): Session;
 
     /**
-     * Load current user properties.
+     * Get current user properties.
      * @return mixed[]
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function loadMyProperties(): array;
+    public function getMyProperties(): array;
 
     /**
-     * Load current user profile.
+     * Get current user profile.
      * @return mixed[]
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function loadMyProfile(): array;
+    public function getMyProfile(): array;
 
     /**
-     * Load current user invites list.
+     * Get current user invites list.
      * @return mixed[]
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function loadMyInvites(): array;
+    public function getMyInvites(): array;
 
     /**
-     * Load Contacts list.
+     * Get Contacts list.
      * @return \Akbv\PhpSkype\Models\Contact[]
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    public function loadAllContacts(): array;
+    public function getAllContacts(): array;
     /**
-     * Load Contacts Details.
+     * Get Contacts Details.
      * @param string $contactId
      * @return \Akbv\PhpSkype\Models\Contact
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
