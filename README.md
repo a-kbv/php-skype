@@ -2,6 +2,8 @@
 
 php-skype is a library that wraps Skype Web API. The library is designed to be user-friendly and comes with comprehensive documentation and examples to help integrate Skype functionality into projects quickly and easily.
 
+# Note: library is under development and not ready for production use.
+
 ## Installation
 
 Use the package manager composer to install php-skype.
@@ -9,8 +11,6 @@ Use the package manager composer to install php-skype.
 ```bash
 $ composer require akbv/php-skype
 ```
-
-
 ## Usage
 ```PHP
 <?php
@@ -55,3 +55,5 @@ to discuss what you would like to change.
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+### NOTE: `This library is not affiliated with Skype or Microsoft in any way. Use at your own risk`.
