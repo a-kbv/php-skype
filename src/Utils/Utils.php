@@ -75,7 +75,7 @@ class Utils
     /**
      * Extract the chat ID from a chat URL.
      * @param string $url the URL to format
-     * @return string|null the formatted URL
+     * @return string the formatted URL
      */
     public static function getChatIdFromUrl(string $url): string
     {
@@ -93,9 +93,9 @@ class Utils
      * @param string $title
      * @param string $desc
      * @param mixed[] $values
-     * @return void
+     * @return string
      */
-    public static function uriObject($content, $type, $url, $thumb=null, $title=null, $desc=null, $values =[])
+    public static function uriObject($content, $type, $url, $thumb=null, $title=null, $desc=null, $values =[]): string
     {
         $titleTag = ($title ? '<Title>Title: ' . $title . '</Title>' : '<Title/>');
         $descTag = ($desc ? '<Description>Description: ' . $desc . '</Description>' : '<Description/>');

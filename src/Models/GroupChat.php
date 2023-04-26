@@ -24,13 +24,13 @@ class GroupChat extends Base
 
     /**
      * The properties of this conversation.
-     * @var array
+     * @var mixed[]
      */
     private $properties;
 
     /**
      * The list of members in this conversation.
-     * @var array
+     * @var mixed[]
      */
     private $members;
 
@@ -58,9 +58,13 @@ class GroupChat extends Base
      */
     private $creatorId;
 
+    /**
+     * Constructor.
+     * @param mixed[] $data The data from which to create the object.
+     */
     public function __construct(array $data)
     {
-        $this->mapPropertiesFromArray($data, $this);
+        $this->mapPropertiesFromArray($data);
     }
 
     /**
@@ -114,7 +118,7 @@ class GroupChat extends Base
     /**
      * Get the properties of this conversation.
      *
-     * @return  array
+     * @return  mixed[]
      */
     public function getProperties()
     {
@@ -124,7 +128,7 @@ class GroupChat extends Base
     /**
      * Set the properties of this conversation.
      *
-     * @param  array  $properties  The properties of this conversation.
+     * @param  mixed[]  $properties  The properties of this conversation.
      *
      * @return  self
      */
@@ -138,7 +142,7 @@ class GroupChat extends Base
     /**
      * Get the list of members in this conversation.
      *
-     * @return  array
+     * @return  mixed[]
      */
     public function getMembers()
     {
@@ -148,7 +152,7 @@ class GroupChat extends Base
     /**
      * Set the list of members in this conversation.
      *
-     * @param  array  $members  The list of members in this conversation.
+     * @param  mixed[]  $members  The list of members in this conversation.
      *
      * @return  self
      */

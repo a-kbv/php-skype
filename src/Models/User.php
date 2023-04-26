@@ -3,6 +3,8 @@
 namespace Akbv\PhpSkype\Models;
 
 use Akbv\PhpSkype\Utils\Utils;
+use Akbv\PhpSkype\Models\Users\Name;
+use Akbv\PhpSkype\Models\Users\Location;
 
 /**
  * User on skype - the current one,a contact, or someone else.
@@ -13,7 +15,7 @@ use Akbv\PhpSkype\Utils\Utils;
  * @license http://www.opensource.org/licenses/mit-license.html  MIT License
  * @author Atanas Korabov
  */
-class User
+class User extends Base
 {
     /**
      * Skype Name of User or Group.
@@ -25,14 +27,14 @@ class User
     /**
      * The name of User.
      *
-     * @var string
+     * @var Name
      */
     private $name;
 
     /**
      * The location of User.
      *
-     * @var string
+     * @var Location
      */
     private $location;
 
@@ -51,33 +53,23 @@ class User
     private $avatar;
 
     /**
+     * The gender of User
+     * @var string
+     */
+    private $gender;
+
+    /**
      * construct user.
+     * @param mixed[] $raw raw data
      */
     public function __construct(array $raw)
     {
-        $id = Utils::removePrefix($raw["id"] ?: $raw["mri"] ?: $raw["skypeId"] ?: $raw["username"]);
-        $this->id = $id;
-
-        $name = isset($raw["name"]) ? $raw["name"] : $raw["displayName"];
-        $this->name = $name;
-
-        if (isset($raw["locations"])) {
-            $locParts = $raw["locations"][0];
-        } else {
-            $locParts = [
-                "city" => $raw["city"],
-                "region" => $raw["province"] ?: $raw["state"],
-                "country" => $raw["countryCode"] ?: $raw["country"]
-            ];
-        }
-
-        $this->location = $locParts["city"] . ", " . $locParts["region"] . ", " . $locParts["country"];
-
-        $language = strtoupper($raw["language"]);
-        $this->language = $language;
-
-        $avatar = $raw["avatar_url"] ?: $raw["avatarUrl"];
-        $this->avatar = $avatar;
+        $this->id = Utils::removePrefix($raw["id"] ?: $raw["mri"] ?: $raw["skypeId"] ?: $raw["username"]);
+        $this->name = new Name($raw);
+        $this->location = new Location($raw);
+        $this->language = strtoupper(isset($raw['profile']['language']) ? $raw['profile']['language'] : null);
+        $this->avatar = isset($raw['profile']['avatarUrl']) ? $raw['profile']['avatarUrl'] : null;
+        $this->gender = isset($raw['profile']['gender']) ? $raw['profile']['gender'] : null;
     }
 
     /**
@@ -88,26 +80,6 @@ class User
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get the name of User.
-     *
-     * @return  string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Get the location of User.
-     *
-     * @return  string
-     */
-    public function getLocation()
-    {
-        return $this->location;
     }
 
     /**
@@ -142,5 +114,35 @@ class User
         $this->avatar = $avatar;
 
         return $this;
+    }
+
+    /**
+     * Get the name of User.
+     *
+     * @return  Name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Get the gender of User
+     *
+     * @return  string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Get the location of User.
+     *
+     * @return  Location
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

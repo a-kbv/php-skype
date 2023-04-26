@@ -499,6 +499,7 @@ final class Client implements ClientInterface
         foreach ($result['contacts'] as $contact) {
             $contacts[] = new Contact($contact);
         }
+        DebugUtil::log("Obtained contacts", $result['contacts'], 200);
         return $contacts;
     }
 
@@ -552,6 +553,9 @@ final class Client implements ClientInterface
         return $result;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function groupChat(array $contacts, array $admins, bool $moderated=false): Chat
     {
         $url = sprintf(
@@ -770,17 +774,17 @@ final class Client implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getEvents(Session $session): array
+    public function getEvents(): array
     {
         DebugUtil::log("LP start", [], 200);
-        if ($session->getEndpoint()->getSubscribed() == false) {
-            $this->subscribeEndpoint($session);
+        if ($this->getSession()->getEndpoint()->getSubscribed() == false) {
+            $this->subscribeEndpoint();
         }
 
         $url = sprintf(
             '%s/users/ME/endpoints/%s/subscriptions/0/poll',
-            $session->getRegistrationToken()->getMessengerUrl(),
-            $session->getEndpoint()->getId()
+            $this->getSession()->getRegistrationToken()->getMessengerUrl(),
+            $this->getSession()->getEndpoint()->getId()
         );
 
         try {
@@ -789,7 +793,7 @@ final class Client implements ClientInterface
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                 ],
-                'authorization_session' => $session,
+                'authorization_session' => $this->getSession(),
                 'timeout' => 120,
             ]);
         } catch (ClientException $e) {

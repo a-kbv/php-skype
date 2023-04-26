@@ -55,7 +55,7 @@ class Message extends Base
 
     /**
      * Properties.
-     * @var array
+     * @var mixed[]
      */
     private $properties;
 
@@ -83,14 +83,13 @@ class Message extends Base
      */
     private $from;
 
-    //construct
+    /**
+     * Constructor.
+     * @param mixed[] $data
+     */
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
-    }
-
-    public function link()
-    {
     }
 
     /**
@@ -360,7 +359,7 @@ class Message extends Base
     /**
      * Get properties.
      *
-     * @return  array
+     * @return  mixed[]
      */
     public function getProperties()
     {
@@ -370,7 +369,7 @@ class Message extends Base
     /**
      * Set properties.
      *
-     * @param  array  $properties  Properties.
+     * @param  mixed[]  $properties  Properties.
      *
      * @return  self
      */

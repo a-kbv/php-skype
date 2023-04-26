@@ -56,7 +56,7 @@ class EventLoop
         }
 
         try {
-            $events = $this->getClient()->getEvents($this->getClient()->getSession());
+            $events = $this->getClient()->getEvents();
         } catch (ClientException $e) {
             $this->triggerError($e);
             return;

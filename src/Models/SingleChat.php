@@ -10,7 +10,6 @@ namespace Akbv\PhpSkype\Models;
  */
 class SingleChat extends Base
 {
-
     /**
      * The unique identifier for this conversation.
      * @var string
@@ -37,13 +36,13 @@ class SingleChat extends Base
 
     /**
      * The properties of this conversation.
-     * @var array
+     * @var mixed[]
      */
     private $properties;
 
     /**
      * The last message in this conversation.
-     * @var array
+     * @var mixed[]
      */
     private $lastMessage;
 
@@ -65,6 +64,10 @@ class SingleChat extends Base
      */
     private $lastUpdatedMessageVersion;
 
+    /**
+     * Constructor.
+     * @param mixed[] $data raw data
+     */
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
@@ -169,7 +172,7 @@ class SingleChat extends Base
     /**
      * Get the properties of this conversation.
      *
-     * @return  array
+     * @return mixed[]
      */
     public function getProperties()
     {
@@ -179,9 +182,9 @@ class SingleChat extends Base
     /**
      * Set the properties of this conversation.
      *
-     * @param  array  $properties  The properties of this conversation.
+     * @param  mixed[] $properties  The properties of this conversation.
      *
-     * @return  self
+     * @return self
      */
     public function setProperties(array $properties)
     {
@@ -193,7 +196,7 @@ class SingleChat extends Base
     /**
      * Get the last message in this conversation.
      *
-     * @return  array
+     * @return mixed[]
      */
     public function getLastMessage()
     {
@@ -203,9 +206,9 @@ class SingleChat extends Base
     /**
      * Set the last message in this conversation.
      *
-     * @param  array  $lastMessage  The last message in this conversation.
+     * @param mixed[]  $lastMessage  The last message in this conversation.
      *
-     * @return  self
+     * @return self
      */
     public function setLastMessage(array $lastMessage)
     {

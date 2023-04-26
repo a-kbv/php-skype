@@ -40,6 +40,11 @@ class Chat implements ChatInterface
      */
     private $id;
 
+    /**
+     * Constructor.
+     * @param Client $client
+     * @param mixed[] $raw
+     */
     public function __construct(Client $client, array $raw)
     {
         $id = $raw["id"];
@@ -290,12 +295,12 @@ class Chat implements ChatInterface
         $message['isactive'] = true;
 
         if ($clientTime) {
-            $clientDate = \DateTime::createFromFormat('U', intval($clientTime / 1000));
+            $clientDate = \DateTime::createFromFormat('U', (string)(intval($clientTime / 1000)));
             $message['composetime'] = $clientDate->format('Y-m-d\TH:i:s.u\Z');
         }
 
         if ($arriveTime) {
-            $arriveDate = \DateTime::createFromFormat('U', intval($arriveTime / 1000));
+            $arriveDate = \DateTime::createFromFormat('U', (string)(intval($arriveTime / 1000)));
             $message['originalarrivaltime'] = $arriveDate->format('Y-m-d\TH:i:s.u\Z');
         }
 
@@ -398,7 +403,7 @@ class Chat implements ChatInterface
     public function sendContacts(array $contacts): Message
     {
         $contactTags = array_map(function ($contact) {
-            return '<c t="s" s="' . $contact->getId() . '" f="' . $contact->getName() . '"/>';
+            return '<c t="s" s="' . (string)$contact->getId() . '" f="' . (string)$contact->getName() . '"/>';
         }, $contacts);
         $content = '<contacts>' . implode('', $contactTags) . '</contacts>';
         return $this->processMessage(null, $content, 'RichText/Contacts', null);
@@ -433,8 +438,10 @@ class Chat implements ChatInterface
      * *******************************************************
      * *******************************************************
      */
-
-    public function createGroupChat(array $contacts, array $admins, bool $moderated=false): self
+    /**
+     * {@inheritdoc}
+     */
+    public function createGroupChat(array $contacts, array $admins, bool $moderated=false): Chat
     {
         $url = sprintf(
             '%s/threads',

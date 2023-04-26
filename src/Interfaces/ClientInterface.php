@@ -11,7 +11,7 @@ use Akbv\PhpSkype\Exceptions\ClientSecurityTokenException;
 use Akbv\PhpSkype\Exceptions\ClientSkypeTokenException;
 use Akbv\PhpSkype\Models\Account;
 use Akbv\PhpSkype\Models\Contact;
-use Akbv\PhpSkype\Models\Conversation;
+use Akbv\PhpSkype\Chat;
 use Akbv\PhpSkype\Models\Session;
 use DateTime;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
@@ -86,6 +86,20 @@ interface ClientInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
     public function getAllContacts(): array;
+
+    /**
+     * Create a new group chat.
+     * @param mixed[] $contacts
+     * @param mixed[] $admins
+     * @param bool $moderated
+     * @return Chat
+     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     */
+    public function groupChat(array $contacts, array $admins, bool $moderated=false): Chat;
+
     /**
      * Get Contacts Details.
      * @param string $contactId
@@ -109,7 +123,6 @@ interface ClientInterface
 
     /**
      * Configure endpoint.
-     * @param Session $session
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
@@ -139,14 +152,13 @@ interface ClientInterface
      * To retrieve all events will be needed multiple calls.
      * If no event occurs since last call, the API will block for up to ~83 seconds. after that, it will return an empty array.
      * If any event occurs, the API will return immediately.
-     * @param Session $session
      * @return mixed[]
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    public function getEvents(Session $session): array;
+    public function getEvents(): array;
 
     /**
      * Configure this endpoint to allow setting presence.

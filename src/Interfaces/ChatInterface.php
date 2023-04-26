@@ -2,7 +2,8 @@
 
 namespace Akbv\PhpSkype\Interfaces;
 
-use Akbv\PhpSkype\Models\Chat;
+use Akbv\PhpSkype\Chat;
+use Akbv\PhpSkype\Models\GroupChat;
 use Akbv\PhpSkype\Models\Message;
 
 /**
@@ -15,14 +16,13 @@ interface ChatInterface
 {
     /**
      * Dependant on the parameters passed, this method will send a text message, a rich text message.
-     * @param
-     * @param string|null $content
+     * @param string $content
      * @param Message|null $edit
      * @param bool $me
      * @param bool $rich
      * @return Message
      */
-    public function sendMessage($content, $edit = null, $me = false, $rich = false): Message;
+    public function sendMessage(?string $content, $edit = null, $me = false, $rich = false): Message;
 
     /**
      * Upload a file to the conversation.  Content should be an ASCII or binary file-like object.
@@ -51,14 +51,23 @@ interface ChatInterface
     /**
      * Send a text message to the conversation.
      * Dependant on the parameters passed, this method will send, edit or delete a message.
-     * @param string|null $editId
-     * @param string|null $content,
-     * @param string $messageType
-     * @param string $contentType
-     * @param mixed $customProperties
+     * @param mixed $editId
+     * @param mixed $content,
+     * @param mixed $messageType
+     * @param mixed $contentType
+     * @param mixed[] $customProperties
      * @return Message
      */
-    public function processMessage(string $editId = null, string $content, string $messageType, string $contentType, array $customProperties = []): Message;
+    public function processMessage($editId = null, $content, $messageType, $contentType, array $customProperties = []): Message;
+
+    /**
+     * Create group chat with contacts.
+     * @param mixed[] $contacts
+     * @param mixed[] $admins
+     * @param bool $moderated
+     * @return Chat
+     */
+    public function createGroupChat(array $contacts, array $admins, bool $moderated=false): Chat;
 
     /**
      * Send a typing presence notification to the conversation.  This will typically show the "{name} is typing..." message in others clients.
