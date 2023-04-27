@@ -2,6 +2,8 @@
 
 namespace Akbv\PhpSkype\Models\Events;
 
+use PhpCsFixer\Fixer\Operator\TernaryToElvisOperatorFixer;
+
 /**
  * An event triggered by various conversation changes or messages.
  *
@@ -13,9 +15,9 @@ class ConversationUpdate extends Event
     /**
      * Conversation that emitted an update.
      *
-     * @var string
+     * @var Object
      */
-    private $conversationId;
+    private $conversation;
 
     /**
      *  Updated horizon string, in the form {id},{timestamp},{id}.
@@ -29,8 +31,13 @@ class ConversationUpdate extends Event
     public function __construct(array $raw)
     {
         parent::__construct($raw);
-        $this->conversationId = $raw['resource']['id'];
-        $this->horizon = $raw['resource']['properties']['consumptionhorizon'];
+        $id = isset($raw['resource']['id']) ? $raw['resource']['id'] : null;
+        if (substr($id, 0, 3) == "19:") {
+            $this->conversation = new \Akbv\PhpSkype\Models\GroupChat($raw['resource']);
+        } else {
+            $this->conversation = new \Akbv\PhpSkype\Models\SingleChat($raw['resource']);
+        }
+        $this->horizon = isset($raw['resource']['properties']['consumptionhorizon']) ? $raw['resource']['properties']['consumptionhorizon'] : null;
     }
 
     /**
@@ -44,16 +51,6 @@ class ConversationUpdate extends Event
     }
 
     /**
-     * Get conversation that emitted an update.
-     *
-     * @return  string
-     */
-    public function getConversationId()
-    {
-        return $this->conversationId;
-    }
-
-    /**
      * Get updated horizon string, in the form {id},{timestamp},{id}.
      *
      * @return  string
@@ -61,5 +58,29 @@ class ConversationUpdate extends Event
     public function getHorizon()
     {
         return $this->horizon;
+    }
+
+    /**
+     * Get conversation that emitted an update.
+     *
+     * @return  Object
+     */
+    public function getConversation()
+    {
+        return $this->conversation;
+    }
+
+    /**
+     * Set conversation that emitted an update.
+     *
+     * @param  Object  $conversation  Conversation that emitted an update.
+     *
+     * @return  self
+     */
+    public function setConversation(Object $conversation)
+    {
+        $this->conversation = $conversation;
+
+        return $this;
     }
 }

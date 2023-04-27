@@ -29,6 +29,9 @@ class Utils
      */
     public static function userUrlToId(string $url)
     {
+        if (empty($url)) {
+            return null;
+        }
         $pattern = "/users(\/ME\/contacts)?\/[0-9]+:([^\/]+)/";
         preg_match($pattern, $url, $matches);
 

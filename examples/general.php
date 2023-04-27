@@ -9,13 +9,13 @@ use Akbv\PhpSkype\Services\SessionManager;
  */
 $sessionManager = new SessionManager(
     __DIR__ . '/sessions',
-    Akbv\PhpSkype\Utils\EnvUtil::getSecret()
+    $_ENV['SESSION_SECRET']
 );
 $client = new Client($sessionManager);
 /**
  * New account model
  */
-$account = new Akbv\PhpSkype\Models\Account(Akbv\PhpSkype\Utils\EnvUtil::getEmail(), Akbv\PhpSkype\Utils\EnvUtil::getPassword());
+$account = new Akbv\PhpSkype\Models\Account($_ENV['SKYPE_LOGIN'], $_ENV['SKYPE_PASSWORD']);
 /**
  * Login
  */

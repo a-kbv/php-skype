@@ -10,7 +10,7 @@ use Akbv\PhpSkype\Utils\Utils;
  * @license http://www.opensource.org/licenses/mit-license.html  MIT License
  * @author Atanas Korabov
  */
-class TypingEvent extends MessageEvent
+class TypingEvent extends Event
 {
     /**
      * User whose typing status changed.

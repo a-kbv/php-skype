@@ -10,7 +10,7 @@ use Akbv\PhpSkype\Utils\Utils;
  * @license http://www.opensource.org/licenses/mit-license.html  MIT License
  * @author Atanas Korabov
  */
-class ThreadUpdate extends \Akbv\PhpSkype\Models\Events\MessageEvent
+class ThreadUpdate extends Event
 {
     /**
      * Array of users affected by the update.

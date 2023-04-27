@@ -55,6 +55,9 @@ class EnvUtil
     */
     public static function isDebug(): bool
     {
+        if (!isset($_ENV['DEBUG'])) {
+            return false;
+        }
         return $_ENV['DEBUG'] == 1;
     }
 }

@@ -1554,12 +1554,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "fb69c96bc94c1c62f849bcb03badc2c485e7c24d"
+                "reference": "14f56ab18bda6a4c01a2c7b82664a4b6efb5fa47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/fb69c96bc94c1c62f849bcb03badc2c485e7c24d",
-                "reference": "fb69c96bc94c1c62f849bcb03badc2c485e7c24d",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/14f56ab18bda6a4c01a2c7b82664a4b6efb5fa47",
+                "reference": "14f56ab18bda6a4c01a2c7b82664a4b6efb5fa47",
                 "shasum": ""
             },
             "require": {
@@ -1609,7 +1609,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-25T14:22:25+00:00"
+            "time": "2023-04-27T09:44:55+00:00"
         },
         {
             "name": "psr/cache",

@@ -29,6 +29,18 @@ class Event implements \Akbv\PhpSkype\Interfaces\Event
     private $time;
 
     /**
+     * Resource Type of the event.
+     * @var string
+     */
+    private $resourceType;
+
+    /**
+     * Resource Link of the event.
+     * @var string
+    */
+    private $resourceLink;
+
+    /**
      * The raw event data.
      * @var mixed[] The raw event data.
      */
@@ -44,6 +56,8 @@ class Event implements \Akbv\PhpSkype\Interfaces\Event
         $this->id = isset($raw['id']) ? $raw['id'] : null;
         $this->type = isset($raw['resourceType']) ? $raw['resourceType'] : null;
         $this->time = isset($raw['time']) ? \DateTime::createFromFormat("Y-m-d\TH:i:s\Z", $raw['time']) : new \DateTime();
+        $this->resourceType = isset($raw['resourceType']) ? $raw['resourceType'] : null;
+        $this->resourceLink = isset($raw['resourceLink']) ? $raw['resourceLink'] : null;
     }
 
     /**
@@ -93,5 +107,25 @@ class Event implements \Akbv\PhpSkype\Interfaces\Event
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get resource Link of the event.
+     *
+     * @return  string
+     */
+    public function getResourceLink()
+    {
+        return $this->resourceLink;
+    }
+
+    /**
+     * Get resource Type of the event.
+     *
+     * @return  string
+     */
+    public function getResourceType()
+    {
+        return $this->resourceType;
     }
 }
