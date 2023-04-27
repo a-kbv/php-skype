@@ -2,13 +2,15 @@
 
 namespace Akbv\PhpSkype\Models\Messages;
 
+use Akbv\PhpSkype\Models\Message;
+
 /**
  * A message containing rich or plain text.
  *
  * @license http://www.opensource.org/licenses/mit-license.html  MIT License
  * @author Atanas Korabov
  */
-class Text extends \Akbv\PhpSkype\Models\Message
+class Text extends Message
 {
     /**
      * The text content of the message.
