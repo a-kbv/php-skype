@@ -799,7 +799,10 @@ final class Client implements ClientInterface
         } catch (ClientException $e) {
             $response = $e->getResponse();
             $response->getStatusCode();
-            DebugUtil::log("LP failed", [], 400);
+            DebugUtil::log("Endpoint is terminated from the server. Creating a new endpoint...", [], 400);
+            $account = $this->getSession()->getAccount();
+            $this->sessionManager->removeSession($this->getSession());
+            $this->login($account);
         }
         $responseData = [];
         $eventMessages = [];
