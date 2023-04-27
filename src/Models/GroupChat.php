@@ -5,7 +5,7 @@ namespace Akbv\PhpSkype\Models;
 /**
  *  A group conversation within Skype. Compared to single chats, groups have a topic and participant list.
  *
- * @license http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
 class GroupChat extends Base

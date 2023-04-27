@@ -6,7 +6,7 @@ namespace Akbv\PhpSkype\Models;
  * A message either sent or received in a conversation.
  * An edit is represented by a follow-up message with the same property `clientId`, which replaces the earlier message.
  *
- * @license http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
 class Message extends Base

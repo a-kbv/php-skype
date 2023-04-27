@@ -34,7 +34,7 @@
     "openssl",
     "http"
   ],
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "autoload": {
     "psr-4": {
       "Akbv\\PhpSkype\\": "src/"
@@ -42,8 +42,7 @@
   },
   "authors": [
     {
-      "name": "Atanas Korabov",
-      "email": "atanas.k@getlinked.io"
+      "name": "Atanas Korabov"
     }
   ],
   "config": {

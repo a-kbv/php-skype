@@ -10,9 +10,8 @@ use Akbv\PhpSkype\Models\Users\Location;
  * User on skype - the current one,a contact, or someone else.
  * Properties differ slightly between the current user and others.
  * Only public properties are available here.
- * Searches different possible attributes for each property.
  *
- * @license http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
 class User extends Base

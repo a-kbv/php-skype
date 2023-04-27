@@ -7,7 +7,7 @@ use Akbv\PhpSkype\Utils\Utils;
 /**
  * The base message event, when a message is received in a conversation.
  *
- * @license http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
 class TypingEvent extends Event

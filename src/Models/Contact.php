@@ -5,7 +5,7 @@ namespace Akbv\PhpSkype\Models;
 /**
  * Class representing a contact in Skype
  *
- * @license http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
 class Contact extends Base

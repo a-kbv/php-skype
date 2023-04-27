@@ -5,7 +5,7 @@ namespace Akbv\PhpSkype\Models;
 /**
  * Decorator for class @see Account that holds data related for cache.
  *
- * @license http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
 class Session extends Base

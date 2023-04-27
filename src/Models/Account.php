@@ -5,7 +5,7 @@ namespace Akbv\PhpSkype\Models;
 /**
  * Common account class that holds basic information.
  *
- * @license http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
 class Account extends Base

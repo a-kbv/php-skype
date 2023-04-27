@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Cookie;
 /**
  * Property for class @see Session that holds data retrieved from Microsoft.
  *
- * @license http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
 class SecurityToken extends Base

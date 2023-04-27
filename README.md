@@ -53,6 +53,6 @@ Pull requests are welcome.
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
 ### NOTE: `This library is not affiliated with Skype or Microsoft in any way. Use at your own risk`.

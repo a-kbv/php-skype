@@ -4,7 +4,7 @@ namespace Akbv\PhpSkype\Models;
 
 /**
  * Base class for all models.
- * @license http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
 abstract class Base
