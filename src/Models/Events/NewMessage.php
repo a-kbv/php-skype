@@ -21,6 +21,7 @@ class NewMessage
 
     /**
      * construct message event.
+     * @param mixed[] $raw
      */
     public function __construct(array $raw)
     {

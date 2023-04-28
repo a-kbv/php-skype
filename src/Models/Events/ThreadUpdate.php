@@ -24,6 +24,10 @@ class ThreadUpdate
      */
     private $conversationId;
 
+    /**
+     * construct thread update event.
+     * @param mixed[] $raw
+     */
     public function __construct(array $raw)
     {
         foreach ($raw['resource']['members'] as $member) {

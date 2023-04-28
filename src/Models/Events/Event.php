@@ -154,5 +154,4 @@ class Event extends \Akbv\PhpSkype\Models\Base implements \Akbv\PhpSkype\Interfa
     {
         return $this->resourceType;
     }
-
 }

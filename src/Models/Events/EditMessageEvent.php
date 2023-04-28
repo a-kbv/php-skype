@@ -19,6 +19,7 @@ class EditMessageEvent
 
     /**
      * construct message event.
+     * @param mixed[] $raw
      */
     public function __construct(array $raw)
     {

@@ -42,6 +42,10 @@ class EndpointPresence
      */
     private $version;
 
+    /**
+     * EndpointPresence constructor.
+     * @param mixed[] $raw
+     */
     public function __construct(array $raw)
     {
         $this->userId = Utils::userUrlToID($raw['resource']['selfLink']);

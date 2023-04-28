@@ -30,6 +30,10 @@ class TypingEvent
      */
     private $conversationId;
 
+    /**
+     * construct message event.
+     * @param mixed[] $raw
+     */
     public function __construct(array $raw)
     {
         $this->userId = Utils::userUrlToID($raw['resource']['from']);

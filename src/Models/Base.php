@@ -9,6 +9,10 @@ namespace Akbv\PhpSkype\Models;
  */
 abstract class Base
 {
+    /**
+     * @param mixed $object
+     * @return mixed
+     */
     public function injectObject($object)
     {
         // Set the dynamic property value
@@ -28,6 +32,11 @@ abstract class Base
         return $this->{$propertyName};
     }
 
+    /**
+     * @param string $method
+     * @param mixed $args
+     * @return mixed
+     */
     public function __call($method, $args)
     {
         if (isset($this->{$method}) && is_callable($this->{$method})) {
@@ -35,12 +44,6 @@ abstract class Base
             return call_user_func_array($func, $args);
         }
         throw new \Exception('Undefined method: ' . $method);
-    }
-
-    protected function bindGetter($name, $getter)
-    {
-        $getterName = "get" . ucfirst($name);
-        $this->{$getterName} = \Closure::bind($getter, $this, get_class($this));
     }
 
     /**
@@ -76,30 +79,6 @@ abstract class Base
         }
 
         return $this;
-    }
-
-    public function fromArray(array $data): void
-    {
-        foreach ($data as $property => $value) {
-            $property = str_replace('_', '', ucwords($property, '_'));
-            $setter = 'set' . ucfirst($property);
-            if (method_exists($this, $setter)) {
-                $this->$setter($value);
-            }
-        }
-    }
-
-    public function toArray(): array
-    {
-        $result = [];
-        $refl = new \ReflectionObject($this);
-        foreach ($refl->getProperties() as $property) {
-            $getter = 'get' . ucfirst($property->getName());
-            if (method_exists($this, $getter)) {
-                $result[$property->getName()] = $this->$getter();
-            }
-        }
-        return $result;
     }
 
     /**
