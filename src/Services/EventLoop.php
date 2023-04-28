@@ -95,40 +95,7 @@ class EventLoop
      */
     public function createEvent(array $event): \Akbv\PhpSkype\Interfaces\Event
     {
-        $resourceType = $event['resourceType'];
-
-        switch ($resourceType) {
-            case 'NewMessage':
-                switch ($event['resource']['messagetype']) {
-                    case 'Text':
-                    case 'RichText':
-                    case 'RichText/Contacts':
-                    case 'RichText/Media_GenericFile':
-                    case 'RichText/UriObject':
-                        if (isset($event['resource']['skypeeditedid'])) {
-                            return new \Akbv\PhpSkype\Models\Events\EditMessageEvent($event);
-                        } else {
-                            return new \Akbv\PhpSkype\Models\Events\NewMessage($event);
-                        }
-                        // no break
-                    case 'Control/Typing':
-                    case 'Control/ClearTyping':
-                        return new \Akbv\PhpSkype\Models\Events\TypingEvent($event);
-                    case 'Event/Call':
-                        return new \Akbv\PhpSkype\Models\Events\CallEvent($event);
-                }
-                // no break
-            case 'UserPresence':
-                return new \Akbv\PhpSkype\Models\Events\UserPresence($event);
-            case 'EndpointPresence':
-                return new \Akbv\PhpSkype\Models\Events\EndpointPresence($event);
-            case 'ThreadUpdate' :
-                return new \Akbv\PhpSkype\Models\Events\ThreadUpdate($event);
-            case 'ConversationUpdate' :
-                return new \Akbv\PhpSkype\Models\Events\ConversationUpdate($event);
-            default:
-                return new \Akbv\PhpSkype\Models\Events\Event($event);
-        }
+        return new \Akbv\PhpSkype\Models\Events\Event($event);
     }
 
     /**

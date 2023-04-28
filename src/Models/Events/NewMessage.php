@@ -24,7 +24,6 @@ class NewMessage extends Event
      */
     public function __construct(array $raw)
     {
-        parent::__construct($raw);
         $this->message = new Message($raw['resource']);
     }
 

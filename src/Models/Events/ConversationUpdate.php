@@ -30,7 +30,6 @@ class ConversationUpdate extends Event
      */
     public function __construct(array $raw)
     {
-        parent::__construct($raw);
         $id = isset($raw['resource']['id']) ? $raw['resource']['id'] : null;
         if (substr($id, 0, 3) == "19:") {
             $this->conversation = new \Akbv\PhpSkype\Models\GroupChat($raw['resource']);

@@ -32,7 +32,6 @@ class TypingEvent extends Event
 
     public function __construct(array $raw)
     {
-        parent::__construct($raw);
         $this->userId = Utils::userUrlToID($raw['resource']['from']);
         $this->conversationId = Utils::chatUrlToId($raw['resource']['conversationLink']);
         $this->active = $raw['resource']['messagetype'] == 'Control/Typing';

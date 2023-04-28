@@ -26,7 +26,6 @@ class ThreadUpdate extends Event
 
     public function __construct(array $raw)
     {
-        parent::__construct($raw);
         foreach ($raw['resource']['members'] as $member) {
             $this->userIds[] = Utils::removePrefix($member['id']);
         }

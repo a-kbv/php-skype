@@ -44,7 +44,6 @@ class EndpointPresence extends Event
 
     public function __construct(array $raw)
     {
-        parent::__construct($raw);
         $this->userId = Utils::userUrlToID($raw['resource']['selfLink']);
         $this->name = $raw['resource']['privateInfo']['epname'];
         $this->epType = $raw['resource']['publicInfo']['typ'];

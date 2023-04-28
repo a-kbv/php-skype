@@ -38,7 +38,6 @@ class UserPresence extends Event
 
     public function __construct(array $raw)
     {
-        parent::__construct($raw);
         $this->userId = Utils::UserUrlToID($raw['resource']['selfLink']);
         $this->online = $raw['resource']['availability'] == 'Online';
         $this->status = $raw['resource']['status'];
