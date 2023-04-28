@@ -64,6 +64,7 @@ class EventLoop
 
         foreach ($events as $event) {
             $event = $this->createEvent($event);
+            $event->getNewMessage();
             $this->triggerEvent($event);
         }
     }

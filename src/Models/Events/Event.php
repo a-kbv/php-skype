@@ -8,7 +8,7 @@ namespace Akbv\PhpSkype\Models\Events;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class Event implements \Akbv\PhpSkype\Interfaces\Event
+class Event extends \Akbv\PhpSkype\Models\Base implements \Akbv\PhpSkype\Interfaces\Event
 {
     /**
      * Unique identifier of the event, usually starting from ``1000``.
@@ -47,12 +47,6 @@ class Event implements \Akbv\PhpSkype\Interfaces\Event
     private $rawData;
 
     /**
-     * The event object.
-     * @var Object
-     */
-    private $event;
-
-    /**
      * Create a new event from a raw event array.
      * @param mixed[] $raw The raw event array.
      */
@@ -71,26 +65,24 @@ class Event implements \Akbv\PhpSkype\Interfaces\Event
                 $types = ['Text', 'RichText', 'RichText/Contacts', 'RichText/Media_GenericFile', 'RichText/UriObject'];
                 if (in_array($messageType, $types)) {
                     if (isset($this->getRawData()['resource']['skypeeditedid'])) {
-                        $this->event = new \Akbv\PhpSkype\Models\Events\EditMessageEvent($this->getRawData());
+                        $this->injectObject(new \Akbv\PhpSkype\Models\Events\EditMessageEvent($this->getRawData()));
                     } else {
-                        $this->event = new \Akbv\PhpSkype\Models\Events\NewMessage($this->getRawData());
+                        $this->injectObject(new \Akbv\PhpSkype\Models\Events\NewMessage($this->getRawData()));
                     }
                 } elseif ($messageType == 'Control/Typing' || $messageType == 'Control/ClearTyping') {
-                    $this->event = new \Akbv\PhpSkype\Models\Events\TypingEvent($this->getRawData());
+                    $this->injectObject(new \Akbv\PhpSkype\Models\Events\TypingEvent($this->getRawData()));
                 } elseif ($messageType == 'Event/Call') {
-                    $this->event = new \Akbv\PhpSkype\Models\Events\CallEvent($this->getRawData());
+                    $this->injectObject(new \Akbv\PhpSkype\Models\Events\CallEvent($this->getRawData()));
                 }
             }
         } elseif ($this->getResourceType() == 'UserPresence') {
-            $this->event = new \Akbv\PhpSkype\Models\Events\UserPresence($this->getRawData());
+            $this->injectObject(new \Akbv\PhpSkype\Models\Events\UserPresence($this->getRawData()));
         } elseif ($this->getResourceType() == 'EndpointPresence') {
-            $this->event = new \Akbv\PhpSkype\Models\Events\EndpointPresence($this->getRawData());
+            $this->injectObject(new \Akbv\PhpSkype\Models\Events\EndpointPresence($this->getRawData()));
         } elseif ($this->getResourceType() == 'ThreadUpdate') {
-            $this->event = new \Akbv\PhpSkype\Models\Events\ThreadUpdate($this->getRawData());
+            $this->injectObject(new \Akbv\PhpSkype\Models\Events\ThreadUpdate($this->getRawData()));
         } elseif ($this->getResourceType() == 'ConversationUpdate') {
-            $this->event = new \Akbv\PhpSkype\Models\Events\ConversationUpdate($this->getRawData());
-        } else {
-            $this->event = $this;
+            $this->injectObject(new \Akbv\PhpSkype\Models\Events\ConversationUpdate($this->getRawData()));
         }
     }
 
@@ -163,12 +155,4 @@ class Event implements \Akbv\PhpSkype\Interfaces\Event
         return $this->resourceType;
     }
 
-    /**
-     * Get the value of event
-     * @return Object
-     */
-    public function getEvent(): Object
-    {
-        return $this->event;
-    }
 }

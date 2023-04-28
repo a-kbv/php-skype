@@ -8,7 +8,7 @@ namespace Akbv\PhpSkype\Models\Events;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class EditMessageEvent extends Event
+class EditMessageEvent
 {
     /**
      * Skype Name of User or Group.

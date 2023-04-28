@@ -84,6 +84,54 @@ class Message extends Base
     private $from;
 
     /**
+     * The acknowledgement url of the message.
+     * @var string
+     */
+    private $ackrequired;
+
+    /**
+     * The message identifier of the counterpart.
+     * @var string
+     */
+    private $counterpartymessageid;
+
+    /**
+     * The display name of the IM.
+     * @var string
+     */
+    private $imdisplayname;
+
+    /**
+     * The origin context identifier.
+     * @var string
+     */
+    private $origincontextid;
+
+    /**
+     * The thread topic.
+     * @var string
+     */
+    private $threadtopic;
+
+    /**
+     * The content type.
+     * @var string
+     */
+    private $contenttype;
+
+    /**
+     * The MLS epoch.
+     * @var string
+     */
+    private $mlsEpoch;
+
+    /**
+     * The active status.
+     * @var string
+     */
+    private $isactive;
+
+    /**
      * Constructor.
      * @param mixed[] $data
      */
@@ -376,6 +424,198 @@ class Message extends Base
     public function setProperties(array $properties)
     {
         $this->properties = $properties;
+
+        return $this;
+    }
+
+    /**
+     * Get the acknowledgement url of the message.
+     *
+     * @return  string
+     */
+    public function getAckrequired()
+    {
+        return $this->ackrequired;
+    }
+
+    /**
+     * Set the acknowledgement url of the message.
+     *
+     * @param  string  $ackrequired  The acknowledgement url of the message.
+     *
+     * @return  self
+     */
+    public function setAckrequired(string $ackrequired)
+    {
+        $this->ackrequired = $ackrequired;
+
+        return $this;
+    }
+
+    /**
+     * Get the message identifier of the counterpart.
+     *
+     * @return  string
+     */
+    public function getCounterpartymessageid()
+    {
+        return $this->counterpartymessageid;
+    }
+
+    /**
+     * Set the message identifier of the counterpart.
+     *
+     * @param  string  $counterpartymessageid  The message identifier of the counterpart.
+     *
+     * @return  self
+     */
+    public function setCounterpartymessageid(string $counterpartymessageid)
+    {
+        $this->counterpartymessageid = $counterpartymessageid;
+
+        return $this;
+    }
+
+    /**
+     * Get the display name of the IM.
+     *
+     * @return  string
+     */
+    public function getImdisplayname()
+    {
+        return $this->imdisplayname;
+    }
+
+    /**
+     * Set the display name of the IM.
+     *
+     * @param  string  $imdisplayname  The display name of the IM.
+     *
+     * @return  self
+     */
+    public function setImdisplayname(string $imdisplayname)
+    {
+        $this->imdisplayname = $imdisplayname;
+
+        return $this;
+    }
+
+    /**
+     * Get the origin context identifier.
+     *
+     * @return  string
+     */
+    public function getOrigincontextid()
+    {
+        return $this->origincontextid;
+    }
+
+    /**
+     * Set the origin context identifier.
+     *
+     * @param  string  $origincontextid  The origin context identifier.
+     *
+     * @return  self
+     */
+    public function setOrigincontextid(string $origincontextid)
+    {
+        $this->origincontextid = $origincontextid;
+
+        return $this;
+    }
+
+    /**
+     * Get the thread topic.
+     *
+     * @return  string
+     */
+    public function getThreadtopic()
+    {
+        return $this->threadtopic;
+    }
+
+    /**
+     * Set the thread topic.
+     *
+     * @param  string  $threadtopic  The thread topic.
+     *
+     * @return  self
+     */
+    public function setThreadtopic(string $threadtopic)
+    {
+        $this->threadtopic = $threadtopic;
+
+        return $this;
+    }
+
+    /**
+     * Get the content type.
+     *
+     * @return  string
+     */
+    public function getContenttype()
+    {
+        return $this->contenttype;
+    }
+
+    /**
+     * Set the content type.
+     *
+     * @param  string  $contenttype  The content type.
+     *
+     * @return  self
+     */
+    public function setContenttype(string $contenttype)
+    {
+        $this->contenttype = $contenttype;
+
+        return $this;
+    }
+
+    /**
+     * Get the MLS epoch.
+     *
+     * @return  string
+     */
+    public function getMlsEpoch()
+    {
+        return $this->mlsEpoch;
+    }
+
+    /**
+     * Set the MLS epoch.
+     *
+     * @param  string  $mlsEpoch  The MLS epoch.
+     *
+     * @return  self
+     */
+    public function setMlsEpoch(string $mlsEpoch)
+    {
+        $this->mlsEpoch = $mlsEpoch;
+
+        return $this;
+    }
+
+    /**
+     * Get the active status.
+     *
+     * @return  string
+     */
+    public function getIsactive()
+    {
+        return $this->isactive;
+    }
+
+    /**
+     * Set the active status.
+     *
+     * @param  string  $isactive  The active status.
+     *
+     * @return  self
+     */
+    public function setIsactive(string $isactive)
+    {
+        $this->isactive = $isactive;
 
         return $this;
     }

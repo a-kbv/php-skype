@@ -10,7 +10,7 @@ use PhpCsFixer\Fixer\Operator\TernaryToElvisOperatorFixer;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class ConversationUpdate extends Event
+class ConversationUpdate
 {
     /**
      * Conversation that emitted an update.

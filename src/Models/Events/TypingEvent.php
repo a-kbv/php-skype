@@ -10,7 +10,7 @@ use Akbv\PhpSkype\Utils\Utils;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class TypingEvent extends Event
+class TypingEvent
 {
     /**
      * User whose typing status changed.

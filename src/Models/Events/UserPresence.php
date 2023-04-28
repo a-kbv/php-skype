@@ -10,7 +10,7 @@ use Akbv\PhpSkype\Utils\Utils;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class UserPresence extends Event
+class UserPresence
 {
     /**
      * User whose presence changed.
