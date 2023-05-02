@@ -10,15 +10,21 @@ namespace Akbv\PhpSkype\Models;
 abstract class Base
 {
     /**
+     * @var string
+     */
+    protected $eventClassName;
+
+    /**
      * @param mixed $object
      * @return mixed
      */
     public function injectObject($object)
     {
         // Set the dynamic property value
-        $propertyName = get_class($object);
-        $propertyName = substr($propertyName, strrpos($propertyName, '\\') + 1);
+        $propertyNameFull = get_class($object);
+        $propertyName = substr($propertyNameFull, strrpos($propertyNameFull, '\\') + 1);
         $this->{$propertyName} = $object;
+        $this->{"eventClassName"} = $propertyNameFull;
     }
 
     /**
@@ -77,5 +83,15 @@ abstract class Base
         $attributes = json_decode($json, true);
 
         return $this->mapPropertiesFromArray($attributes);
+    }
+
+    /**
+     * Get the value of eventClassName
+     *
+     * @return  string
+     */
+    public function getEventClassName()
+    {
+        return $this->eventClassName;
     }
 }
