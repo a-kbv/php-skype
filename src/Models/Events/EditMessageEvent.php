@@ -1,7 +1,7 @@
 <?php
 
 namespace Akbv\PhpSkype\Models\Events;
-
+use Akbv\PhpSkype\Models\Message;
 /**
  * The base message event, when a message is received in a conversation.
  *
@@ -11,9 +11,16 @@ namespace Akbv\PhpSkype\Models\Events;
 class EditMessageEvent
 {
     /**
+     * Id of edited message.
+     *
+     * @var id
+     */
+    private $editedMessageId;
+
+    /**
      * Skype Name of User or Group.
      *
-     * @var string
+     * @var Message
      */
     private $message;
 
@@ -23,7 +30,8 @@ class EditMessageEvent
      */
     public function __construct(array $raw)
     {
-        $this->message = $raw['resource']['content'];
+        $this->message = new Message($raw['resource']);
+        $this->editedMessageId = isset($raw['resource']['id']) ? $raw['resource']['id'] : null;
     }
 
     /**
@@ -32,5 +40,15 @@ class EditMessageEvent
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * Get id of edited message.
+     *
+     * @return  id
+     */
+    public function getEditedMessageId()
+    {
+        return $this->editedMessageId;
     }
 }
