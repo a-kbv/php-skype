@@ -109,4 +109,15 @@ class Utils
         }
         return sprintf('<URIObject type="%s" uri="%s"%s>%s%s%s%s</URIObject>', $type, $url, $thumbAttr, $titleTag, $descTag, $valTags, $content);
     }
+
+    /**
+     * @param string $uriObject
+     * @return mixed[]
+     */
+    public static function parseImageUriObject($uriObject): array
+    {
+        $pattern = "/<URIObject type=\"([^\"]+)\" uri=\"([^\"]+)\" url_thumbnail=\"([^\"]+)\">/";
+        preg_match($pattern, $uriObject, $matches);
+        return $matches;
+    }
 }
