@@ -114,7 +114,7 @@ class Utils
      * @param string $uriObject
      * @return mixed[]
      */
-    public static function parseImageUriObject($uriObject): array
+    public static function parseUriObject($uriObject): array
     {
         // '<URIObject uri="https://api.asm.skype.com/v1/objects/0-weu-d20-4d0e328f890724d39d662d87a54caaff" url_thumbnail="https://api.asm.skype.com/v1/objects/0-weu-d20-4d0e328f890724d39d662d87a54caaff/views/imgt1_anim" type="Picture.1" doc_id="0-weu-d20-4d0e328f890724d39d662d87a54caaff" width="727" height="969">To view this shared photo, go to: <a href="https://login.skype.com/login/sso?go=xmmfallback?pic=0-weu-d20-4d0e328f890724d39d662d87a54caaff">https://login.skype.com/login/sso?go=xmmfallback?pic=0-weu-d20-4d0e328f890724d39d662d87a54caaff</a><OriginalName v="20211211_200226.jpg"></OriginalName><FileSize v="174082"></FileSize><meta type="photo" originalName="20211211_200226.jpg"></meta></URIObject>'
         //match url_thumbnail , uri, type, doc_id, width, height , OriginalName and FileSize
