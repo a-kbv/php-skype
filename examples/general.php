@@ -97,10 +97,13 @@ $eventLoop = new Akbv\PhpSkype\Services\EventLoop($client);
 $eventLoop->onEvent(function ($event) use ($eventLoop) {
     echo "Got event: " . $event->getType() . PHP_EOL;
     if ($event->getType() == 'NewMessage') {
-        $resource = $event->getRawData()['resource'];
-        if ($resource['messagetype'] == 'Control/Typing') {
-            print_r($event->getUserId() . ' is typing...');
-            echo PHP_EOL;
+        if ($event->getType() == 'NewMessage') {
+            /** @var \Akbv\PhpSkype\Models\Message */
+            $message = $event->NewMessage->getMessage();
+            if ($message->getMessagetype() =='Control/Typing') {
+                print_r($message->getImdisplayname() . ' is typing...');
+                echo PHP_EOL;
+            }
         }
     }
 });
