@@ -116,7 +116,6 @@ class Utils
      */
     public static function parseImageUriObject($uriObject): array
     {
-        // '<URIObject uri="https://api.asm.skype.com/v1/objects/0-weu-d20-4d0e328f890724d39d662d87a54caaff" url_thumbnail="https://api.asm.skype.com/v1/objects/0-weu-d20-4d0e328f890724d39d662d87a54caaff/views/imgt1_anim" type="Picture.1" doc_id="0-weu-d20-4d0e328f890724d39d662d87a54caaff" width="727" height="969">To view this shared photo, go to: <a href="https://login.skype.com/login/sso?go=xmmfallback?pic=0-weu-d20-4d0e328f890724d39d662d87a54caaff">https://login.skype.com/login/sso?go=xmmfallback?pic=0-weu-d20-4d0e328f890724d39d662d87a54caaff</a><OriginalName v="20211211_200226.jpg"></OriginalName><FileSize v="174082"></FileSize><meta type="photo" originalName="20211211_200226.jpg"></meta></URIObject>'
         //match url_thumbnail , uri, type, doc_id, width, height , OriginalName and FileSize
         $pattern = '/<URIObject uri="(?<uri>[^"]+)" url_thumbnail="(?<url_thumbnail>[^"]+)" type="(?<type>[^"]+)" doc_id="(?<doc_id>[^"]+)" width="(?<width>[^"]+)" height="(?<height>[^"]+)">.*<OriginalName v="(?<originalName>[^"]+)"><\/OriginalName><FileSize v="(?<fileSize>[^"]+)"><\/FileSize>/';
         preg_match($pattern, $uriObject, $matches);
@@ -132,7 +131,6 @@ class Utils
      */
     public static function parseFileUriObject($uriObject): array
     {
-        // '"<URIObject uri="https://api.asm.skype.com/v1/objects/0-weu-d20-e57916db816e5a06bf20d82a621d0d0d" url_thumbnail="https://api.asm.skype.com/v1/objects/0-weu-d20-e57916db816e5a06bf20d82a621d0d0d/views/original" type="File.1" doc_id="0-weu-d20-e57916db816e5a06bf20d82a621d0d0d">To view this file, go to: <a href="https://login.skype.com/login/sso?go=webclient.xmm&amp;docid=0-weu-d20-e57916db816e5a06bf20d82a621d0d0d">https://login.skype.com/login/sso?go=webclient.xmm&amp;docid=0-weu-d20-e57916db816e5a06bf20d82a621d0d0d</a><OriginalName v="domainCheckCurls.csv"></OriginalName><FileSize v="122737"></FileSize></URIObject>"'
         //match url_thumbnail , uri, type, doc_id, width, height , OriginalName and FileSize
         $pattern = '/<URIObject uri="(?<uri>[^"]+)" url_thumbnail="(?<url_thumbnail>[^"]+)" type="(?<type>[^"]+)" doc_id="(?<doc_id>[^"]+)">.*<OriginalName v="(?<originalName>[^"]+)"><\/OriginalName><FileSize v="(?<fileSize>[^"]+)"><\/FileSize>/';
         preg_match($pattern, $uriObject, $matches);
