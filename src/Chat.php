@@ -75,7 +75,6 @@ class Chat implements ChatInterface
             }
 
             $data = json_decode($response->getContent(), true);
-            file_put_contents("thread.json", json_encode($data, JSON_PRETTY_PRINT));
             $raw = array_merge($raw, $data);
 
             $this->chat = new GroupChat($raw);
