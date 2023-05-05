@@ -16,35 +16,29 @@ $ composer require akbv/php-skype
 ```PHP
 <?php
 
-/** Create session manager
- * @return Akbv\PhpSkype\Services\SessionManager $sessionManager*/
+/** Create session manager */
 $sessionManager = new \Akbv\PhpSkype\Services\SessionManager(
     __DIR__ . '/sessions',
     "hardToGuessSecretKeyUpTo32Characters"
 );
 
-/** Create account Object
- * @return Akbv\PhpSkype\Models\Account $account*/
+/** Create account Object */
 $account = new Akbv\PhpSkype\Models\Account(
     'email@example.com',
     'password'
 );
 
-/** Login
- * @return Akbv\PhpSkype\Models\Account $account*/
+/** Login */
 $client = new Akbv\PhpSkype\SkypeClient($sessionManager);
 $client->login($account);
 
-/** Get contacts list
- * @return Akbv\PhpSkype\Models\Contact[] $contacts */
+/** Get contacts list */
 $client->getAllContacts();
 
-/** Start chat with contact
- * @return Akbv\PhpSkype\Models\Chat $chat */
+/** Start chat with contact */
 $chat = $client->chat('8:live:example');
 
-/** Send message to chat
- * @return Akbv\PhpSkype\Models\Message $message */
+/** Send message to chat */
 $message = $chat->sendMessage('Hello world!'); 
 
 ```
