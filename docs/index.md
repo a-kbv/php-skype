@@ -1,1 +1,1 @@
-# docs
+# docs for skype-php
