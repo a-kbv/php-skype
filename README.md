@@ -42,6 +42,7 @@ $chat = $client->chat('8:live:example');
 $message = $chat->sendMessage('Hello world!'); 
 
 ```
+
 ## Contributing
 
 Pull requests are welcome.
