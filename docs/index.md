@@ -1,1 +1,0 @@
-# docs for skype-php
