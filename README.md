@@ -12,6 +12,40 @@ Use the package manager composer to install php-skype.
 $ composer require akbv/php-skype 
 ```
 
+## Supported features
+  - [x] Login
+  - [x] Get contacts list
+  - [x] Get contact details
+  - [x] Get recent chats
+  - [x] Create a group chat
+  - [x] Get user properties
+  - [x] Get a user profile
+  - [x] Get user invites
+  - [x] Configure endpoint
+  - [x] Subscribe to contact and conversation events
+  - [x] Subscribe to presence_changes
+  - [x] Get events
+  - [x] Allow presence
+  - [x] Ping endpoint (keep-alive)
+  - [x] Set user presence
+  - [x] Send text messages
+  - [x] Edit text messages
+  - [x] Delete text messages
+  - [x] Send file attachments
+  - [x] Send images
+  - [x] Send contacts
+  - [x] Set consumption horizon
+  - [x] Set typing indicator
+  - [x] Get chat messages history
+  - [x] Set group chat topic
+  - [x] Set group chat as moderated/unmoderated
+  - [x] Set group chat as open/closed for joining
+  - [x] Set group chat history disclosed/undisclosed
+  - [x] Add and remove group chat members
+  - [x] Make a group chat member an admin
+  - [x] Remove admin status from a group chat member
+  - [x] Leave a group chat
+
 ## Usage
 ```PHP
 <?php
