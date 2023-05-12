@@ -12,6 +12,37 @@ Use the package manager composer to install php-skype.
 $ composer require akbv/php-skype 
 ```
 
+## Usage
+```PHP
+<?php
+
+/** Create session manager */
+$sessionManager = new \Akbv\PhpSkype\Services\SessionManager(
+    __DIR__ . '/sessions',
+    "hardToGuessSecretKeyUpTo32Characters"
+);
+
+/** Create account Object */
+$account = new Akbv\PhpSkype\Models\Account(
+    'email@example.com',
+    'password'
+);
+
+/** Login */
+$client = new Akbv\PhpSkype\SkypeClient($sessionManager);
+$client->login($account);
+
+/** Get contacts list */
+$client->getAllContacts();
+
+/** Start chat with contact */
+$chat = $client->chat('8:live:example');
+
+/** Send message to chat */
+$message = $chat->sendMessage('Hello world!'); 
+
+```
+
 ## Supported features
   - [x] Login
   - [x] Get contacts list
@@ -45,37 +76,6 @@ $ composer require akbv/php-skype
   - [x] Make a group chat member an admin
   - [x] Remove admin status from a group chat member
   - [x] Leave a group chat
-
-## Usage
-```PHP
-<?php
-
-/** Create session manager */
-$sessionManager = new \Akbv\PhpSkype\Services\SessionManager(
-    __DIR__ . '/sessions',
-    "hardToGuessSecretKeyUpTo32Characters"
-);
-
-/** Create account Object */
-$account = new Akbv\PhpSkype\Models\Account(
-    'email@example.com',
-    'password'
-);
-
-/** Login */
-$client = new Akbv\PhpSkype\SkypeClient($sessionManager);
-$client->login($account);
-
-/** Get contacts list */
-$client->getAllContacts();
-
-/** Start chat with contact */
-$chat = $client->chat('8:live:example');
-
-/** Send message to chat */
-$message = $chat->sendMessage('Hello world!'); 
-
-```
 
 ## Contributing
 
