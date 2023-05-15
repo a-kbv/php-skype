@@ -115,16 +115,47 @@ class Utils
      * @return mixed[]
      */
     public static function parseImageUriObject($uriObject): array
-    {
-        // <URIObject uri="https://api.asm.skype.com/v1/objects/0-weu-d16-228bcd96b71f466a7741810166b19bb8" url_thumbnail="https://api.asm.skype.com/v1/objects/0-weu-d16-228bcd96b71f466a7741810166b19bb8/views/imgt1_anim" type="Picture.1" doc_id="0-weu-d16-228bcd96b71f466a7741810166b19bb8" width="1690" height="871">To view this shared photo, go to: <a href="https://login.skype.com/login/sso?go=xmmfallback?pic=0-weu-d16-228bcd96b71f466a7741810166b19bb8">https://login.skype.com/login/sso?go=xmmfallback?pic=0-weu-d16-228bcd96b71f466a7741810166b19bb8</a><OriginalName v="20173288-ahmed-banq-anello-v3-1690x871.jpg"></OriginalName><FileSize v="121239"></FileSize><meta type="photo" originalName="20173288-ahmed-banq-anello-v3-1690x871.jpg"></meta></URIObject>
-        //match url_thumbnail , uri, type, doc_id, width, height , OriginalName and FileSize
-        $pattern = '/<URIObject uri="(?<uri>[^"]+)" url_thumbnail="(?<url_thumbnail>[^"]+)" type="(?<type>[^"]+)" doc_id="(?<doc_id>[^"]+)" width="(?<width>[^"]+)" height="(?<height>[^"]+)">.*<OriginalName v="(?<originalName>[^"]+)"><\/OriginalName><FileSize v="(?<fileSize>[^"]+)"><\/FileSize>/';
-        preg_match($pattern, $uriObject, $matches);
-        $imageArray = array_filter($matches, function ($key) {
-            return is_string($key);
-        }, ARRAY_FILTER_USE_KEY);
-        return $imageArray;
+{
+    //match url_thumbnail, uri, type, doc_id, width, height, OriginalName, and FileSize
+    $pattern = '/url_thumbnail="(.*?)"|uri="(.*?)"|type="(.*?)"|doc_id="(.*?)"|width="(.*?)"|height="(.*?)"|<OriginalName v="(.*?)">|<FileSize v="(.*?)">/';
+    preg_match_all($pattern, $uriObject, $matches, PREG_SET_ORDER);
+
+    $imageArray = [];
+    foreach ($matches as $match) {
+        for ($i = 1; $i < count($match); $i += 2) {
+            if (!empty($match[$i])) {
+                switch ($i) {
+                    case 1:
+                        $imageArray['url_thumbnail'] = $match[$i];
+                        break;
+                    case 3:
+                        $imageArray['uri'] = $match[$i];
+                        break;
+                    case 5:
+                        $imageArray['type'] = $match[$i];
+                        break;
+                    case 7:
+                        $imageArray['doc_id'] = $match[$i];
+                        break;
+                    case 9:
+                        $imageArray['width'] = $match[$i];
+                        break;
+                    case 11:
+                        $imageArray['height'] = $match[$i];
+                        break;
+                    case 13:
+                        $imageArray['OriginalName'] = $match[$i];
+                        break;
+                    case 15:
+                        $imageArray['FileSize'] = $match[$i];
+                        break;
+                }
+            }
+        }
     }
+
+    return $imageArray;
+}
 
     /**
      * @param string $uriObject
