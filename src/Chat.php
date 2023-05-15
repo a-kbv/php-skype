@@ -2,18 +2,13 @@
 
 namespace Akbv\PhpSkype;
 
-use Akbv\PhpSkype\Models\Session;
 use Akbv\PhpSkype\Interfaces\ChatInterface;
 use Akbv\PhpSkype\Models\Message;
 use Akbv\PhpSkype\Models\SingleChat;
 use Akbv\PhpSkype\Models\GroupChat;
 use Akbv\PhpSkype\Client;
 use Akbv\PhpSkype\Utils\Utils;
-use Monolog\Handler\Curl\Util;
 use Symfony\Component\HttpClient\Exception\ClientException;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
  * A conversation within Skype.

@@ -102,6 +102,126 @@ class Contact extends Base
     private $phoneHashes = [];
 
     /**
+     * Information about the contact
+     * @var string
+     */
+    private $about;
+
+    /**
+     * The URL of the avatar of the contact
+     * @var string
+     */
+    private $avatarUrl;
+
+    /**
+     * The birthday of the contact
+     * @var string
+     */
+    private $birthday;
+
+    /**
+     * The city of the contact
+     * @var string
+     */
+    private $city;
+
+    /**
+     * The country of the contact
+     * @var string
+     */
+    private $country;
+
+    /**
+     * The emails of the contact
+     * @var mixed[]
+     */
+    private $emails = [];
+
+    /**
+     * The first name of the contact
+     * @var string
+     */
+    private $firstName;
+
+    /**
+     * The gender of the contact
+     * @var string
+     */
+    private $gender;
+
+    /**
+     * The homepage of the contact
+     * @var string
+     */
+    private $homepage;
+
+    /**
+     * The job title of the contact
+     * @var string
+     */
+    private $jobTitle;
+
+    /**
+     * The language of the contact
+     * @var string
+     */
+    private $language;
+
+    /**
+     * The last name of the contact
+     * @var string
+     */
+    private $lastName;
+
+    /**
+     * The mood of the contact
+     * @var string
+     */
+    private $mood;
+
+    /**
+     * The namespace of the contact
+     * @var string
+     */
+    private $namespace;
+
+    /**
+     * The home phone number of the contact
+     * @var string
+     */
+    private $phoneHome;
+
+    /**
+     * The mobile phone number of the contact
+     * @var string
+     */
+    private $phoneMobile;
+
+    /**
+     * The office phone number of the contact
+     * @var string
+     */
+    private $phoneOffice;
+
+    /**
+     * The province of the contact
+     * @var string
+     */
+    private $province;
+
+    /**
+     * The rich mood of the contact
+     * @var string
+     */
+    private $richMood;
+
+    /**
+     * The username of the contact
+     * @var string
+     */
+    private $username;
+
+    /**
      * Constructor
      *
      * @param mixed[] $data The data to map to properties
@@ -125,6 +245,28 @@ class Contact extends Base
         $this->agent = $data['agent'] ?? null;
         $this->suggested = $data['suggested'] ?? null;
         $this->phoneHashes = $data['phone_hashes'] ?? null;
+        $this->about = $data['about'] ?? null;
+        $this->avatarUrl = $data['avatar_url'] ?? null;
+        $this->birthday = $data['birthday'] ?? null;
+        $this->city = $data['city'] ?? null;
+        $this->country = $data['country'] ?? null;
+        $this->emails = $data['emails'] ?? null;
+        $this->firstName = $data['firstname'] ?? null;
+        $this->gender = $data['gender'] ?? null;
+        $this->homepage = $data['homepage'] ?? null;
+        $this->jobTitle = $data['jobtitle'] ?? null;
+        $this->language = $data['language'] ?? null;
+        $this->lastName = $data['lastname'] ?? null;
+        $this->mood = $data['mood'] ?? null;
+        $this->namespace = $data['namespace'] ?? null;
+        $this->phoneHome = $data['phoneHome'] ?? null;
+        $this->phoneMobile = $data['phoneMobile'] ?? null;
+        $this->phoneOffice = $data['phoneOffice'] ?? null;
+        $this->province = $data['province'] ?? null;
+        $this->richMood = $data['richMood'] ?? null;
+        $this->username = $data['username'] ?? null;
+
+
     }
 
     /**
@@ -433,6 +575,486 @@ class Contact extends Base
     public function setPhoneHashes(array $phoneHashes): self
     {
         $this->phoneHashes = $phoneHashes;
+
+        return $this;
+    }
+
+    /**
+     * Get information about the contact
+     *
+     * @return  string
+     */
+    public function getAbout()
+    {
+        return $this->about;
+    }
+
+    /**
+     * Set information about the contact
+     *
+     * @param  string  $about  Information about the contact
+     *
+     * @return  self
+     */
+    public function setAbout(string $about)
+    {
+        $this->about = $about;
+
+        return $this;
+    }
+
+    /**
+     * Get the URL of the avatar of the contact
+     *
+     * @return  string
+     */
+    public function getAvatarUrl()
+    {
+        return $this->avatarUrl;
+    }
+
+    /**
+     * Set the URL of the avatar of the contact
+     *
+     * @param  string  $avatarUrl  The URL of the avatar of the contact
+     *
+     * @return  self
+     */
+    public function setAvatarUrl(string $avatarUrl)
+    {
+        $this->avatarUrl = $avatarUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get the birthday of the contact
+     *
+     * @return  string
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * Set the birthday of the contact
+     *
+     * @param  string  $birthday  The birthday of the contact
+     *
+     * @return  self
+     */
+    public function setBirthday(string $birthday)
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * Get the city of the contact
+     *
+     * @return  string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set the city of the contact
+     *
+     * @param  string  $city  The city of the contact
+     *
+     * @return  self
+     */
+    public function setCity(string $city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get the country of the contact
+     *
+     * @return  string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set the country of the contact
+     *
+     * @param  string  $country  The country of the contact
+     *
+     * @return  self
+     */
+    public function setCountry(string $country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get the emails of the contact
+     *
+     * @return  mixed[]
+     */
+    public function getEmails()
+    {
+        return $this->emails;
+    }
+
+    /**
+     * Set the emails of the contact
+     *
+     * @param  mixed[]  $emails  The emails of the contact
+     *
+     * @return  self
+     */
+    public function setEmails(array $emails)
+    {
+        $this->emails = $emails;
+
+        return $this;
+    }
+
+    /**
+     * Get the first name of the contact
+     *
+     * @return  string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set the first name of the contact
+     *
+     * @param  string  $firstName  The first name of the contact
+     *
+     * @return  self
+     */
+    public function setFirstName(string $firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get the gender of the contact
+     *
+     * @return  string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Set the gender of the contact
+     *
+     * @param  string  $gender  The gender of the contact
+     *
+     * @return  self
+     */
+    public function setGender(string $gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get the homepage of the contact
+     *
+     * @return  string
+     */
+    public function getHomepage()
+    {
+        return $this->homepage;
+    }
+
+    /**
+     * Set the homepage of the contact
+     *
+     * @param  string  $homepage  The homepage of the contact
+     *
+     * @return  self
+     */
+    public function setHomepage(string $homepage)
+    {
+        $this->homepage = $homepage;
+
+        return $this;
+    }
+
+    /**
+     * Get the job title of the contact
+     *
+     * @return  string
+     */
+    public function getJobTitle()
+    {
+        return $this->jobTitle;
+    }
+
+    /**
+     * Set the job title of the contact
+     *
+     * @param  string  $jobTitle  The job title of the contact
+     *
+     * @return  self
+     */
+    public function setJobTitle(string $jobTitle)
+    {
+        $this->jobTitle = $jobTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get the language of the contact
+     *
+     * @return  string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * Set the language of the contact
+     *
+     * @param  string  $language  The language of the contact
+     *
+     * @return  self
+     */
+    public function setLanguage(string $language)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get the last name of the contact
+     *
+     * @return  string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set the last name of the contact
+     *
+     * @param  string  $lastName  The last name of the contact
+     *
+     * @return  self
+     */
+    public function setLastName(string $lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get the mood of the contact
+     *
+     * @return  string
+     */
+    public function getMood()
+    {
+        return $this->mood;
+    }
+
+    /**
+     * Set the mood of the contact
+     *
+     * @param  string  $mood  The mood of the contact
+     *
+     * @return  self
+     */
+    public function setMood(string $mood)
+    {
+        $this->mood = $mood;
+
+        return $this;
+    }
+
+    /**
+     * Get the namespace of the contact
+     *
+     * @return  string
+     */
+    public function getNamespace()
+    {
+        return $this->namespace;
+    }
+
+    /**
+     * Set the namespace of the contact
+     *
+     * @param  string  $namespace  The namespace of the contact
+     *
+     * @return  self
+     */
+    public function setNamespace(string $namespace)
+    {
+        $this->namespace = $namespace;
+
+        return $this;
+    }
+
+    /**
+     * Get the home phone number of the contact
+     *
+     * @return  string
+     */
+    public function getPhoneHome()
+    {
+        return $this->phoneHome;
+    }
+
+    /**
+     * Set the home phone number of the contact
+     *
+     * @param  string  $phoneHome  The home phone number of the contact
+     *
+     * @return  self
+     */
+    public function setPhoneHome(string $phoneHome)
+    {
+        $this->phoneHome = $phoneHome;
+
+        return $this;
+    }
+
+    /**
+     * Get the mobile phone number of the contact
+     *
+     * @return  string
+     */
+    public function getPhoneMobile()
+    {
+        return $this->phoneMobile;
+    }
+
+    /**
+     * Set the mobile phone number of the contact
+     *
+     * @param  string  $phoneMobile  The mobile phone number of the contact
+     *
+     * @return  self
+     */
+    public function setPhoneMobile(string $phoneMobile)
+    {
+        $this->phoneMobile = $phoneMobile;
+
+        return $this;
+    }
+
+    /**
+     * Get the office phone number of the contact
+     *
+     * @return  string
+     */
+    public function getPhoneOffice()
+    {
+        return $this->phoneOffice;
+    }
+
+    /**
+     * Set the office phone number of the contact
+     *
+     * @param  string  $phoneOffice  The office phone number of the contact
+     *
+     * @return  self
+     */
+    public function setPhoneOffice(string $phoneOffice)
+    {
+        $this->phoneOffice = $phoneOffice;
+
+        return $this;
+    }
+
+    /**
+     * Get the province of the contact
+     *
+     * @return  string
+     */
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+    /**
+     * Set the province of the contact
+     *
+     * @param  string  $province  The province of the contact
+     *
+     * @return  self
+     */
+    public function setProvince(string $province)
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    /**
+     * Get the rich mood of the contact
+     *
+     * @return  string
+     */
+    public function getRichMood()
+    {
+        return $this->richMood;
+    }
+
+    /**
+     * Set the rich mood of the contact
+     *
+     * @param  string  $richMood  The rich mood of the contact
+     *
+     * @return  self
+     */
+    public function setRichMood(string $richMood)
+    {
+        $this->richMood = $richMood;
+
+        return $this;
+    }
+
+    /**
+     * Get the username of the contact
+     *
+     * @return  string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set the username of the contact
+     *
+     * @param  string  $username  The username of the contact
+     *
+     * @return  self
+     */
+    public function setUsername(string $username)
+    {
+        $this->username = $username;
 
         return $this;
     }

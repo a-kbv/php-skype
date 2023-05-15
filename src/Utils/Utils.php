@@ -117,7 +117,7 @@ class Utils
     public static function parseImageUriObject($uriObject): array
     {
         //match url_thumbnail , uri, type, doc_id, width, height , OriginalName and FileSize
-        $pattern = '/<URIObject uri="(?<uri>[^"]+)" url_thumbnail="(?<url_thumbnail>[^"]+)" type="(?<type>[^"]+)" doc_id="(?<doc_id>[^"]+)" width="(?<width>[^"]+)" height="(?<height>[^"]+)">.*<OriginalName v="(?<originalName>[^"]+)"><\/OriginalName><FileSize v="(?<fileSize>[^"]+)"><\/FileSize>/';
+        $pattern = '/<URIObject uri="(?<uri>[^"]+)" url_thumbnail="(?<url_thumbnail>[^"]+)" type="(?<type>[^"]+)" doc_id="(?<doc_id>[^"]+)" width="(?<width>[^"]+)" height="(?<height>[^"]+)">.*<OriginalName v="(?<originalName>[^"]+)"><\/OriginalName><FileSize v="(?<fileSize>[^"]+)"><\/FileSize>.*<a href="(?<href>[^"]+)">/';
         preg_match($pattern, $uriObject, $matches);
         $imageArray = array_filter($matches, function ($key) {
             return is_string($key);
