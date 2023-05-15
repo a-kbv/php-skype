@@ -116,8 +116,9 @@ class Utils
      */
     public static function parseImageUriObject($uriObject): array
     {
+        // <URIObject uri="https://api.asm.skype.com/v1/objects/0-weu-d16-228bcd96b71f466a7741810166b19bb8" url_thumbnail="https://api.asm.skype.com/v1/objects/0-weu-d16-228bcd96b71f466a7741810166b19bb8/views/imgt1_anim" type="Picture.1" doc_id="0-weu-d16-228bcd96b71f466a7741810166b19bb8" width="1690" height="871">To view this shared photo, go to: <a href="https://login.skype.com/login/sso?go=xmmfallback?pic=0-weu-d16-228bcd96b71f466a7741810166b19bb8">https://login.skype.com/login/sso?go=xmmfallback?pic=0-weu-d16-228bcd96b71f466a7741810166b19bb8</a><OriginalName v="20173288-ahmed-banq-anello-v3-1690x871.jpg"></OriginalName><FileSize v="121239"></FileSize><meta type="photo" originalName="20173288-ahmed-banq-anello-v3-1690x871.jpg"></meta></URIObject>
         //match url_thumbnail , uri, type, doc_id, width, height , OriginalName and FileSize
-        $pattern = '/<URIObject uri="(?<uri>[^"]+)" url_thumbnail="(?<url_thumbnail>[^"]+)" type="(?<type>[^"]+)" doc_id="(?<doc_id>[^"]+)" width="(?<width>[^"]+)" height="(?<height>[^"]+)">.*<OriginalName v="(?<originalName>[^"]+)"><\/OriginalName><FileSize v="(?<fileSize>[^"]+)"><\/FileSize>.*<a href="(?<href>[^"]+)">/';
+        $pattern = '/<URIObject uri="(?<uri>[^"]+)" url_thumbnail="(?<url_thumbnail>[^"]+)" type="(?<type>[^"]+)" doc_id="(?<doc_id>[^"]+)" width="(?<width>[^"]+)" height="(?<height>[^"]+)">.*<OriginalName v="(?<originalName>[^"]+)"><\/OriginalName><FileSize v="(?<fileSize>[^"]+)"><\/FileSize>/';
         preg_match($pattern, $uriObject, $matches);
         $imageArray = array_filter($matches, function ($key) {
             return is_string($key);
