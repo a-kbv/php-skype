@@ -115,16 +115,16 @@ class Utils
      * @return mixed[]
      */
     public static function parseImageUriObject($uriObject): array
-{
-    //match url_thumbnail, uri, type, doc_id, width, height, OriginalName, and FileSize
-    $pattern = '/url_thumbnail="(.*?)"|uri="(.*?)"|type="(.*?)"|doc_id="(.*?)"|width="(.*?)"|height="(.*?)"|<OriginalName v="(.*?)">|<FileSize v="(.*?)">/';
-    preg_match_all($pattern, $uriObject, $matches, PREG_SET_ORDER);
+    {
+        //match url_thumbnail, uri, type, doc_id, width, height, OriginalName, and FileSize
+        $pattern = '/url_thumbnail="(.*?)"|uri="(.*?)"|type="(.*?)"|doc_id="(.*?)"|width="(.*?)"|height="(.*?)"|<OriginalName v="(.*?)">|<FileSize v="(.*?)">/';
+        preg_match_all($pattern, $uriObject, $matches, PREG_SET_ORDER);
 
-    $imageArray = [];
-    foreach ($matches as $match) {
-        for ($i = 1; $i < count($match); $i += 2) {
-            if (!empty($match[$i])) {
-                switch ($i) {
+        $imageArray = [];
+        foreach ($matches as $match) {
+            for ($i = 1; $i < count($match); $i += 2) {
+                if (!empty($match[$i])) {
+                    switch ($i) {
                     case 1:
                         $imageArray['url_thumbnail'] = $match[$i];
                         break;
@@ -150,12 +150,12 @@ class Utils
                         $imageArray['FileSize'] = $match[$i];
                         break;
                 }
+                }
             }
         }
-    }
 
-    return $imageArray;
-}
+        return $imageArray;
+    }
 
     /**
      * @param string $uriObject

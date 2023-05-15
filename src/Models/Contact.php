@@ -265,8 +265,6 @@ class Contact extends Base
         $this->province = $data['province'] ?? null;
         $this->richMood = $data['richMood'] ?? null;
         $this->username = $data['username'] ?? null;
-
-
     }
 
     /**
