@@ -116,51 +116,69 @@ class Utils
      */
     public static function parseImageUriObject($uriObject): array
     {
-        //match url_thumbnail, uri, type, doc_id, width, height, OriginalName, and FileSize
-        $pattern = '/url_thumbnail="(.*?)"|uri="(.*?)"|type="(.*?)"|doc_id="(.*?)"|width="(.*?)"|height="(.*?)"|<OriginalName v="(.*?)">|<FileSize v="(.*?)">/';
-        preg_match_all($pattern, $uriObject, $matches, PREG_SET_ORDER);
-
         $imageArray = [];
-        foreach ($matches as $match) {
-            for ($i = 1; $i < count($match); $i += 2) {
-                if (!empty($match[$i])) {
-                    switch ($i) {
-                    case 1:
-                        $imageArray['url_thumbnail'] = $match[$i];
-                        break;
-                    case 3:
-                        $imageArray['uri'] = $match[$i];
-                        break;
-                    case 5:
-                        $imageArray['type'] = $match[$i];
-                        break;
-                    case 7:
-                        $imageArray['doc_id'] = $match[$i];
-                        break;
-                    case 9:
-                        $imageArray['width'] = $match[$i];
-                        break;
-                    case 11:
-                        $imageArray['height'] = $match[$i];
-                        break;
-                    case 13:
-                        $imageArray['OriginalName'] = $match[$i];
-                        break;
-                    case 15:
-                        $imageArray['FileSize'] = $match[$i];
-                        break;
-                }
-                }
-            }
+
+        // match url_thumbnail
+        preg_match('/url_thumbnail="([^"]+)"/', $uriObject, $matches);
+        if (isset($matches[1])) {
+            $imageArray['url_thumbnail'] = $matches[1];
+        }
+
+        // match uri
+        preg_match('/uri="([^"]+)"/', $uriObject, $matches);
+        if (isset($matches[1])) {
+            $imageArray['uri'] = $matches[1];
+        }
+
+        // match type
+        preg_match('/type="([^"]+)"/', $uriObject, $matches);
+        if (isset($matches[1])) {
+            $imageArray['type'] = $matches[1];
+        }
+
+        // match doc_id
+        preg_match('/doc_id="([^"]+)"/', $uriObject, $matches);
+        if (isset($matches[1])) {
+            $imageArray['doc_id'] = $matches[1];
+        }
+
+        // match width
+        preg_match('/width="([^"]+)"/', $uriObject, $matches);
+        if (isset($matches[1])) {
+            $imageArray['width'] = $matches[1];
+        }
+
+        // match height
+        preg_match('/height="([^"]+)"/', $uriObject, $matches);
+        if (isset($matches[1])) {
+            $imageArray['height'] = $matches[1];
+        }
+
+        // match OriginalName
+        preg_match('/OriginalName v="([^"]+)"/', $uriObject, $matches);
+        if (isset($matches[1])) {
+            $imageArray['originalName'] = $matches[1];
+        }
+
+        // match OriginalName
+        preg_match('/originalName="([^"]+)"/', $uriObject, $matches);
+        if (isset($matches[1])) {
+            $imageArray['originalName'] = $matches[1];
+        }
+
+        // match FileSize
+        preg_match('/FileSize v="([^"]+)"/', $uriObject, $matches);
+        if (isset($matches[1])) {
+            $imageArray['fileSize'] = $matches[1];
         }
 
         return $imageArray;
     }
 
     /**
-     * @param string $uriObject
-     * @return mixed[]
-     */
+         * @param string $uriObject
+         * @return mixed[]
+         */
     public static function parseFileUriObject($uriObject): array
     {
         //match url_thumbnail , uri, type, doc_id, width, height , OriginalName and FileSize
