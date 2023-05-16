@@ -2,7 +2,7 @@
   "name": "akbv/php-skype",
   "description": "PHP library that wraps Skype Web API",
   "type": "library",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "require": {
     "php": ">=7.3.21",
     "ext-json": "*",
