@@ -187,4 +187,19 @@ interface ClientInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
     public function setUserPresence(string $status): void;
+    /**
+     * Follow and track sync state URLs provided by an API endpoint, in order to implicitly handle pagination.
+     * In the first call, $url and $params are used as-is.  If a `syncState` endpoint is provided in the
+     * response, subsequent calls go to the latest URL instead.
+     * @param string $url
+     * @param mixed[] $params
+     * @param mixed[] $headers
+     * @return string
+     */
+    public function syncState(string $url, array $params = [], array $headers = []): string;
+    /**
+     * Get Contacts list.
+     * @return mixed[]
+     */
+    public function getMyContacts(): array;
 }

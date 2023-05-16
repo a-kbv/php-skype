@@ -52,6 +52,10 @@ final class Client implements ClientInterface
     public const STATUS_AWAY = 'Away';
     public const STATUS_IDLE = 'Idle';
     public const STATUS_ONLINE = 'Online';
+    /**
+     * @var mixed[]
+     */
+    private $syncStates = [];
 
     public function __construct(SessionManager $sessionManager)
     {
@@ -87,6 +91,15 @@ final class Client implements ClientInterface
         $this->session = $session;
 
         return $this;
+    }
+
+    /**
+     * Get the value of syncStates
+     * @return mixed[]
+     */
+    public function getSyncStates()
+    {
+        return $this->syncStates;
     }
 
     /**
@@ -468,6 +481,59 @@ final class Client implements ClientInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getMyContacts(): array
+    {
+        $contacts = [];
+        $url = "https://edge.skype.com/pcs/contacts/v2/users/self";
+        $response = $this->request('GET', $url, [
+            'authorization_session' => $this->getSession(),
+        ]);
+        $result = json_decode($response->getContent(), true);
+        if (!empty($result)) {
+            if (isset($result['contacts'])) {
+                foreach ($result['contacts'] as $key => $contact) {
+                    $contacts[] = new Contact($contact);
+                }
+            }
+        }
+        return $contacts;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function syncState(string $url, array $params = [], array $headers = []): string
+    {
+        if (!isset($this->syncStates[$url])) {
+            $this->syncStates[$url] = [];
+        }
+
+        $states = $this->syncStates[$url];
+        if (!empty($states)) {
+            $url = end($states);
+            $params = [];
+        }
+
+        $response = $this->request('GET', $url, [
+            'query' => $params,
+            'headers' => $headers,
+            'authorization_session' => $this->getSession(),
+        ]);
+
+        $json = json_decode($response->getContent(), true);
+
+        if (isset($json['_metadata']['syncState'])) {
+            $state = $json['_metadata']['syncState'];
+            $this->syncStates[$url][] = $state;
+        }
+
+        return $response->getContent();
+    }
+
+
+    /**
      * *******************************************************
      * *******************************************************
      *             *** Conversations ***
@@ -534,28 +600,24 @@ final class Client implements ClientInterface
             $this->getSession()->getRegistrationToken()->getMessengerUrl()
         );
 
-        $response = $this->request('GET', $url, [
-            'query' => [
-                'startTime' => 0,
-                'pageSize' => 100,
-                'view' => 'supportsExtendedHistory|msnp24Equivalent',
-                'targetType' => 'Passport|Skype|Lync|Thread|Agent|ShortCircuit|PSTN|Flxt|NotificationStream|ModernBots|secureThreads|InviteFree',
-            ],
-            'authorization_session' => $this->getSession(),
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
-        ]);
+        $params = [
+            'startTime' => 0,
+            'view' => 'supportsExtendedHistory|msnp24Equivalent',
+            'targetType' => 'Passport|Skype|Lync|Thread|Agent|ShortCircuit|PSTN|Flxt|NotificationStream|'
+                            . 'ModernBots|secureThreads|InviteFree',
+        ];
 
-        $result = json_decode($response->getContent(), true);
-        file_put_contents('recent_chats.json', json_encode($result, JSON_PRETTY_PRINT));
-        return $result;
+        $response = $this->syncState($url, $params);
+        $chats = json_decode($response, true)['conversations'] ?? [];
+
+        return array_map(function ($chats) {
+            return new Chat($this, $chats);
+        }, $chats);
     }
 
     /**
-     * {@inheritdoc}
-     */
+         * {@inheritdoc}
+         */
     public function groupChat(array $contacts, array $admins, bool $moderated=false): Chat
     {
         $url = sprintf(

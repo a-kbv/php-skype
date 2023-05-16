@@ -141,40 +141,33 @@ class Chat implements ChatInterface
     /**
     * {@inheritdoc}
     */
-    public function getMessages(mixed $startTime=0, mixed $pageSize=100): array
+    public function getMessages(): array
     {
         $url = sprintf(
             '%s/users/ME/conversations/%s/messages',
-            $this->getClient()->getSession()->getRegistrationToken()->getMessengerUrl(),
+            $this->client->getSession()->getRegistrationToken()->getMessengerUrl(),
             $this->chat->getId()
         );
 
-        $response = $this->getClient()->request('GET', $url, [
-            'query' => [
-                'startTime' => $startTime,
-                'pageSize' => $pageSize,
-                'view' => 'supportsExtendedHistory|msnp24Equivalent|supportsMessageProperties',
-            ],
-            'authorization_session' => $this->getClient()->getSession(),
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'BehaviorOverride' => 'redirectAs404',
-                'Sec-Fetch-Dest' => 'empty',
-                'Sec-Fetch-Mode' => 'cors',
-                'Sec-Fetch-Site' => 'cross-site',
-            ],
-        ]);
+        $params = [
+            'startTime' => 0,
+            'view' => 'supportsExtendedHistory|msnp24Equivalent|supportsMessageProperties',
+            'pageSize' => 30,
+        ];
 
-        $messages = [];
-        $msgs = json_decode($response->getContent(), true)['messages'];
-        if (!empty($msgs)) {
-            foreach ($msgs as $msg) {
-                $messages[] = new Message($msg);
-            }
-        }
-        // file_put_contents('messages.json', $response->getContent());
-        return $messages;
+        $headers = [
+            'BehaviorOverride' => 'redirectAs404',
+            'Sec-Fetch-Dest' => 'empty',
+            'Sec-Fetch-Mode' => 'cors',
+            'Sec-Fetch-Site' => 'cross-site',
+        ];
+
+        $response = $this->getClient()->syncState($url, $params, $headers);
+        $messages = json_decode($response, true)['messages'] ?? [];
+
+        return array_map(function ($message) {
+            return new Message($message);
+        }, $messages);
     }
 
     /**
