@@ -81,8 +81,10 @@ interface ChatInterface
      * Retrieve a batch of messages from the conversation.
      * This method can be called repeatedly to retrieve older messages.
      * If new messages arrive in the meantime, they are returned first in the next batch.
+     * @param mixed $startTime
+     * @param mixed $pageSize
      *
      * @return mixed[] Array of messages.
      */
-    public function getMessages(): array;
+    public function getMessages($startTime, $pageSize): array;
 }

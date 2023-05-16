@@ -141,7 +141,7 @@ class Chat implements ChatInterface
     /**
     * {@inheritdoc}
     */
-    public function getMessages(): array
+    public function getMessages(mixed $startTime=0, mixed $pageSize=100): array
     {
         $url = sprintf(
             '%s/users/ME/conversations/%s/messages',
@@ -151,8 +151,8 @@ class Chat implements ChatInterface
 
         $response = $this->getClient()->request('GET', $url, [
             'query' => [
-                'startTime' => 0,
-                'pageSize' => 100,
+                'startTime' => $startTime,
+                'pageSize' => $pageSize,
                 'view' => 'supportsExtendedHistory|msnp24Equivalent|supportsMessageProperties',
             ],
             'authorization_session' => $this->getClient()->getSession(),
