@@ -506,13 +506,10 @@ final class Client implements ClientInterface
      */
     public function syncState(string $url, array $params = [], array $headers = []): string
     {
-        if (!isset($this->syncStates[$url])) {
-            $this->syncStates[$url] = [];
-        }
+        $originalUrl = $url;
 
-        $states = $this->syncStates[$url];
-        if (!empty($states)) {
-            $url = end($states);
+        if (isset($this->syncStates[$originalUrl])) {
+            $url = $this->syncStates[$originalUrl];
             $params = [];
         }
 
@@ -526,7 +523,7 @@ final class Client implements ClientInterface
 
         if (isset($json['_metadata']['syncState'])) {
             $state = $json['_metadata']['syncState'];
-            $this->syncStates[$url][] = $state;
+            $this->syncStates[$originalUrl] = $state;
         }
 
         return $response->getContent();
@@ -593,7 +590,7 @@ final class Client implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getRecentChats(): array
+    public function getRecentChats($pageSize=25): array
     {
         $url = sprintf(
             '%s/users/ME/conversations',
@@ -601,7 +598,8 @@ final class Client implements ClientInterface
         );
 
         $params = [
-            'startTime' => 0,
+            'startTime' => 1,
+            'pageSize' => $pageSize,
             'view' => 'supportsExtendedHistory|msnp24Equivalent',
             'targetType' => 'Passport|Skype|Lync|Thread|Agent|ShortCircuit|PSTN|Flxt|NotificationStream|'
                             . 'ModernBots|secureThreads|InviteFree',
@@ -610,9 +608,7 @@ final class Client implements ClientInterface
         $response = $this->syncState($url, $params);
         $chats = json_decode($response, true)['conversations'] ?? [];
 
-        return array_map(function ($chats) {
-            return new Chat($this, $chats);
-        }, $chats);
+        return $chats;
     }
 
     /**

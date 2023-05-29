@@ -69,8 +69,10 @@ class Chat implements ChatInterface
                 }
             }
 
-            $data = json_decode($response->getContent(), true);
-            $raw = array_merge($raw, $data);
+            if (!in_array($response->getStatusCode(), [403,404])) {
+                $data = json_decode($response->getContent(), true);
+                $raw = array_merge($raw, $data);
+            }
 
             $this->chat = new GroupChat($raw);
         } else {
@@ -87,9 +89,12 @@ class Chat implements ChatInterface
                 ]
             ]);
 
-            $data = json_decode($response->getContent(), true);
+            if (!in_array($response->getStatusCode(), [403,404])) {
+                $data = json_decode($response->getContent(), true);
+                $raw = array_merge($raw, $data);
+            }
 
-            $this->chat = new SingleChat($data);
+            $this->chat = new SingleChat($raw);
         }
     }
 

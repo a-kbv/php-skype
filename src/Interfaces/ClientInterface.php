@@ -113,13 +113,14 @@ interface ClientInterface
 
     /**
      * Retrieve a selection of conversations with the most recent activity.
+     * @param int $pageSize
      * @return mixed[]
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    public function getRecentChats(): array;
+    public function getRecentChats(int $pageSize): array;
 
     /**
      * Configure endpoint.
