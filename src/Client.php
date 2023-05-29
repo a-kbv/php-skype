@@ -862,7 +862,6 @@ final class Client implements ClientInterface
             $this->sessionManager->removeSession($this->getSession());
             $this->login($account);
         }
-        
         $responseData = [];
         $eventMessages = [];
         if (200 === $response->getStatusCode()) {
