@@ -113,6 +113,9 @@ interface ClientInterface
 
     /**
      * Retrieve a selection of conversations with the most recent activity.
+     * Returns an array of conversations, sorted by most recently modified first.
+     * Returns syncStateUrl for pagination. If no syncStateUrl is provided, the first page is returned.
+     * @param string $syncStateUrl
      * @param int $pageSize
      * @return mixed[]
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
@@ -120,7 +123,7 @@ interface ClientInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    public function getRecentChats(int $pageSize): array;
+    public function getRecentChats(string $syncStateUrl=null, int $pageSize=25): array;
 
     /**
      * Configure endpoint.

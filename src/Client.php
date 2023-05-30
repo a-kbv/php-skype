@@ -590,12 +590,16 @@ final class Client implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getRecentChats($pageSize=25): array
+    public function getRecentChats($syncStateUrl=null, $pageSize=25,): array
     {
-        $url = sprintf(
-            '%s/users/ME/conversations',
-            $this->getSession()->getRegistrationToken()->getMessengerUrl()
-        );
+        if (empty($syncStateUrl)){
+            $url = sprintf(
+                '%s/users/ME/conversations',
+                $this->getSession()->getRegistrationToken()->getMessengerUrl()
+            );
+        }else{
+            $url = $syncStateUrl;
+        }
 
         $params = [
             'startTime' => 1,
@@ -605,10 +609,13 @@ final class Client implements ClientInterface
                             . 'ModernBots|secureThreads|InviteFree',
         ];
 
-        $response = $this->syncState($url, $params);
-        $chats = json_decode($response, true)['conversations'] ?? [];
+        $response = $this->request('GET', $url, [
+            'query' =>  empty($syncStateUrl) ? $params: [],
+            'authorization_session' => $this->getSession(),
+        ]);
+        $json = json_decode($response->getContent(), true);
 
-        return $chats;
+        return $json;
     }
 
     /**

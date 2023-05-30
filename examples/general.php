@@ -90,6 +90,16 @@ $chat = $chat->removeMember('live:.cid.3e1fbf88961d076d');
 $chat = $chat->leave();
 
 /**
+ * Get Chats list
+ * Making another request to get chats list with syncStateUrl will return older chats
+ * Make sure to save syncStateUrl and use it in next request
+ */
+$recentMessages = $client->getRecentChats();
+$syncStateUrl = isset($recentMessages['_metadata']['syncState']) ? $recentMessages['_metadata']['syncState'] : null;
+$recentMessages = $recentMessages['conversations'];
+
+
+/**
 * Subscribe for events
 */
 $eventLoop = new Akbv\PhpSkype\Services\EventLoop($client);
