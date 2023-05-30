@@ -590,14 +590,14 @@ final class Client implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getRecentChats($syncStateUrl=null, $pageSize=25,): array
+    public function getRecentChats($syncStateUrl=null, $pageSize=25, ): array
     {
-        if (empty($syncStateUrl)){
+        if (empty($syncStateUrl)) {
             $url = sprintf(
                 '%s/users/ME/conversations',
                 $this->getSession()->getRegistrationToken()->getMessengerUrl()
             );
-        }else{
+        } else {
             $url = $syncStateUrl;
         }
 
@@ -610,7 +610,7 @@ final class Client implements ClientInterface
         ];
 
         $response = $this->request('GET', $url, [
-            'query' =>  empty($syncStateUrl) ? $params: [],
+            'query' =>  empty($syncStateUrl) ? $params : [],
             'authorization_session' => $this->getSession(),
         ]);
         $json = json_decode($response->getContent(), true);
