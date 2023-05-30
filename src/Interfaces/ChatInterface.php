@@ -58,7 +58,7 @@ interface ChatInterface
      * @param mixed[] $customProperties
      * @return Message
      */
-    public function processMessage($editId = null, $content, $messageType, $contentType, array $customProperties = []): Message;
+    public function processMessage($content, $messageType, $contentType, $editId = null, array $customProperties = []): Message;
 
     /**
      * Create group chat with contacts.

@@ -197,13 +197,13 @@ class Chat implements ChatInterface
             }
         }
 
-        return $this->processMessage($edit, $content, $msgType, 'text', $properties);
+        return $this->processMessage($content, $msgType, 'text', $edit, $properties);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function processMessage($editId = null, $content, $messageType, $contentType, array $customProperties = []): Message
+    public function processMessage($content, $messageType, $contentType, $editId = null, array $customProperties = []): Message
     {
         // Build the message object with default properties and custom ones
         $message = [
@@ -313,7 +313,7 @@ class Chat implements ChatInterface
         );
         $messageType = $typing ? 'Control/Typing' : 'Control/ClearTyping';
 
-        $this->processMessage(null, null, $messageType, "text");
+        $this->processMessage(null, $messageType, "text", null);
     }
 
     /**
@@ -386,7 +386,7 @@ class Chat implements ChatInterface
             );
         }
         $msgType = "RichText/".($isImage ? "UriObject" : "Media_GenericFile");
-        return $this->processMessage(null, $body, $msgType, null);
+        return $this->processMessage($body, $msgType, null, null);
     }
 
     /**
@@ -398,7 +398,7 @@ class Chat implements ChatInterface
             return '<c t="s" s="' . (string)$contact->getId() . '" f="' . (string)$contact->getName() . '"/>';
         }, $contacts);
         $content = '<contacts>' . implode('', $contactTags) . '</contacts>';
-        return $this->processMessage(null, $content, 'RichText/Contacts', null);
+        return $this->processMessage($content, 'RichText/Contacts', null, null);
     }
 
     /**
