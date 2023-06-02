@@ -42,7 +42,7 @@ class SingleChat extends Base
 
     /**
      * The last message in this conversation.
-     * @var mixed[]
+     * @var Message
      */
     private $lastMessage;
 
@@ -71,6 +71,10 @@ class SingleChat extends Base
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
+        $message = new Message(isset($data["lastMessage"]) ? $data["lastMessage"] : []);
+        $this->lastMessage = $message;
+        $properties = new ChatProperties(isset($data["properties"]) ? $data["properties"] : []);
+        $this->properties = $properties;
     }
 
     /**
