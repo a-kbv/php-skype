@@ -41,9 +41,9 @@ class Contact extends Base
     /**
      * The profile information of the contact
      *
-     * @var mixed[]
+     * @var \Akbv\PhpSkype\Models\Users\Profile
      */
-    private $profile = [];
+    private $profile;
 
     /**
      * Whether the contact is authorized to communicate with the user
@@ -232,7 +232,7 @@ class Contact extends Base
         $this->mri = $data['mri'] ?? null;
         $this->displayName = $data['display_name'] ?? null;
         $this->displayNameSource = $data['display_name_source'] ?? null;
-        $this->profile = $data['profile'] ?? null;
+        $this->profile = new \Akbv\PhpSkype\Models\Users\Profile((isset($data['profile']) ? $data['profile'] : array()));
         $this->authorized = $data['authorized'] ?? null;
         $this->blocked = $data['blocked'] ?? null;
         $this->explicit = $data['explicit'] ?? null;
@@ -366,7 +366,7 @@ class Contact extends Base
     /**
      * Get the profile information of the contact
      *
-     * @return  mixed[]
+     * @return  \Akbv\PhpSkype\Models\Users\Profile
      */
     public function getProfile()
     {
@@ -376,11 +376,11 @@ class Contact extends Base
     /**
      * Set the profile information of the contact
      *
-     * @param  mixed[]  $profile  The profile information of the contact
+     * @param \Akbv\PhpSkype\Models\Users\Profile $profile  The profile information of the contact
      *
      * @return  self
      */
-    public function setProfile(array $profile): self
+    public function setProfile(\Akbv\PhpSkype\Models\Users\Profile $profile): self
     {
         $this->profile = $profile;
 

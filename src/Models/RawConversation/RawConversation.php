@@ -60,6 +60,9 @@ class RawConversation extends \Akbv\PhpSkype\Models\Base
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
+        $this->threadProperties = new ThreadProperties($data['threadProperties']);
+        $this->properties = new Properties($data['properties']);
+        $this->lastMessage = new \Akbv\PhpSkype\Models\Message($data['lastMessage']);
     }
 
 
