@@ -36,7 +36,7 @@ class SingleChat extends Base
 
     /**
      * The properties of this conversation.
-     * @var mixed[]
+     * @var ChatProperties
      */
     private $properties;
 
@@ -176,7 +176,7 @@ class SingleChat extends Base
     /**
      * Get the properties of this conversation.
      *
-     * @return mixed[]
+     * @return ChatProperties
      */
     public function getProperties()
     {
@@ -186,11 +186,11 @@ class SingleChat extends Base
     /**
      * Set the properties of this conversation.
      *
-     * @param  mixed[] $properties  The properties of this conversation.
+     * @param  ChatProperties $properties  The properties of this conversation.
      *
      * @return self
      */
-    public function setProperties(array $properties)
+    public function setProperties($properties)
     {
         $this->properties = $properties;
 
@@ -200,7 +200,7 @@ class SingleChat extends Base
     /**
      * Get the last message in this conversation.
      *
-     * @return mixed[]
+     * @return Message
      */
     public function getLastMessage()
     {
@@ -210,11 +210,11 @@ class SingleChat extends Base
     /**
      * Set the last message in this conversation.
      *
-     * @param mixed[]  $lastMessage  The last message in this conversation.
+     * @param Message  $lastMessage  The last message in this conversation.
      *
      * @return self
      */
-    public function setLastMessage(array $lastMessage)
+    public function setLastMessage(Message $lastMessage)
     {
         $this->lastMessage = $lastMessage;
 

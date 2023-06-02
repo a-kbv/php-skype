@@ -24,7 +24,7 @@ class GroupChat extends Base
 
     /**
      * The properties of this conversation.
-     * @var mixed[]
+     * @var ChatProperties
      */
     private $properties;
 
@@ -65,7 +65,7 @@ class GroupChat extends Base
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
-        $properties = new ChatProperties(isset($data["properties"]) ? $data["properties"] : []);
+        $properties = new ChatProperties([isset($data["properties"]) ? $data["properties"] : []]);
         $this->properties = $properties;
     }
 
@@ -120,7 +120,7 @@ class GroupChat extends Base
     /**
      * Get the properties of this conversation.
      *
-     * @return  mixed[]
+     * @return ChatProperties
      */
     public function getProperties()
     {
@@ -130,11 +130,11 @@ class GroupChat extends Base
     /**
      * Set the properties of this conversation.
      *
-     * @param  mixed[]  $properties  The properties of this conversation.
+     * @param  ChatProperties  $properties  The properties of this conversation.
      *
      * @return  self
      */
-    public function setProperties(array $properties)
+    public function setProperties(ChatProperties $properties)
     {
         $this->properties = $properties;
 

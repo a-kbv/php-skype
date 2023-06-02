@@ -1,4 +1,5 @@
 <?php
+
 namespace Akbv\PhpSkype\Models;
 
 /**
@@ -8,7 +9,6 @@ namespace Akbv\PhpSkype\Models;
  */
 class ChatProperties extends Base
 {
-
     /**
      * Last leave at
      * @var string
@@ -111,6 +111,11 @@ class ChatProperties extends Base
      */
     private $picture;
 
+    /**
+     * Constructor.
+     *
+     * @param mixed[] $data
+     */
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
