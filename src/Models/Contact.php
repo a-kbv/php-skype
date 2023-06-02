@@ -76,14 +76,14 @@ class Contact extends Base
     /**
      * The relationship history of the contact
      *
-     * @var mixed[]
+     * @var string[]
      */
     private $relationshipHistory = [];
 
     /**
      * The agent information of the contact (if applicable)
      *
-     * @var mixed[]
+     * @var string[]
      */
     private $agent = [];
 
@@ -97,7 +97,7 @@ class Contact extends Base
     /**
      * The phone hashes of the contact (if applicable)
      *
-     * @var mixed[]
+     * @var string[]
      */
     private $phoneHashes = [];
 
@@ -133,7 +133,7 @@ class Contact extends Base
 
     /**
      * The emails of the contact
-     * @var mixed[]
+     * @var string[]
      */
     private $emails = [];
 
@@ -486,7 +486,7 @@ class Contact extends Base
     /**
      * Get the relationship history of the contact
      *
-     * @return mixed[]
+     * @return string[]
      */
     public function getRelationshipHistory()
     {
@@ -496,7 +496,7 @@ class Contact extends Base
     /**
      * Set the relationship history of the contact
      *
-     * @param  mixed[]  $relationshipHistory  The relationship history of the contact
+     * @param  string[]  $relationshipHistory  The relationship history of the contact
      *
      * @return  self
      */
@@ -510,7 +510,7 @@ class Contact extends Base
     /**
      * Get the agent information of the contact (if applicable)
      *
-     * @return  mixed[]
+     * @return  string[]
      */
     public function getAgent(): array
     {
@@ -520,7 +520,7 @@ class Contact extends Base
     /**
      * Set the agent information of the contact (if applicable)
      *
-     * @param  mixed[]  $agent  The agent information of the contact (if applicable)
+     * @param  string[]  $agent  The agent information of the contact (if applicable)
      *
      * @return  self
      */
@@ -558,7 +558,7 @@ class Contact extends Base
     /**
      * Get the phone hashes of the contact (if applicable)
      *
-     * @return  mixed[]
+     * @return  string[]
      */
     public function getPhoneHashes(): array
     {
@@ -568,7 +568,7 @@ class Contact extends Base
     /**
      * Set the phone hashes of the contact (if applicable)
      *
-     * @param mixed[] $phoneHashes  The phone hashes of the contact (if applicable)
+     * @param string[] $phoneHashes  The phone hashes of the contact (if applicable)
      */
     public function setPhoneHashes(array $phoneHashes): self
     {
@@ -700,7 +700,7 @@ class Contact extends Base
     /**
      * Get the emails of the contact
      *
-     * @return  mixed[]
+     * @return  string[]
      */
     public function getEmails()
     {
@@ -710,7 +710,7 @@ class Contact extends Base
     /**
      * Set the emails of the contact
      *
-     * @param  mixed[]  $emails  The emails of the contact
+     * @param  string[]  $emails  The emails of the contact
      *
      * @return  self
      */
