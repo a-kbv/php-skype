@@ -113,6 +113,7 @@ class Properties extends \Akbv\PhpSkype\Models\Base
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
+        $this->jsonSerialize();
     }
 
 
