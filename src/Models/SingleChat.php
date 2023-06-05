@@ -2,13 +2,15 @@
 
 namespace Akbv\PhpSkype\Models;
 
+use JsonSerializable;
+
 /**
  *  A one-to-one conversation within Skype.
  *
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class SingleChat extends Base
+class SingleChat extends Base implements JsonSerializable
 {
     /**
      * The unique identifier for this conversation.
@@ -77,11 +79,31 @@ class SingleChat extends Base
         $this->properties = $properties;
     }
 
+    public function jsonSerialize(): array
+    {
+        $reflectedClass = new \ReflectionClass($this);
+        $propertiesArray = [];
+
+        foreach ($reflectedClass->getProperties() as $property) {
+            $property->setAccessible(true);
+            $propertyName = $property->getName();
+            $propertyValue = $property->getValue($this);
+
+            if (is_object($propertyValue) && method_exists($propertyValue, 'mapPropertiesToArray')) {
+                $propertiesArray[$propertyName] = $propertyValue->toArray();
+            } else {
+                $propertiesArray[$propertyName] = $propertyValue;
+            }
+        }
+
+        return $propertiesArray;
+    }
+
     /**
-     * Get the value of id
-     *
-     * @return  string
-     */
+         * Get the value of id
+         *
+         * @return  string
+         */
     public function getId()
     {
         return $this->id;
