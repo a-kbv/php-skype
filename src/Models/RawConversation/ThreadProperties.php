@@ -8,7 +8,7 @@ use JsonSerializable;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class ThreadProperties extends \Akbv\PhpSkype\Models\Base implements \JsonSerializable
+class ThreadProperties extends \Akbv\PhpSkype\Models\Base
 {
     /**
      * The Title this conversation.
@@ -66,27 +66,6 @@ class ThreadProperties extends \Akbv\PhpSkype\Models\Base implements \JsonSerial
     {
         $this->mapPropertiesFromArray($data);
     }
-
-    public function jsonSerialize(): array
-    {
-        $reflectedClass = new \ReflectionClass($this);
-        $propertiesArray = [];
-
-        foreach ($reflectedClass->getProperties() as $property) {
-            $property->setAccessible(true);
-            $propertyName = $property->getName();
-            $propertyValue = $property->getValue($this);
-
-            if (is_object($propertyValue) && method_exists($propertyValue, 'mapPropertiesToArray')) {
-                $propertiesArray[$propertyName] = $propertyValue->toArray();
-            } else {
-                $propertiesArray[$propertyName] = $propertyValue;
-            }
-        }
-
-        return $propertiesArray;
-    }
-
 
     /**
      * Get the Title this conversation.
