@@ -1,13 +1,13 @@
 <?php
 
 namespace Akbv\PhpSkype\Models;
-
+use JsonSerializable;
 /**
  * Base class for all models.
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-abstract class Base
+abstract class Base implements \JsonSerializable
 {
     /**
      * @var string
@@ -41,6 +41,26 @@ abstract class Base
             $property->setAccessible(false);
         }
         return $array;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $reflectedClass = new \ReflectionClass($this);
+        $propertiesArray = [];
+
+        foreach ($reflectedClass->getProperties() as $property) {
+            $property->setAccessible(true);
+            $propertyName = $property->getName();
+            $propertyValue = $property->getValue($this);
+
+            if (is_object($propertyValue) && method_exists($propertyValue, 'mapPropertiesToArray')) {
+                $propertiesArray[$propertyName] = $propertyValue->toArray();
+            } else {
+                $propertiesArray[$propertyName] = $propertyValue;
+            }
+        }
+
+        return $propertiesArray;
     }
 
     /**
