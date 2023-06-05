@@ -1,14 +1,14 @@
 <?php
 
 namespace Akbv\PhpSkype\Models\RawConversation;
-
+use JsonSerializable;
 /**
  * A raw conversation model.
  *
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class RawConversation extends \Akbv\PhpSkype\Models\Base
+class RawConversation extends \Akbv\PhpSkype\Models\Base implements JsonSerializable
 {
     /**
      * The unique identifier for this conversation.
@@ -65,6 +65,25 @@ class RawConversation extends \Akbv\PhpSkype\Models\Base
         $this->lastMessage = new \Akbv\PhpSkype\Models\Message(isset($data['lastMessage'])? $data['lastMessage'] : []);
     }
 
+    public function jsonSerialize(): array
+    {
+        $reflectedClass = new \ReflectionClass($this);
+        $propertiesArray = [];
+
+        foreach ($reflectedClass->getProperties() as $property) {
+            $property->setAccessible(true);
+            $propertyName = $property->getName();
+            $propertyValue = $property->getValue($this);
+
+            if (is_object($propertyValue) && method_exists($propertyValue, 'mapPropertiesToArray')) {
+                $propertiesArray[$propertyName] = $propertyValue->toArray();
+            } else {
+                $propertiesArray[$propertyName] = $propertyValue;
+            }
+        }
+
+        return $propertiesArray;
+    }
 
     /**
      * Get the unique identifier for this conversation.
