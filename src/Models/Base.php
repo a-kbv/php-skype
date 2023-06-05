@@ -54,7 +54,7 @@ abstract class Base implements \JsonSerializable
             $propertyValue = $property->getValue($this);
 
             if (is_object($propertyValue) && method_exists($propertyValue, 'mapPropertiesToArray')) {
-                $propertiesArray[$propertyName] = $propertyValue->toArray();
+                $propertiesArray[$propertyName] = $propertyValue->mapPropertiesToArray();
             } else {
                 $propertiesArray[$propertyName] = $propertyValue;
             }
