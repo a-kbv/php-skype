@@ -74,7 +74,7 @@ class Chat implements ChatInterface
                 $raw = array_merge($raw, $data);
             }
 
-            $this->chat = new GroupChat($raw);
+            $this->chat = new \Akbv\PhpSkype\Models\Chat($raw);
         } else {
             $url = sprintf(
                 '%s/users/ME/conversations/%s',
@@ -94,7 +94,7 @@ class Chat implements ChatInterface
                 $raw = array_merge($raw, $data);
             }
 
-            $this->chat = new SingleChat($raw);
+            $this->chat = new \Akbv\PhpSkype\Models\Chat($raw);
         }
     }
 
