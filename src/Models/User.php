@@ -73,13 +73,13 @@ class User extends Base
 
     /**
      * The relationship history for this user.
-     * @var \Akbv\PhpSkype\Models\Users\RelationshipHistory
+     * @var string[]
      */
     private $relationship_history;
 
     /**
      * The agent for this user.
-     * @var \Akbv\PhpSkype\Models\Users\Agent
+     * @var string[]
      */
     private $agent;
 
@@ -109,8 +109,6 @@ class User extends Base
     {
         $this->mapPropertiesFromArray($data);
         $this->profile = new \Akbv\PhpSkype\Models\Users\Profile(isset($data["profile"]) ? $data["profile"] : []);
-        $this->relationship_history = new \Akbv\PhpSkype\Models\Users\RelationshipHistory(isset($data["relationship_history"]) ? $data["relationship_history"] : []);
-        $this->agent = new \Akbv\PhpSkype\Models\Users\Agent(isset($data["agent"]) ? $data["agent"] : []);
         $this->jsonSerialize();
     }
 
@@ -333,7 +331,7 @@ class User extends Base
     /**
      * Get the relationship history for this user.
      *
-     * @return  \Akbv\PhpSkype\Models\Users\RelationshipHistory
+     * @return  string[]
      */
     public function getRelationship_history()
     {
@@ -343,11 +341,11 @@ class User extends Base
     /**
      * Set the relationship history for this user.
      *
-     * @param  \Akbv\PhpSkype\Models\Users\RelationshipHistory  $relationship_history  The relationship history for this user.
+     * @param  string  $relationship_history  The relationship history for this user.
      *
      * @return  self
      */
-    public function setRelationship_history(\Akbv\PhpSkype\Models\Users\RelationshipHistory $relationship_history)
+    public function setRelationship_history(array $relationship_history)
     {
         $this->relationship_history = $relationship_history;
 
@@ -357,7 +355,7 @@ class User extends Base
     /**
      * Get the agent for this user.
      *
-     * @return  \Akbv\PhpSkype\Models\Users\Agent
+     * @return string[]
      */
     public function getAgent()
     {
@@ -367,11 +365,11 @@ class User extends Base
     /**
      * Set the agent for this user.
      *
-     * @param  \Akbv\PhpSkype\Models\Users\Agent  $agent  The agent for this user.
+     * @param string[] $agent  The agent for this user.
      *
      * @return  self
      */
-    public function setAgent(\Akbv\PhpSkype\Models\Users\Agent $agent)
+    public function setAgent(array $agent)
     {
         $this->agent = $agent;
 

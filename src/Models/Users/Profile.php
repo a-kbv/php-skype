@@ -36,7 +36,7 @@ class Profile extends \Akbv\PhpSkype\Models\Base
 
     /**
      * The name for this user.
-     * @var \Akbv\PhpSkype\Models\Users\Name
+     * @var string[]
      */
     private $name;
 
@@ -83,13 +83,12 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
-        $this->name = new \Akbv\PhpSkype\Models\Users\Name((isset($data['name']) ? $data['name'] : array()));
         $this->locations = array_map(function ($location) {
             return new \Akbv\PhpSkype\Models\Users\Location($location);
-        }, (isset($data['locations']) ? $data['locations'] : array()));
+        }, (isset($data['locations']) ? $data['locations'] : []));
         $this->phones = array_map(function ($phone) {
             return new \Akbv\PhpSkype\Models\Users\Phone($phone);
-        }, (isset($data['phones']) ? $data['phones'] : array()));
+        }, (isset($data['phones']) ? $data['phones'] :[]));
     }
 
     /**
@@ -191,7 +190,7 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     /**
      * Get the name for this user.
      *
-     * @return  \Akbv\PhpSkype\Models\Users\Name
+     * @return string[]
      */
     public function getName()
     {
@@ -201,11 +200,11 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     /**
      * Set the name for this user.
      *
-     * @param  \Akbv\PhpSkype\Models\Users\Name  $name  The name for this user.
+     * @param string[] $name  The name for this user.
      *
      * @return  self
      */
-    public function setName(\Akbv\PhpSkype\Models\Users\Name $name)
+    public function setName(array $name)
     {
         $this->name = $name;
 
