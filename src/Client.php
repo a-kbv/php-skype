@@ -878,6 +878,10 @@ final class Client implements ClientInterface
             }
         }
         DebugUtil::log("LP finish", $responseData, 200);
+        $eventMessages = array_map(function ($eventMessage) {
+            return new \Akbv\PhpSkype\Models\Event($eventMessage);
+        }, $eventMessages);
+
         return $eventMessages;
     }
 }
