@@ -10,6 +10,8 @@ namespace Akbv\PhpSkype\Models;
  */
 class Contact extends Base
 {
+
+
     /**
      * The Skype ID of the contact
      *
@@ -228,43 +230,8 @@ class Contact extends Base
      */
     public function __construct(array $data)
     {
-        $this->personId = $data['person_id'] ?? null;
-        $this->mri = $data['mri'] ?? null;
-        $this->displayName = $data['display_name'] ?? null;
-        $this->displayNameSource = $data['display_name_source'] ?? null;
+        $this->mapPropertiesFromArray($data);
         $this->profile = new \Akbv\PhpSkype\Models\Users\Profile((isset($data['profile']) ? $data['profile'] : array()));
-        $this->authorized = $data['authorized'] ?? null;
-        $this->blocked = $data['blocked'] ?? null;
-        $this->explicit = $data['explicit'] ?? null;
-
-        if (isset($data['creation_time'])) {
-            $this->creationTime = new \DateTime($data['creation_time']);
-        }
-
-        $this->relationshipHistory = $data['relationship_history'] ?? null;
-        $this->agent = $data['agent'] ?? null;
-        $this->suggested = $data['suggested'] ?? null;
-        $this->phoneHashes = $data['phone_hashes'] ?? null;
-        $this->about = $data['about'] ?? null;
-        $this->avatarUrl = $data['avatar_url'] ?? null;
-        $this->birthday = $data['birthday'] ?? null;
-        $this->city = $data['city'] ?? null;
-        $this->country = $data['country'] ?? null;
-        $this->emails = $data['emails'] ?? null;
-        $this->firstName = $data['firstname'] ?? null;
-        $this->gender = $data['gender'] ?? null;
-        $this->homepage = $data['homepage'] ?? null;
-        $this->jobTitle = $data['jobtitle'] ?? null;
-        $this->language = $data['language'] ?? null;
-        $this->lastName = $data['lastname'] ?? null;
-        $this->mood = $data['mood'] ?? null;
-        $this->namespace = $data['namespace'] ?? null;
-        $this->phoneHome = $data['phoneHome'] ?? null;
-        $this->phoneMobile = $data['phoneMobile'] ?? null;
-        $this->phoneOffice = $data['phoneOffice'] ?? null;
-        $this->province = $data['province'] ?? null;
-        $this->richMood = $data['richMood'] ?? null;
-        $this->username = $data['username'] ?? null;
     }
 
     /**

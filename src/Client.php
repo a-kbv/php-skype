@@ -494,7 +494,7 @@ final class Client implements ClientInterface
         if (!empty($result)) {
             if (isset($result['contacts'])) {
                 foreach ($result['contacts'] as $key => $contact) {
-                    $contacts[] = new Contact($contact);
+                    $contacts[] = new \Akbv\PhpSkype\Models\User($contact);
                 }
             }
         }

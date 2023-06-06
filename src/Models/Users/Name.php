@@ -24,12 +24,11 @@ class Name extends \Akbv\PhpSkype\Models\User
 
     /**
      * Constructor.
-     * @param mixed[] $raw raw data
+     * @param mixed[] $data raw data
      */
-    public function __construct(array $raw)
+    public function __construct(array $data)
     {
-        $this->first = isset($raw['profile']['name']['first']) ? $raw['profile']['name']['first'] : null;
-        $this->last = isset($raw['profile']['name']['last']) ? $raw['profile']['name']['last'] : null;
+        $this->mapPropertiesFromArray($data);
     }
 
     /**

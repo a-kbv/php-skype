@@ -10,69 +10,68 @@ namespace Akbv\PhpSkype\Models\Users;
  */
 class Profile extends \Akbv\PhpSkype\Models\Base
 {
-
     /**
-     * First and middle names of the user.
-     * @var string[]
-     */
-    private $name;
-
-    /**
-     * The Skype handle of the user.
+     * The avatar URL for this user.
      * @var string
      */
-    private $skypeHandle;
+    private $avatar_url;
 
     /**
-     * The URL of the user's avatar.
-     * @var string
-     */
-    private $avatarUrl;
-
-    /**
-     * The birthday of the user.
+     * The birthday for this user.
      * @var string
      */
     private $birthday;
 
     /**
-     * The gender of the user.
+     * The gender for this user.
      * @var string
      */
     private $gender;
 
     /**
-     * The locations of the user.
-     * @var string[]
-     */
-    private $locations;
-
-    /**
-     * The language of the user.
-     * @var string
-     */
-    private $language;
-
-    /**
-     * The mood of the user.
+     * The mood for this user.
      * @var string
      */
     private $mood;
 
     /**
-     * The phones of the user.
-     * @var string[]
+     * The name for this user.
+     * @var \Akbv\PhpSkype\Models\Users\Name
      */
-    private $phones;
+    private $name;
 
     /**
-     * The about of the user.
+     * The about for this user.
      * @var string
      */
     private $about;
 
     /**
-     * The website of the user.
+     * The skype handle for this user.
+     * @var string
+     */
+    private $skype_handle;
+
+    /**
+     * The locations for this user.
+     * @var \Akbv\PhpSkype\Models\Users\Location[]
+     */
+    private $locations;
+
+    /**
+     * The language for this user.
+     * @var string
+     */
+    private $language;
+
+    /**
+     * The phones for this user.
+     * @var \Akbv\PhpSkype\Models\Users\Phone[]
+     */
+    private $phones;
+
+    /**
+     * The website for this user.
      * @var string
      */
     private $website;
@@ -84,82 +83,41 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
+        $this->name = new \Akbv\PhpSkype\Models\Users\Name((isset($data['name']) ? $data['name'] : array()));
+        $this->locations = array_map(function ($location) {
+            return new \Akbv\PhpSkype\Models\Users\Location($location);
+        }, (isset($data['locations']) ? $data['locations'] : array()));
+        $this->phones = array_map(function ($phone) {
+            return new \Akbv\PhpSkype\Models\Users\Phone($phone);
+        }, (isset($data['phones']) ? $data['phones'] : array()));
     }
 
     /**
-     * Get first and middle names of the user.
-     *
-     * @return  string[]
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set first and middle names of the user.
-     *
-     * @param  string[]  $name  First and middle names of the user.
-     *
-     * @return  self
-     */
-    public function setName(array $name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get the Skype handle of the user.
+     * Get the avatar URL for this user.
      *
      * @return  string
      */
-    public function getSkypeHandle()
+    public function getAvatar_url()
     {
-        return $this->skypeHandle;
+        return $this->avatar_url;
     }
 
     /**
-     * Set the Skype handle of the user.
+     * Set the avatar URL for this user.
      *
-     * @param  string  $skypeHandle  The Skype handle of the user.
+     * @param  string  $avatar_url  The avatar URL for this user.
      *
      * @return  self
      */
-    public function setSkypeHandle(string $skypeHandle)
+    public function setAvatar_url(string $avatar_url)
     {
-        $this->skypeHandle = $skypeHandle;
+        $this->avatar_url = $avatar_url;
 
         return $this;
     }
 
     /**
-     * Get the URL of the user's avatar.
-     *
-     * @return  string
-     */
-    public function getAvatarUrl()
-    {
-        return $this->avatarUrl;
-    }
-
-    /**
-     * Set the URL of the user's avatar.
-     *
-     * @param  string  $avatarUrl  The URL of the user's avatar.
-     *
-     * @return  self
-     */
-    public function setAvatarUrl(string $avatarUrl)
-    {
-        $this->avatarUrl = $avatarUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get the birthday of the user.
+     * Get the birthday for this user.
      *
      * @return  string
      */
@@ -169,9 +127,9 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     }
 
     /**
-     * Set the birthday of the user.
+     * Set the birthday for this user.
      *
-     * @param  string  $birthday  The birthday of the user.
+     * @param  string  $birthday  The birthday for this user.
      *
      * @return  self
      */
@@ -183,7 +141,7 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     }
 
     /**
-     * Get the gender of the user.
+     * Get the gender for this user.
      *
      * @return  string
      */
@@ -193,9 +151,9 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     }
 
     /**
-     * Set the gender of the user.
+     * Set the gender for this user.
      *
-     * @param  string  $gender  The gender of the user.
+     * @param  string  $gender  The gender for this user.
      *
      * @return  self
      */
@@ -207,55 +165,7 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     }
 
     /**
-     * Get the locations of the user.
-     *
-     * @return  string[]
-     */
-    public function getLocations()
-    {
-        return $this->locations;
-    }
-
-    /**
-     * Set the locations of the user.
-     *
-     * @param  string[]  $locations  The locations of the user.
-     *
-     * @return  self
-     */
-    public function setLocations(array $locations)
-    {
-        $this->locations = $locations;
-
-        return $this;
-    }
-
-    /**
-     * Get the language of the user.
-     *
-     * @return  string
-     */
-    public function getLanguage()
-    {
-        return $this->language;
-    }
-
-    /**
-     * Set the language of the user.
-     *
-     * @param  string  $language  The language of the user.
-     *
-     * @return  self
-     */
-    public function setLanguage(string $language)
-    {
-        $this->language = $language;
-
-        return $this;
-    }
-
-    /**
-     * Get the mood of the user.
+     * Get the mood for this user.
      *
      * @return  string
      */
@@ -265,9 +175,9 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     }
 
     /**
-     * Set the mood of the user.
+     * Set the mood for this user.
      *
-     * @param  string  $mood  The mood of the user.
+     * @param  string  $mood  The mood for this user.
      *
      * @return  self
      */
@@ -279,31 +189,31 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     }
 
     /**
-     * Get the phones of the user.
+     * Get the name for this user.
      *
-     * @return  string[]
+     * @return  \Akbv\PhpSkype\Models\Users\Name
      */
-    public function getPhones()
+    public function getName()
     {
-        return $this->phones;
+        return $this->name;
     }
 
     /**
-     * Set the phones of the user.
+     * Set the name for this user.
      *
-     * @param  string[]  $phones  The phones of the user.
+     * @param  \Akbv\PhpSkype\Models\Users\Name  $name  The name for this user.
      *
      * @return  self
      */
-    public function setPhones(array $phones)
+    public function setName(\Akbv\PhpSkype\Models\Users\Name $name)
     {
-        $this->phones = $phones;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get the about of the user.
+     * Get the about for this user.
      *
      * @return  string
      */
@@ -313,9 +223,9 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     }
 
     /**
-     * Set the about of the user.
+     * Set the about for this user.
      *
-     * @param  string  $about  The about of the user.
+     * @param  string  $about  The about for this user.
      *
      * @return  self
      */
@@ -327,7 +237,103 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     }
 
     /**
-     * Get the website of the user.
+     * Get the skype handle for this user.
+     *
+     * @return  string
+     */
+    public function getSkype_handle()
+    {
+        return $this->skype_handle;
+    }
+
+    /**
+     * Set the skype handle for this user.
+     *
+     * @param  string  $skype_handle  The skype handle for this user.
+     *
+     * @return  self
+     */
+    public function setSkype_handle(string $skype_handle)
+    {
+        $this->skype_handle = $skype_handle;
+
+        return $this;
+    }
+
+    /**
+     * Get the locations for this user.
+     *
+     * @return  \Akbv\PhpSkype\Models\Users\Location[]
+     */
+    public function getLocations()
+    {
+        return $this->locations;
+    }
+
+    /**
+     * Set the locations for this user.
+     *
+     * @param  \Akbv\PhpSkype\Models\Users\Location[]  $locations  The locations for this user.
+     *
+     * @return  self
+     */
+    public function setLocations(array $locations)
+    {
+        $this->locations = $locations;
+
+        return $this;
+    }
+
+    /**
+     * Get the language for this user.
+     *
+     * @return  string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * Set the language for this user.
+     *
+     * @param  string  $language  The language for this user.
+     *
+     * @return  self
+     */
+    public function setLanguage(string $language)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get the phones for this user.
+     *
+     * @return  \Akbv\PhpSkype\Models\Users\Phone[]
+     */
+    public function getPhones()
+    {
+        return $this->phones;
+    }
+
+    /**
+     * Set the phones for this user.
+     *
+     * @param  \Akbv\PhpSkype\Models\Users\Phone[]  $phones  The phones for this user.
+     *
+     * @return  self
+     */
+    public function setPhones(array $phones)
+    {
+        $this->phones = $phones;
+
+        return $this;
+    }
+
+    /**
+     * Get the website for this user.
      *
      * @return  string
      */
@@ -337,9 +343,9 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     }
 
     /**
-     * Set the website of the user.
+     * Set the website for this user.
      *
-     * @param  string  $website  The website of the user.
+     * @param  string  $website  The website for this user.
      *
      * @return  self
      */
