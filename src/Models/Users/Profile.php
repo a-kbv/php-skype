@@ -54,7 +54,7 @@ class Profile extends \Akbv\PhpSkype\Models\Base
 
     /**
      * The locations for this user.
-     * @var \Akbv\PhpSkype\Models\Users\Location[]
+     * @var string[]
      */
     private $locations;
 
@@ -66,7 +66,7 @@ class Profile extends \Akbv\PhpSkype\Models\Base
 
     /**
      * The phones for this user.
-     * @var \Akbv\PhpSkype\Models\Users\Phone[]
+     * @var string[]
      */
     private $phones;
 
@@ -83,12 +83,6 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
-        $this->locations = array_map(function ($location) {
-            return new \Akbv\PhpSkype\Models\Users\Location($location);
-        }, (isset($data['locations']) ? $data['locations'] : []));
-        $this->phones = array_map(function ($phone) {
-            return new \Akbv\PhpSkype\Models\Users\Phone($phone);
-        }, (isset($data['phones']) ? $data['phones'] :[]));
     }
 
     /**
@@ -262,7 +256,7 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     /**
      * Get the locations for this user.
      *
-     * @return  \Akbv\PhpSkype\Models\Users\Location[]
+     * @return  string[]
      */
     public function getLocations()
     {
@@ -272,7 +266,7 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     /**
      * Set the locations for this user.
      *
-     * @param  \Akbv\PhpSkype\Models\Users\Location[]  $locations  The locations for this user.
+     * @param  string[] $locations  The locations for this user.
      *
      * @return  self
      */
@@ -310,7 +304,7 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     /**
      * Get the phones for this user.
      *
-     * @return  \Akbv\PhpSkype\Models\Users\Phone[]
+     * @return string[]
      */
     public function getPhones()
     {
@@ -320,7 +314,7 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     /**
      * Set the phones for this user.
      *
-     * @param  \Akbv\PhpSkype\Models\Users\Phone[]  $phones  The phones for this user.
+     * @param  string[] $phones  The phones for this user.
      *
      * @return  self
      */
