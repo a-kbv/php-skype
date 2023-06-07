@@ -2,12 +2,10 @@
 
 namespace Akbv\PhpSkype\Services;
 
-use Akbv\PhpSkype\Models\Session;
-use Akbv\PhpSkype\Services\SessionManager;
 use Akbv\PhpSkype\Client;
 use Akbv\PhpSkype\Exceptions\SessionFileLoadException;
 use Akbv\PhpSkype\Exceptions\ClientException;
-use PhpCsFixer\Tokenizer\Analyzer\Analysis\SwitchAnalysis;
+
 
 /**
  * Create a new event loop
@@ -63,7 +61,6 @@ class EventLoop
         }
 
         foreach ($events as $event) {
-            $event = $this->createEvent($event);
             $this->triggerEvent($event);
         }
     }
@@ -89,16 +86,6 @@ class EventLoop
     }
 
     /**
-     * A method that subclasses should implement to react to messages and status changes.
-     *
-     * @param mixed[] $event an incoming event
-     */
-    public function createEvent(array $event): \Akbv\PhpSkype\Interfaces\Event
-    {
-        return new \Akbv\PhpSkype\Models\Events\Event($event);
-    }
-
-    /**
      * Register a callback to be called when an event is received.
      *
      * @param \Closure $closure
@@ -119,9 +106,9 @@ class EventLoop
     }
 
     /**
-     * @param \Akbv\PhpSkype\Interfaces\Event $event
+     * @param \Akbv\PhpSkype\Models\Event $event
      */
-    public function triggerEvent(\Akbv\PhpSkype\Interfaces\Event $event): void
+    public function triggerEvent(\Akbv\PhpSkype\Models\Event $event): void
     {
         foreach ($this->events as $closure) {
             $closure($event);
