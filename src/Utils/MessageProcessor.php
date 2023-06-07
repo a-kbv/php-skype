@@ -2,7 +2,6 @@
 
 namespace Akbv\PhpSkype\Utils;
 
-
 /**
  * Manage Skype Message content.
  *
@@ -11,7 +10,6 @@ namespace Akbv\PhpSkype\Utils;
  */
 class MessageProcessor
 {
-
     public static function normalizeMessage(string $message): string
     {
         $message = str_replace("\r\n", "\n", $message);
@@ -19,5 +17,4 @@ class MessageProcessor
         $message = str_replace("\n", "\r\n", $message);
         return $message;
     }
-
 }

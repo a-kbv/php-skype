@@ -228,7 +228,7 @@ class Resource extends \Akbv\PhpSkype\Models\Base
 
     /**
      * Constructor.
-     * @param mixed[] $raw
+     * @param mixed[] $data
      */
     public function __construct(array $data)
     {
@@ -745,7 +745,7 @@ class Resource extends \Akbv\PhpSkype\Models\Base
     /**
      * Get the threadProperties for this resource.
      *
-     * @return  \Akbv\'PhpSkype\Models\Events\ThreadProperties
+     * @return  \Akbv\PhpSkype\Models\Events\ThreadProperties
      */
     public function getThreadProperties()
     {
@@ -759,7 +759,7 @@ class Resource extends \Akbv\PhpSkype\Models\Base
      *
      * @return  self
      */
-    public function setThreadProperties(array $threadProperties)
+    public function setThreadProperties(\Akbv\PhpSkype\Models\Events\ThreadProperties $threadProperties)
     {
         $this->threadProperties = $threadProperties;
 
@@ -783,7 +783,7 @@ class Resource extends \Akbv\PhpSkype\Models\Base
      *
      * @return  self
      */
-    public function setProperties(array $properties)
+    public function setProperties(\Akbv\PhpSkype\Models\Events\Properties $properties)
     {
         $this->properties = $properties;
 
@@ -793,7 +793,7 @@ class Resource extends \Akbv\PhpSkype\Models\Base
     /**
      * Get the lastMessage for this resource.
      *
-     * @return  \Akbv\PhpSkype\Models\Message
+     * @return  \Akbv\PhpSkype\Models\Events\LastMessage
      */
     public function getLastMessage()
     {
@@ -803,11 +803,11 @@ class Resource extends \Akbv\PhpSkype\Models\Base
     /**
      * Set the lastMessage for this resource.
      *
-     * @param  \Akbv\PhpSkype\Models\Message  $lastMessage  The lastMessage for this resource.
+     * @param  \Akbv\PhpSkype\Models\Events\LastMessage  $lastMessage  The lastMessage for this resource.
      *
      * @return  self
      */
-    public function setLastMessage(\Akbv\PhpSkype\Models\Message $lastMessage)
+    public function setLastMessage(\Akbv\PhpSkype\Models\Events\LastMessage $lastMessage)
     {
         $this->lastMessage = $lastMessage;
 

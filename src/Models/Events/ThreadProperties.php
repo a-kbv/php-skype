@@ -18,33 +18,38 @@ class ThreadProperties extends \Akbv\PhpSkype\Models\Base
 
     /**
      * The topic for this thread.
+     * @var string
      */
     private $topic;
 
     /**
      * The membercount for this thread.
+     * @var string
      */
     private $membercount;
 
     /**
      * The members for this thread.
+     * @var string
      */
     private $members;
 
     /**
      * The version for this thread.
+     * @var string
      */
     private $version;
 
     /**
      * The joiningenabled for this thread.
+     * @var string
      */
     private $joiningenabled;
 
 
     /**
      * Constructor.
-     * @param mixed[] $raw
+     * @param mixed[] $data
      */
     public function __construct(array $data)
     {

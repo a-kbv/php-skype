@@ -10,8 +10,6 @@ namespace Akbv\PhpSkype\Models;
  */
 class Contact extends Base
 {
-
-
     /**
      * The Skype ID of the contact
      *
@@ -231,7 +229,7 @@ class Contact extends Base
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
-        $this->profile = new \Akbv\PhpSkype\Models\Users\Profile((isset($data['profile']) ? $data['profile'] : array()));
+        $this->profile = new \Akbv\PhpSkype\Models\Users\Profile((isset($data['profile']) ? $data['profile'] : []));
     }
 
     /**

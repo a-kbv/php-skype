@@ -1,7 +1,9 @@
 <?php
 
 namespace Akbv\PhpSkype\Models;
+
 use JsonSerializable;
+
 /**
  *  A group conversation within Skype. Compared to single chats, groups have a topic and participant list.
  *
@@ -69,6 +71,9 @@ class GroupChat extends Base implements JsonSerializable
         $this->properties = $properties;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function jsonSerialize(): array
     {
         $item = $this->getProperties();

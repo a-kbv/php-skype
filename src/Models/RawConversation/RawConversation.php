@@ -1,6 +1,7 @@
 <?php
 
 namespace Akbv\PhpSkype\Models\RawConversation;
+
 /**
  * A raw conversation model.
  *
@@ -59,9 +60,9 @@ class RawConversation extends \Akbv\PhpSkype\Models\Base
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
-        $this->threadProperties = new ThreadProperties(isset($data['threadProperties'])? $data['threadProperties'] : []);
-        $this->properties = new Properties(isset($data['properties'])? $data['properties'] : []);
-        $this->lastMessage = new \Akbv\PhpSkype\Models\Message(isset($data['lastMessage'])? $data['lastMessage'] : []);
+        $this->threadProperties = new ThreadProperties(isset($data['threadProperties']) ? $data['threadProperties'] : []);
+        $this->properties = new Properties(isset($data['properties']) ? $data['properties'] : []);
+        $this->lastMessage = new \Akbv\PhpSkype\Models\Message(isset($data['lastMessage']) ? $data['lastMessage'] : []);
     }
 
     /**

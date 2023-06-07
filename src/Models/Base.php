@@ -1,7 +1,9 @@
 <?php
 
 namespace Akbv\PhpSkype\Models;
+
 use JsonSerializable;
+
 /**
  * Base class for all models.
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
@@ -43,6 +45,9 @@ abstract class Base implements \JsonSerializable
         return $array;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function jsonSerialize(): array
     {
         $reflectedClass = new \ReflectionClass($this);

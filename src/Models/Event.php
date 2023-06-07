@@ -10,9 +10,6 @@ namespace Akbv\PhpSkype\Models;
  */
 class Event extends Base
 {
-
-
-
     /**
      * The unique identifier for this event.
      * @var string

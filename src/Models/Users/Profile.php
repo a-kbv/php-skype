@@ -78,7 +78,7 @@ class Profile extends \Akbv\PhpSkype\Models\Base
 
     /**
      * Constructor.
-     * @param mixed[] $raw raw data
+     * @param mixed[] $data raw data
      */
     public function __construct(array $data)
     {

@@ -151,7 +151,7 @@ class Properties extends \Akbv\PhpSkype\Models\Base
 
     /**
      * Constructor.
-     * @param mixed[] $raw
+     * @param mixed[] $data
      */
     public function __construct(array $data)
     {

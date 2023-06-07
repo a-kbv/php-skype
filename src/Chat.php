@@ -395,7 +395,8 @@ class Chat implements ChatInterface
     public function sendContacts(array $contacts): Message
     {
         $contactTags = array_map(function ($contact) {
-            return '<c t="s" s="' . (string)$contact->getId() . '" f="' . (string)$contact->getName() . '"/>';
+            /** @var \Akbv\PhpSkype\Models\User $contact */
+            return '<c t="s" s="' . (string)$contact->getPerson_id() . '" f="' . (string)$contact->getDisplay_name() . '"/>';
         }, $contacts);
         $content = '<contacts>' . implode('', $contactTags) . '</contacts>';
         return $this->processMessage($content, 'RichText/Contacts', null, null);

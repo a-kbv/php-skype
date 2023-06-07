@@ -10,7 +10,6 @@ use Akbv\PhpSkype\Utils\Utils;
  */
 class LastMessage extends \Akbv\PhpSkype\Models\Base
 {
-
     /**
      * The editauthorized for this lastMessage.
      * @var string
@@ -103,7 +102,7 @@ class LastMessage extends \Akbv\PhpSkype\Models\Base
 
     /**
      * Constructor.
-     * @param mixed[] $raw
+     * @param mixed[] $data
      */
     public function __construct(array $data)
     {

@@ -6,7 +6,6 @@ use Akbv\PhpSkype\Client;
 use Akbv\PhpSkype\Exceptions\SessionFileLoadException;
 use Akbv\PhpSkype\Exceptions\ClientException;
 
-
 /**
  * Create a new event loop
  *

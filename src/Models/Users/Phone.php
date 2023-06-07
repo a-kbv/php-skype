@@ -10,7 +10,6 @@ namespace Akbv\PhpSkype\Models\Users;
  */
 class Phone extends \Akbv\PhpSkype\Models\User
 {
-
     /**
      * The phone number for this user.
      * @var string

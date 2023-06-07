@@ -16,7 +16,6 @@ use Akbv\PhpSkype\Models\Users\Location;
  */
 class User extends Base
 {
-
     /**
      * The unique identifier for this user.
      * @var string
@@ -341,7 +340,7 @@ class User extends Base
     /**
      * Set the relationship history for this user.
      *
-     * @param  string  $relationship_history  The relationship history for this user.
+     * @param  string[]  $relationship_history  The relationship history for this user.
      *
      * @return  self
      */
