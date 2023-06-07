@@ -33,10 +33,13 @@ $client = new Akbv\PhpSkype\SkypeClient($sessionManager);
 $client->login($account);
 
 /** Get contacts list */
-$client->getAllContacts();
+$client->getMyContacts();
 
 /** Start chat with contact */
 $chat = $client->chat('8:live:example');
+
+/** Get messages from chat */
+$messages = $chat->getMessages();
 
 /** Send message to chat */
 $message = $chat->sendMessage('Hello world!'); 
