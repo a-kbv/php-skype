@@ -71,7 +71,9 @@ $chat = $client->groupChat(
 /**
  * Get messages
  */
-$messages = $chat->getMessages();
+$data = $chat->getMessages();
+$backwardLink = isset($data['_metadata']['backwardLink']) ? $data['_metadata']['backwardLink'] : null;
+$messages = $recentMessages['messages'];
 /**
  * Set topic
  */

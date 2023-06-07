@@ -146,13 +146,17 @@ class Chat implements ChatInterface
     /**
     * {@inheritdoc}
     */
-    public function getMessages(): array
+    public function getMessages($actionUri=null, $pageSize=25): array
     {
-        $url = sprintf(
-            '%s/users/ME/conversations/%s/messages',
-            $this->client->getSession()->getRegistrationToken()->getMessengerUrl(),
-            $this->chat->getId()
-        );
+        $url = $actionUri;
+
+        if (empty($url)) {
+            $url = sprintf(
+                '%s/users/ME/conversations/%s/messages',
+                $this->client->getSession()->getRegistrationToken()->getMessengerUrl(),
+                $this->chat->getId()
+            );
+        }
 
         $params = [
             'startTime' => 0,
@@ -167,12 +171,15 @@ class Chat implements ChatInterface
             'Sec-Fetch-Site' => 'cross-site',
         ];
 
-        $response = $this->getClient()->syncState($url, $params, $headers);
-        $messages = json_decode($response, true)['messages'] ?? [];
+        $response = $this->client->request('GET', $url, [
+            'query' => empty($actionUri) ? $params : [],
+            'headers' => $headers,
+            'authorization_session' => $this->client->getSession(),
+        ]);
 
-        return array_map(function ($message) {
-            return new Message($message);
-        }, $messages);
+        $response = $response->getContent();
+        $json = json_decode($response, true) ?? [];
+        return $json;
     }
 
     /**
