@@ -113,13 +113,17 @@ interface ClientInterface
 
     /**
      * Retrieve a selection of conversations with the most recent activity.
+     * Returns an array of conversations, sorted by most recently modified first.
+     * Returns syncStateUrl for pagination. If no syncStateUrl is provided, the first page is returned.
+     * @param string $syncStateUrl
+     * @param int $pageSize
      * @return mixed[]
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    public function getRecentChats(): array;
+    public function getRecentChats(string $syncStateUrl=null, int $pageSize=25): array;
 
     /**
      * Configure endpoint.
@@ -187,4 +191,19 @@ interface ClientInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
     public function setUserPresence(string $status): void;
+    /**
+     * Follow and track sync state URLs provided by an API endpoint, in order to implicitly handle pagination.
+     * In the first call, $url and $params are used as-is.  If a `syncState` endpoint is provided in the
+     * response, subsequent calls go to the latest URL instead.
+     * @param string $url
+     * @param mixed[] $params
+     * @param mixed[] $headers
+     * @return string
+     */
+    public function syncState(string $url, array $params = [], array $headers = []): string;
+    /**
+     * Get Contacts list.
+     * @return mixed[]
+     */
+    public function getMyContacts(): array;
 }

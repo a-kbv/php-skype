@@ -55,7 +55,7 @@ class Message extends Base
 
     /**
      * Properties.
-     * @var mixed[]
+     * @var string[]
      */
     private $properties;
 

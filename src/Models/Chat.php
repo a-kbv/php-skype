@@ -3,12 +3,11 @@
 namespace Akbv\PhpSkype\Models;
 
 /**
- *  A one-to-one conversation within Skype.
- *
+ * Class for mapping the chat.
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class SingleChat extends Base
+class Chat extends Base
 {
     /**
      * The unique identifier for this conversation.
@@ -65,8 +64,27 @@ class SingleChat extends Base
     private $lastUpdatedMessageVersion;
 
     /**
+     * The list of members in this conversation.
+     * @var string[]
+     */
+    private $members;
+
+
+    /**
+     * Description of the conversation, shown to all participants.
+     * @var string
+     */
+    private $topic;
+
+    /**
+     * User who originally created the conversation.
+     * @var string
+     */
+    private $creatorId;
+
+    /**
      * Constructor.
-     * @param mixed[] $data raw data
+     * @param mixed[] $data The data from which to create the object.
      */
     public function __construct(array $data)
     {
@@ -75,22 +93,23 @@ class SingleChat extends Base
         $this->lastMessage = $message;
         $properties = new ChatProperties(isset($data["properties"]) ? $data["properties"] : []);
         $this->properties = $properties;
+        $this->jsonSerialize();
     }
 
     /**
-         * Get the value of id
-         *
-         * @return  string
-         */
+     * Get the unique identifier for this conversation.
+     *
+     * @return  string
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Set the value of id
+     * Set the unique identifier for this conversation.
      *
-     * @param  string  $id
+     * @param  string  $id  The unique identifier for this conversation.
      *
      * @return  self
      */
@@ -176,7 +195,7 @@ class SingleChat extends Base
     /**
      * Get the properties of this conversation.
      *
-     * @return ChatProperties
+     * @return  ChatProperties
      */
     public function getProperties()
     {
@@ -186,11 +205,11 @@ class SingleChat extends Base
     /**
      * Set the properties of this conversation.
      *
-     * @param  ChatProperties $properties  The properties of this conversation.
+     * @param  ChatProperties  $properties  The properties of this conversation.
      *
-     * @return self
+     * @return  self
      */
-    public function setProperties($properties)
+    public function setProperties(ChatProperties $properties)
     {
         $this->properties = $properties;
 
@@ -200,7 +219,7 @@ class SingleChat extends Base
     /**
      * Get the last message in this conversation.
      *
-     * @return Message
+     * @return  Message
      */
     public function getLastMessage()
     {
@@ -210,9 +229,9 @@ class SingleChat extends Base
     /**
      * Set the last message in this conversation.
      *
-     * @param Message  $lastMessage  The last message in this conversation.
+     * @param  Message  $lastMessage  The last message in this conversation.
      *
-     * @return self
+     * @return  self
      */
     public function setLastMessage(Message $lastMessage)
     {
@@ -289,6 +308,78 @@ class SingleChat extends Base
     public function setLastUpdatedMessageVersion(int $lastUpdatedMessageVersion)
     {
         $this->lastUpdatedMessageVersion = $lastUpdatedMessageVersion;
+
+        return $this;
+    }
+
+    /**
+     * Get the list of members in this conversation.
+     *
+     * @return  string[]
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * Set the list of members in this conversation.
+     *
+     * @param  string[]  $members  The list of members in this conversation.
+     *
+     * @return  self
+     */
+    public function setMembers(array $members)
+    {
+        $this->members = $members;
+
+        return $this;
+    }
+
+    /**
+     * Get description of the conversation, shown to all participants.
+     *
+     * @return  string
+     */
+    public function getTopic()
+    {
+        return $this->topic;
+    }
+
+    /**
+     * Set description of the conversation, shown to all participants.
+     *
+     * @param  string  $topic  Description of the conversation, shown to all participants.
+     *
+     * @return  self
+     */
+    public function setTopic(string $topic)
+    {
+        $this->topic = $topic;
+
+        return $this;
+    }
+
+    /**
+     * Get user who originally created the conversation.
+     *
+     * @return  string
+     */
+    public function getCreatorId()
+    {
+        return $this->creatorId;
+    }
+
+    /**
+     * Set user who originally created the conversation.
+     *
+     * @param  string  $creatorId  User who originally created the conversation.
+     *
+     * @return  self
+     */
+    public function setCreatorId(string $creatorId)
+    {
+        $this->creatorId = $creatorId;
 
         return $this;
     }

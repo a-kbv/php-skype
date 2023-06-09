@@ -2,13 +2,15 @@
 
 namespace Akbv\PhpSkype\Models;
 
+use JsonSerializable;
+
 /**
  *  A group conversation within Skype. Compared to single chats, groups have a topic and participant list.
  *
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class GroupChat extends Base
+class GroupChat extends Base implements JsonSerializable
 {
     /**
      * The unique identifier for this conversation.
@@ -24,13 +26,13 @@ class GroupChat extends Base
 
     /**
      * The properties of this conversation.
-     * @var mixed[]
+     * @var ChatProperties
      */
     private $properties;
 
     /**
      * The list of members in this conversation.
-     * @var mixed[]
+     * @var string[]
      */
     private $members;
 
@@ -65,6 +67,17 @@ class GroupChat extends Base
     public function __construct(array $data)
     {
         $this->mapPropertiesFromArray($data);
+        $properties = new ChatProperties([isset($data["properties"]) ? $data["properties"] : []]);
+        $this->properties = $properties;
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public function jsonSerialize(): array
+    {
+        $item = $this->getProperties();
+        return $item->mapPropertiesToArray();
     }
 
     /**
@@ -118,7 +131,7 @@ class GroupChat extends Base
     /**
      * Get the properties of this conversation.
      *
-     * @return  mixed[]
+     * @return ChatProperties
      */
     public function getProperties()
     {
@@ -128,11 +141,11 @@ class GroupChat extends Base
     /**
      * Set the properties of this conversation.
      *
-     * @param  mixed[]  $properties  The properties of this conversation.
+     * @param  ChatProperties  $properties  The properties of this conversation.
      *
      * @return  self
      */
-    public function setProperties(array $properties)
+    public function setProperties(ChatProperties $properties)
     {
         $this->properties = $properties;
 
@@ -142,7 +155,7 @@ class GroupChat extends Base
     /**
      * Get the list of members in this conversation.
      *
-     * @return  mixed[]
+     * @return  string[]
      */
     public function getMembers()
     {
@@ -152,7 +165,7 @@ class GroupChat extends Base
     /**
      * Set the list of members in this conversation.
      *
-     * @param  mixed[]  $members  The list of members in this conversation.
+     * @param  string[]  $members  The list of members in this conversation.
      *
      * @return  self
      */

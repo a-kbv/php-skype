@@ -2,18 +2,13 @@
 
 namespace Akbv\PhpSkype;
 
-use Akbv\PhpSkype\Models\Session;
 use Akbv\PhpSkype\Interfaces\ChatInterface;
 use Akbv\PhpSkype\Models\Message;
 use Akbv\PhpSkype\Models\SingleChat;
 use Akbv\PhpSkype\Models\GroupChat;
 use Akbv\PhpSkype\Client;
 use Akbv\PhpSkype\Utils\Utils;
-use Monolog\Handler\Curl\Util;
 use Symfony\Component\HttpClient\Exception\ClientException;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
  * A conversation within Skype.
@@ -74,10 +69,12 @@ class Chat implements ChatInterface
                 }
             }
 
-            $data = json_decode($response->getContent(), true);
-            $raw = array_merge($raw, $data);
+            if (!in_array($response->getStatusCode(), [403,404])) {
+                $data = json_decode($response->getContent(), true);
+                $raw = array_merge($raw, $data);
+            }
 
-            $this->chat = new GroupChat($raw);
+            $this->chat = new \Akbv\PhpSkype\Models\Chat($raw);
         } else {
             $url = sprintf(
                 '%s/users/ME/conversations/%s',
@@ -92,9 +89,12 @@ class Chat implements ChatInterface
                 ]
             ]);
 
-            $data = json_decode($response->getContent(), true);
+            if (!in_array($response->getStatusCode(), [403,404])) {
+                $data = json_decode($response->getContent(), true);
+                $raw = array_merge($raw, $data);
+            }
 
-            $this->chat = new SingleChat($data);
+            $this->chat = new \Akbv\PhpSkype\Models\Chat($raw);
         }
     }
 
@@ -146,40 +146,40 @@ class Chat implements ChatInterface
     /**
     * {@inheritdoc}
     */
-    public function getMessages(): array
+    public function getMessages($actionUri=null, $pageSize=25): array
     {
-        $url = sprintf(
-            '%s/users/ME/conversations/%s/messages',
-            $this->getClient()->getSession()->getRegistrationToken()->getMessengerUrl(),
-            $this->chat->getId()
-        );
+        $url = $actionUri;
 
-        $response = $this->getClient()->request('GET', $url, [
-            'query' => [
-                'startTime' => 0,
-                'pageSize' => 100,
-                'view' => 'supportsExtendedHistory|msnp24Equivalent|supportsMessageProperties',
-            ],
-            'authorization_session' => $this->getClient()->getSession(),
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'BehaviorOverride' => 'redirectAs404',
-                'Sec-Fetch-Dest' => 'empty',
-                'Sec-Fetch-Mode' => 'cors',
-                'Sec-Fetch-Site' => 'cross-site',
-            ],
+        if (empty($url)) {
+            $url = sprintf(
+                '%s/users/ME/conversations/%s/messages',
+                $this->client->getSession()->getRegistrationToken()->getMessengerUrl(),
+                $this->chat->getId()
+            );
+        }
+
+        $params = [
+            'startTime' => 0,
+            'view' => 'supportsExtendedHistory|msnp24Equivalent|supportsMessageProperties',
+            'pageSize' => 30,
+        ];
+
+        $headers = [
+            'BehaviorOverride' => 'redirectAs404',
+            'Sec-Fetch-Dest' => 'empty',
+            'Sec-Fetch-Mode' => 'cors',
+            'Sec-Fetch-Site' => 'cross-site',
+        ];
+
+        $response = $this->client->request('GET', $url, [
+            'query' => empty($actionUri) ? $params : [],
+            'headers' => $headers,
+            'authorization_session' => $this->client->getSession(),
         ]);
 
-        $messages = [];
-        $msgs = json_decode($response->getContent(), true)['messages'];
-        if (!empty($msgs)) {
-            foreach ($msgs as $msg) {
-                $messages[] = new Message($msg);
-            }
-        }
-        // file_put_contents('messages.json', $response->getContent());
-        return $messages;
+        $response = $response->getContent();
+        $json = json_decode($response, true) ?? [];
+        return $json;
     }
 
     /**
@@ -204,13 +204,13 @@ class Chat implements ChatInterface
             }
         }
 
-        return $this->processMessage($edit, $content, $msgType, 'text', $properties);
+        return $this->processMessage($content, $msgType, 'text', $edit, $properties);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function processMessage($editId = null, $content, $messageType, $contentType, array $customProperties = []): Message
+    public function processMessage($content, $messageType, $contentType, $editId = null, array $customProperties = []): Message
     {
         // Build the message object with default properties and custom ones
         $message = [
@@ -320,7 +320,7 @@ class Chat implements ChatInterface
         );
         $messageType = $typing ? 'Control/Typing' : 'Control/ClearTyping';
 
-        $this->processMessage(null, null, $messageType, "text");
+        $this->processMessage(null, $messageType, "text", null);
     }
 
     /**
@@ -393,7 +393,7 @@ class Chat implements ChatInterface
             );
         }
         $msgType = "RichText/".($isImage ? "UriObject" : "Media_GenericFile");
-        return $this->processMessage(null, $body, $msgType, null);
+        return $this->processMessage($body, $msgType, null, null);
     }
 
     /**
@@ -402,10 +402,11 @@ class Chat implements ChatInterface
     public function sendContacts(array $contacts): Message
     {
         $contactTags = array_map(function ($contact) {
-            return '<c t="s" s="' . (string)$contact->getId() . '" f="' . (string)$contact->getName() . '"/>';
+            /** @var \Akbv\PhpSkype\Models\User $contact */
+            return '<c t="s" s="' . (string)$contact->getPerson_id() . '" f="' . (string)$contact->getDisplay_name() . '"/>';
         }, $contacts);
         $content = '<contacts>' . implode('', $contactTags) . '</contacts>';
-        return $this->processMessage(null, $content, 'RichText/Contacts', null);
+        return $this->processMessage($content, 'RichText/Contacts', null, null);
     }
 
     /**
