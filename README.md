@@ -13,6 +13,8 @@ $ composer require akbv/php-skype
 ```
 
 ## Usage
+Note this is just the basic example to get you started. For more examples, please see the documentation [php-skype-docs](https://akbv.github.io/php-skype/)
+
 ```PHP
 <?php
 
