@@ -12,9 +12,10 @@ class MessageProcessor
 {
     public static function normalizeMessage(string $message): string
     {
-        $message = str_replace("\r\n", "\n", $message);
-        $message = str_replace("\r", "\n", $message);
-        $message = str_replace("\n", "\r\n", $message);
+        $message = preg_replace('/<[^>]*>/', '', $message); // Remove tags
+        $message = preg_replace('/&[^;]*;/', '', $message); // Remove symbols
+        $message = mb_convert_encoding($message, 'UTF-8', 'UTF-8'); // Ensure UTF-8 encoding
+        $message = json_decode('"' . $message . '"'); // Fix Cyrillic Unicode characters
         return $message;
     }
 }
