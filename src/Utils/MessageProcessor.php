@@ -16,6 +16,9 @@ class MessageProcessor
         $message = preg_replace('/&[^;]*;/', '', $message); // Remove symbols
         $message = mb_convert_encoding($message, 'UTF-8', 'UTF-8'); // Ensure UTF-8 encoding
         $message = json_decode('"' . $message . '"'); // Fix Cyrillic Unicode characters
+        if (empty($message)) {
+            return 'failed to parse message';
+        }
         return $message;
     }
 }
