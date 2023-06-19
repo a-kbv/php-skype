@@ -590,7 +590,7 @@ final class Client implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getRecentChats($syncStateUrl=null, $pageSize=25, ): array
+    public function getRecentChats($syncStateUrl=null, $pageSize=25): array
     {
         if (empty($syncStateUrl)) {
             $url = sprintf(
@@ -884,4 +884,121 @@ final class Client implements ClientInterface
 
         return $eventMessages;
     }
+
+       /**
+     * *******************************************************
+     * *******************************************************
+     *                  *** Search Skype Directory ***
+     * *******************************************************
+     * *******************************************************
+     */
+
+    /**
+     * {@inheritdoc}
+     */
+    public function querySkypeDirectory($params)
+    {
+        $threadId = $params['threadId'] ?? null;
+        $from = $params['from'] ?? null;
+        $to = $params['to'] ?? null;
+        $content = $params['content'] ?? null;
+        $user = $params['user'] ?? null;
+        $maxResultCount = $params['maxResultCount'] ?? 30;
+
+        $query = [
+            'OPTION' => [
+                'RESULTBASE' => 0,
+                'RESULTCOUNT' => $maxResultCount
+            ],
+            'QUERYSTRING' => []
+        ];
+
+        $queryConditions = [];
+
+        if ($user) {
+            $queryConditions[] = [
+                'OR' => [
+                    [
+                        'Annotation' => [
+                            'TYPE' => 'at',
+                            'VALUE' => [
+                                'id' => $user
+                            ]
+                        ]
+                    ],
+                    [
+                        'Annotation' => [
+                            'TYPE' => 'quote',
+                            'VALUE' => [
+                                'author' => $user
+                            ]
+                        ]
+                    ]
+                ]
+            ];
+        }
+
+        if ($threadId) {
+            $queryConditions[] = [
+                'ThreadId' => $threadId
+            ];
+        }
+
+        if ($from) {
+            $queryConditions[] = [
+                'From' => $from
+            ];
+        }
+
+        if ($to) {
+            $queryConditions[] = [
+                'To' => $to
+            ];
+        }
+
+        if ($content) {
+            $queryConditions[] = [
+                'Content' => $content
+            ];
+        }
+
+        if ($user && $content) {
+            $queryConditions[] = [
+                'AND' => [
+                    [
+                        'Content' => $content
+                    ],
+                    [
+                        'From' => $user
+                    ]
+                ]
+            ];
+        }
+
+        if (count($queryConditions) > 0) {
+            if (count($queryConditions) === 1) {
+                $query['QUERYSTRING'] = $queryConditions[0];
+            } else {
+                $query['QUERYSTRING']['OR'] = $queryConditions;
+            }
+        }
+
+        $url = "https://msgsearch.skype.com/v2/query";
+
+        $response = $this->request('POST', $url, [
+            'authorization_session' => $this->getSession(),
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+            'json' => $query,
+        ]);
+
+        $result = json_decode($response->getContent(), true);
+
+        return $result;
+    }
+
+
+
 }
