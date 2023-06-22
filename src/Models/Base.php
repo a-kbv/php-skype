@@ -39,7 +39,12 @@ abstract class Base implements \JsonSerializable
         $array = [];
         foreach ($reflectionClass->getProperties() as $property) {
             $property->setAccessible(true);
-            $array[$property->getName()] = $property->getValue($this);
+            $name = $property->getName();
+            $array[$name] = $property->getValue($this);
+            if (ctype_upper($name[0])) {
+                $name = lcfirst($name);
+                $array[$name] = $property->getValue($this);
+            }
             $property->setAccessible(false);
         }
         return $array;

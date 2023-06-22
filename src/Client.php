@@ -903,6 +903,7 @@ final class Client implements ClientInterface
         $to = $params['to'] ?? null;
         $content = $params['content'] ?? null;
         $user = $params['user'] ?? null;
+        $messageId = $params['messageId'] ?? null;
         $maxResultCount = $params['maxResultCount'] ?? 30;
 
         $query = [
@@ -953,6 +954,12 @@ final class Client implements ClientInterface
         if ($to) {
             $queryConditions[] = [
                 'To' => $to
+            ];
+        }
+
+        if ($messageId) {
+            $queryConditions[] = [
+                'MessageId' => $messageId
             ];
         }
 
