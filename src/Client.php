@@ -134,6 +134,7 @@ final class Client implements ClientInterface
             if ($session->getSkypeToken()) {
                 $options['headers']['X-Skypetoken'] = $session->getSkypeToken()->getSkypeToken();
                 $options['headers']['Authentication'] = 'skypetoken=' . $session->getSkypeToken()->getSkypeToken();
+                $options['headers']['Cookie'] = 'skypetoken_asm=' . $session->getSkypeToken()->getSkypeToken();
             }
             if ($session->getRegistrationToken()) {
                 $options['headers']['RegistrationToken'] = 'registrationToken=' . $session->getRegistrationToken()->getRegistrationToken();
@@ -391,6 +392,18 @@ final class Client implements ClientInterface
         return $this->getSession();
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function openImage($url)
+    {
+        $response = $this->request('GET', $url, [
+            'authorization_session' => $this->getSession(),
+        ]);
+        $image = $response->getContent();
+        $image = base64_encode($image);
+        return $image;
+    }
 
     /**
      * *******************************************************
@@ -413,7 +426,7 @@ final class Client implements ClientInterface
         $result = json_decode($response->getContent(), true);
         return $result;
     }
-    
+
     /**
      * {@inheritdoc}
      */
