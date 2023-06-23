@@ -29,6 +29,18 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     private $username;
 
     /**
+     * Username of the user.
+     * @var string
+     */
+    private $firstname;
+
+    /**
+     * Username of the user.
+     * @var string
+     */
+    private $lastname;
+
+    /**
      * The birthday for this user.
      * @var string
      */
@@ -405,6 +417,54 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     public function setUsername(string $username)
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username of the user.
+     *
+     * @return  string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set username of the user.
+     *
+     * @param  string  $firstname  Username of the user.
+     *
+     * @return  self
+     */
+    public function setFirstname(string $firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get username of the user.
+     *
+     * @return  string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * Set username of the user.
+     *
+     * @param  string  $lastname  Username of the user.
+     *
+     * @return  self
+     */
+    public function setLastname(string $lastname)
+    {
+        $this->lastname = $lastname;
 
         return $this;
     }
