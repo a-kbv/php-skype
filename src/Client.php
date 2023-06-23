@@ -413,7 +413,7 @@ final class Client implements ClientInterface
         $result = json_decode($response->getContent(), true);
         return $result;
     }
-
+    
     /**
      * {@inheritdoc}
      */

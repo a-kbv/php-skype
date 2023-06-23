@@ -17,6 +17,18 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     private $avatar_url;
 
     /**
+     * The avatar of the user.
+     * @var string
+     */
+    private $avatarUrl;
+
+    /**
+     * Username of the user.
+     * @var string
+     */
+    private $username;
+
+    /**
      * The birthday for this user.
      * @var string
      */
@@ -345,6 +357,54 @@ class Profile extends \Akbv\PhpSkype\Models\Base
     public function setWebsite(string $website)
     {
         $this->website = $website;
+
+        return $this;
+    }
+
+    /**
+     * Get the avatar of the user.
+     *
+     * @return  string
+     */
+    public function getAvatarUrl()
+    {
+        return $this->avatarUrl;
+    }
+
+    /**
+     * Set the avatar of the user.
+     *
+     * @param  string  $avatarUrl  The avatar of the user.
+     *
+     * @return  self
+     */
+    public function setAvatarUrl(string $avatarUrl)
+    {
+        $this->avatarUrl = $avatarUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get username of the user.
+     *
+     * @return  string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set username of the user.
+     *
+     * @param  string  $username  Username of the user.
+     *
+     * @return  self
+     */
+    public function setUsername(string $username)
+    {
+        $this->username = $username;
 
         return $this;
     }
