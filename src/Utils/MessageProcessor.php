@@ -19,6 +19,13 @@ class MessageProcessor
         $joiningEnabledPattern = '/<joiningenabledupdate><eventtime>(\d+)<\/eventtime><initiator>(.+)<\/initiator><value>(true|false)<\/value><\/joiningenabledupdate>/';
         $pictureUpdatePattern = '/<pictureupdate><eventtime>(\d+)<\/eventtime><initiator>(.+)<\/initiator>.*<\/pictureupdate>/';
         $uriObjectPattern = '/<URIObject .*url_thumbnail="([^"]+)".*>/';
+        $boldPattern = '/<b raw_pre="\*" raw_post="\*">(.*)<\/b>/';
+        $italicPattern = '/<i raw_pre="_" raw_post="_">(.*)<\/i>/';
+        $strikePattern = '/<s raw_pre="~" raw_post="~">(.*)<\/s>/';
+        $prePattern = '/<pre raw_pre="```" raw_post="```">(.*)<\/pre>/';
+        $linkPattern = '/<a href="([^"]+)">(.*)<\/a>/';
+        $emojiPattern = '/<ss type="([^"]+)">\((.*)\)<\/ss>/';
+
 
         if(preg_match($addMemberPattern, $message, $matches)) {
           return $matches[2].' added '.$matches[3].' to the conversation.';
@@ -52,6 +59,30 @@ class MessageProcessor
 
         if(preg_match($uriObjectPattern, $message, $matches)) {
             return $matches[1];
+        }
+
+        if(preg_match($boldPattern, $message, $matches)) {
+            return 'bolded{' . $matches[1] . '}';
+          }
+
+          if(preg_match($italicPattern, $message, $matches)) {
+            return 'italic{' . $matches[1] . '}';
+          }
+
+          if(preg_match($strikePattern, $message, $matches)) {
+            return 'strikethrough{' . $matches[1] . '}';
+          }
+
+          if(preg_match($prePattern, $message, $matches)) {
+            return 'preformatted{' . $matches[1] . '}';
+          }
+
+          if(preg_match($linkPattern, $message, $matches)) {
+            return 'hyperlink{' . $matches[1] . '}';
+          }
+
+          if(preg_match($emojiPattern, $message, $matches)) {
+            return $matches[2] . ' ' . '(' . $matches[1] . ')';
           }
 
         // Default case for normal messages
