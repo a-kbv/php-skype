@@ -18,6 +18,7 @@ class MessageProcessor
         $historyDisclosurePattern = '/<historydisclosedupdate><eventtime>(\d+)<\/eventtime><initiator>(.+)<\/initiator><value>(true|false)<\/value><\/historydisclosedupdate>/';
         $joiningEnabledPattern = '/<joiningenabledupdate><eventtime>(\d+)<\/eventtime><initiator>(.+)<\/initiator><value>(true|false)<\/value><\/joiningenabledupdate>/';
         $pictureUpdatePattern = '/<pictureupdate><eventtime>(\d+)<\/eventtime><initiator>(.+)<\/initiator>.*<\/pictureupdate>/';
+        $uriObjectPattern = '/<URIObject .*url_thumbnail="([^"]+)".*>/';
 
         if(preg_match($addMemberPattern, $message, $matches)) {
           return $matches[2].' added '.$matches[3].' to the conversation.';
@@ -48,6 +49,10 @@ class MessageProcessor
         if(preg_match($pictureUpdatePattern, $message, $matches)) {
            return $matches[2].' has changed the conversation picture.';
         }
+
+        if(preg_match($uriObjectPattern, $message, $matches)) {
+            return $matches[1];
+          }
 
         // Default case for normal messages
         return $message;
