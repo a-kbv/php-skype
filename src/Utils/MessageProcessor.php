@@ -62,23 +62,23 @@ class MessageProcessor
         }
 
         if(preg_match($boldPattern, $message, $matches)) {
-            return 'bolded{' . $matches[1] . '}';
+            return '<b>' . $matches[1] . '</b>';
           }
 
           if(preg_match($italicPattern, $message, $matches)) {
-            return 'italic{' . $matches[1] . '}';
+            return '<i>' . $matches[1] . '</i>';
           }
 
           if(preg_match($strikePattern, $message, $matches)) {
-            return 'strikethrough{' . $matches[1] . '}';
+            return '<s>' . $matches[1] . '</s>';
           }
 
           if(preg_match($prePattern, $message, $matches)) {
-            return 'preformatted{' . $matches[1] . '}';
+            return '<pre>' . $matches[1] . '</pre>';
           }
 
           if(preg_match($linkPattern, $message, $matches)) {
-            return 'hyperlink{' . $matches[1] . '}';
+            return '<a href="' . $matches[1] . '">' . $matches[2] . '</a>';
           }
 
           if(preg_match($emojiPattern, $message, $matches)) {
