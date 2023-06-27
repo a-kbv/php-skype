@@ -25,36 +25,39 @@ class MessageProcessor
         $prePattern = '/<pre raw_pre="```" raw_post="```">(.*)<\/pre>/';
         $linkPattern = '/<a href="([^"]+)">(.*)<\/a>/';
         $emojiPattern = '/<ss type="([^"]+)">\((.*)\)<\/ss>/';
+        $mentionPattern = '/<at id="([^"]+)">(.*)<\/at>/';
 
 
         if(preg_match($addMemberPattern, $message, $matches)) {
-          return $matches[2].' added '.$matches[3].' to the conversation.';
+            return $matches[2].' added '.$matches[3].' to the conversation.';
         }
 
         if(preg_match($deleteMemberPattern, $message, $matches)) {
-          return $matches[2].' removed '.$matches[3].' from this conversation.';
+            return $matches[2].' removed '.$matches[3].' from this conversation.';
         }
 
         if(preg_match($topicUpdatePattern, $message, $matches)) {
-          return $matches[2].' has renamed the conversation to "'.$matches[3].'".';
+            return $matches[2].' has renamed the conversation to "'.$matches[3].'".';
         }
 
         if(preg_match($historyDisclosurePattern, $message, $matches)) {
-          if($matches[3] === "true")
-            return $matches[2].' has made the chat history visible to everyone.';
-          else
-            return $matches[2].' has made the chat history invisible to everyone.';
+            if($matches[3] === "true") {
+                return $matches[2].' has made the chat history visible to everyone.';
+            } else {
+                return $matches[2].' has made the chat history invisible to everyone.';
+            }
         }
 
         if(preg_match($joiningEnabledPattern, $message, $matches)) {
-          if($matches[3] === "true")
-            return $matches[2].' has enabled joining this conversation using a link.';
-          else
-            return $matches[2].' has disabled joining this conversation using a link.';
+            if($matches[3] === "true") {
+                return $matches[2].' has enabled joining this conversation using a link.';
+            } else {
+                return $matches[2].' has disabled joining this conversation using a link.';
+            }
         }
 
         if(preg_match($pictureUpdatePattern, $message, $matches)) {
-           return $matches[2].' has changed the conversation picture.';
+            return $matches[2].' has changed the conversation picture.';
         }
 
         if(preg_match($uriObjectPattern, $message, $matches)) {
@@ -63,27 +66,31 @@ class MessageProcessor
 
         if(preg_match($boldPattern, $message, $matches)) {
             return '<b>' . $matches[1] . '</b>';
-          }
+        }
 
-          if(preg_match($italicPattern, $message, $matches)) {
+        if(preg_match($italicPattern, $message, $matches)) {
             return '<i>' . $matches[1] . '</i>';
-          }
+        }
 
-          if(preg_match($strikePattern, $message, $matches)) {
+        if(preg_match($strikePattern, $message, $matches)) {
             return '<s>' . $matches[1] . '</s>';
-          }
+        }
 
-          if(preg_match($prePattern, $message, $matches)) {
+        if(preg_match($prePattern, $message, $matches)) {
             return '<pre>' . $matches[1] . '</pre>';
-          }
+        }
 
-          if(preg_match($linkPattern, $message, $matches)) {
+        if(preg_match($linkPattern, $message, $matches)) {
             return '<a href="' . $matches[1] . '">' . $matches[2] . '</a>';
-          }
+        }
 
-          if(preg_match($emojiPattern, $message, $matches)) {
+        if(preg_match($emojiPattern, $message, $matches)) {
             return $matches[2] . ' ' . '(' . $matches[1] . ')';
-          }
+        }
+
+        if(preg_match($mentionPattern, $message, $matches)) {
+            return '@' . $matches[2];
+        }
 
         // Default case for normal messages
         return $message;
