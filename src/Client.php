@@ -600,6 +600,29 @@ final class Client implements ClientInterface
         return $contact;
     }
 
+    public function searchPeople(string $searchString){
+
+
+        $url = 'https://skypegraph.skype.com/v2.0/search';
+        $response = $this->request('GET', $url, [
+            'authorization_session' => $this->getSession(),
+            'headers' => [
+                'X-Ecs-Etag' => md5(time()),
+                'X-Skype-Client' => md5(time()),
+                'X-Skypegraphservicesettings' => '{"experiment":"MinimumFriendsForAnnotationsEnabled","geoProximity":"disabled","promoteActiveUsersInLastDays":"28","promoteActiveUsers":"true","minimumFriendsForAnnotationsEnabled":"true","minimumFriendsForAnnotations":2,"demotionScoreEnabled":"true"}',
+            ],
+            'query' => [
+                'searchString' => $searchString,
+                'requestId' => md5(time()),
+                'locale' => 'en-US',
+                'sessionId' => md5(time()),
+            ]
+        ]);
+
+        $result = json_decode($response->getContent(), true);
+        return $result;
+    }
+
     /**
      * {@inheritdoc}
      */
