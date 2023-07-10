@@ -25,7 +25,7 @@ class Utils
                     $result[$key] = $value;
                 } else {
                     if (is_array($result[$key]) && is_array($value)) {
-                        $result[$key] = deepMergeArrays([$result[$key], $value]);
+                        $result[$key] = $this->deepMergeArrays([$result[$key], $value]);
                     } else {
                         if ($value !== null) {
                             $result[$key] = $value;
