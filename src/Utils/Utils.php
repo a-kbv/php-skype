@@ -16,7 +16,7 @@ class Utils
      * @param mixed[] $arrays
      * @return mixed[]
      */
-    public static function deepMerge($arrays): array
+    public function deepMergeArrays($arrays)
     {
         $result = [];
         foreach ($arrays as $array) {
@@ -25,9 +25,11 @@ class Utils
                     $result[$key] = $value;
                 } else {
                     if (is_array($result[$key]) && is_array($value)) {
-                        $result[$key] = self::deepMerge([$result[$key], $value]);
+                        $result[$key] = deepMergeArrays([$result[$key], $value]);
                     } else {
-                        $result[$key] = $value;
+                        if ($value !== null) {
+                            $result[$key] = $value;
+                        }
                     }
                 }
             }
