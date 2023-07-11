@@ -59,6 +59,11 @@ class Resource extends \Akbv\PhpSkype\Models\Base
     private $imdisplayname;
 
     /**
+     * The reciever for this resource.
+     */
+    private $receiverdisplayname;
+
+    /**
      * The content for this resource.
      * @var string
      */
@@ -1098,6 +1103,26 @@ class Resource extends \Akbv\PhpSkype\Models\Base
     public function setSkypeguid(string $skypeguid)
     {
         $this->skypeguid = $skypeguid;
+
+        return $this;
+    }
+
+    /**
+     * Get the reciever for this resource.
+     */
+    public function getReceiverdisplayname()
+    {
+        return $this->receiverdisplayname;
+    }
+
+    /**
+     * Set the reciever for this resource.
+     *
+     * @return  self
+     */
+    public function setReceiverdisplayname($receiverdisplayname)
+    {
+        $this->receiverdisplayname = $receiverdisplayname;
 
         return $this;
     }
