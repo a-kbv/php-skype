@@ -60,6 +60,7 @@ class Resource extends \Akbv\PhpSkype\Models\Base
 
     /**
      * The reciever for this resource.
+     * @var string
      */
     private $receiverdisplayname;
 
