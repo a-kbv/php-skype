@@ -19,6 +19,7 @@ class MessageProcessor
         $joiningEnabledPattern = '/<joiningenabledupdate><eventtime>(\d+)<\/eventtime><initiator>(.+)<\/initiator><value>(true|false)<\/value><\/joiningenabledupdate>/';
         $pictureUpdatePattern = '/<pictureupdate><eventtime>(\d+)<\/eventtime><initiator>(.+)<\/initiator>.*<\/pictureupdate>/';
         $uriObjectPattern = '/<URIObject .*url_thumbnail="([^"]+)".*>/';
+        $uriObjectPattern2 = '/<URIObject .*url_thumbnail="([^"]+)"[^>]*type="([^"]+)"[^>]*>/'; // Updated pattern
         $boldPattern = '/<b raw_pre="\*" raw_post="\*">(.*)<\/b>/';
         $italicPattern = '/<i raw_pre="_" raw_post="_">(.*)<\/i>/';
         $strikePattern = '/<s raw_pre="~" raw_post="~">(.*)<\/s>/';
@@ -61,6 +62,9 @@ class MessageProcessor
         }
 
         if(preg_match($uriObjectPattern, $message, $matches)) {
+            return $matches[1];
+        }
+        if(preg_match($uriObjectPattern2, $message, $matches)) {
             return $matches[1];
         }
 
