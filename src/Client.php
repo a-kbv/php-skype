@@ -654,6 +654,45 @@ final class Client implements ClientInterface
         return $json;
     }
 
+    public function getConversationMessages($conversationId, $actionUri=null, $pageSize=25): array
+    {
+        $url = $actionUri;
+        if (empty($conversationId)) {
+            return [];
+        }
+
+        if (empty($url)) {
+            $url = sprintf(
+                '%s/users/ME/conversations/%s/messages',
+                $this->getSession()->getRegistrationToken()->getMessengerUrl(),
+                $conversationId
+            );
+        }
+
+        $params = [
+            'startTime' => 0,
+            'view' => 'supportsExtendedHistory|msnp24Equivalent|supportsMessageProperties',
+            'pageSize' => $pageSize,
+        ];
+
+        $headers = [
+            'BehaviorOverride' => 'redirectAs404',
+            'Sec-Fetch-Dest' => 'empty',
+            'Sec-Fetch-Mode' => 'cors',
+            'Sec-Fetch-Site' => 'cross-site',
+        ];
+
+        $response = $this->request('GET', $url, [
+            'query' => empty($actionUri) ? $params : [],
+            'headers' => $headers,
+            'authorization_session' => $this->getSession(),
+        ]);
+
+        $response = $response->getContent();
+        $json = json_decode($response, true) ?? [];
+        return $json;
+    }
+
     /**
          * {@inheritdoc}
          */
