@@ -10,8 +10,7 @@
     },
     "require": {
         "php": ">=7.3.21 <9.0",
-        "symfony/http-client": ">=4",
-        "symfony/cache": "^6.3"
+        "symfony/http-client": ">=4"
         
     },
     "require-dev": {
