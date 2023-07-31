@@ -79,6 +79,11 @@ class SkypeMessage
     private $type;
 
     /**
+     * imdisplayname sender display name
+     */
+    private $imDisplayName;
+
+    /**
      * The conversation identifier.
      * conversationid
      * @var string
@@ -127,6 +132,7 @@ class SkypeMessage
         $data['from'] = $this->from;
         $data['ackrequired'] = $this->ackRequired;
         $data['counterpartymessageid'] = $this->counterPartyMessageId;
+        $data['imdisplayname'] = $this->imDisplayName;
         return $data;
     }
 
@@ -150,6 +156,7 @@ class SkypeMessage
         $this->from = !empty($raw->from) ? $raw->from : null;
         $this->ackRequired = !empty($raw->ackrequired) ? $raw->ackrequired : null;
         $this->counterPartyMessageId = !empty($raw->counterpartymessageid) ? $raw->counterpartymessageid : null;
+        $this->imDisplayName = !empty($raw->imdisplayname) ? $raw->imdisplayname : null;
     }
 
     public function setDeleted()
@@ -306,5 +313,13 @@ class SkypeMessage
     public function getCounterPartyMessageId()
     {
         return $this->counterPartyMessageId;
+    }
+
+    /**
+     * Get imdisplayname sender display name
+     */
+    public function getImDisplayName()
+    {
+        return $this->imDisplayName;
     }
 }
