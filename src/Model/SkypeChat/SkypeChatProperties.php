@@ -163,4 +163,154 @@ class SkypeChatProperties
         $this->processedClearedAt = !empty($raw->processedclearedat) ? $raw->processedclearedat : null;
         $this->color = !empty($raw->color) ? $raw->color : null;
     }
+
+    /**
+     * Get consumptionhorizonpublished
+     *
+     * @return  string
+     */
+    public function getConsumptionHorizonPublished()
+    {
+        return $this->consumptionHorizonPublished;
+    }
+
+    /**
+     * Get isemptyconversation
+     *
+     * @return  string
+     */
+    public function getIsEmptyConversation()
+    {
+        return $this->isEmptyConversation;
+    }
+
+    /**
+     * Get consumptionhorizon
+     *
+     * @return  string
+     */
+    public function getConsumptionHorizon()
+    {
+        return $this->consumptionHorizon;
+    }
+
+    /**
+     * Get isfollowed
+     *
+     * @return  string
+     */
+    public function getIsFollowed()
+    {
+        return $this->isFollowed;
+    }
+
+    /**
+     * Get lastimreceivedtime
+     *
+     * @return  string
+     */
+    public function getLastImReceivedTime()
+    {
+        return $this->lastImReceivedTime;
+    }
+
+    /**
+     * Get conversationstatus
+     *
+     * @return  string
+     */
+    public function getConversationStatus()
+    {
+        return $this->conversationStatus;
+    }
+
+    /**
+     * Get conversationstatusproperties
+     *
+     * @return  string
+     */
+    public function getConversationStatusProperties()
+    {
+        return $this->conversationStatusProperties;
+    }
+
+    /**
+     * Get onetoonethreadid
+     *
+     * @return  string
+     */
+    public function getOneToOneThreadId()
+    {
+        return $this->oneToOneThreadId;
+    }
+
+    /**
+     * Get conversationblocked
+     *
+     * @return  string
+     */
+    public function getConversationBlocked()
+    {
+        return $this->conversationBlocked;
+    }
+
+    /**
+     * Get the delivery receipt this conversation.
+     *
+     * @return  string
+     */
+    public function getDeliveryReceipt()
+    {
+        return $this->deliveryReceipt;
+    }
+
+    /**
+     * Get the pinned this conversation.
+     *
+     * @return  string
+     */
+    public function getPinned()
+    {
+        return $this->pinned;
+    }
+
+    /**
+     * Get the favorite this conversation.
+     *
+     * @return  string
+     */
+    public function getFavorite()
+    {
+        return $this->favorite;
+    }
+
+    /**
+     * Get conversationisblocked
+     *
+     * @return  string
+     */
+    public function getConversationIsBlocked()
+    {
+        return $this->conversationIsBlocked;
+    }
+
+    /**
+     * Get clearedat
+     *
+     * @return  string
+     */
+    public function getClearedAt()
+    {
+        return $this->clearedAt;
+    }
+
+    /**
+     * Get the processed cleared at this conversation.
+     *
+     * @return  string
+     */
+    public function getProcessedClearedAt()
+    {
+        return $this->processedClearedAt;
+    }
 }
