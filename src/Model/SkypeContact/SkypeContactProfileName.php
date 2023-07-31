@@ -26,7 +26,7 @@ class SkypeContactProfileName {
     }
 
     public function toArray()
-    {   
+    {
         $data['first'] = $this->firstName;
         $data['surname'] = $this->lastName;
         return $data;
@@ -34,16 +34,19 @@ class SkypeContactProfileName {
 
     private function fromArray($raw)
     {
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->firstName = !empty($raw->first) ? $raw->first : null;
         $this->lastName = !empty($raw->surname) ? $raw->surname : null;
-        
+
     }
 
     /**
      * Get first
      *
      * @return  string
-     */ 
+     */
     public function getFirstName()
     {
         return $this->firstName;
@@ -53,7 +56,7 @@ class SkypeContactProfileName {
      * Get surname
      *
      * @return  string
-     */ 
+     */
     public function getLastName()
     {
         return $this->lastName;

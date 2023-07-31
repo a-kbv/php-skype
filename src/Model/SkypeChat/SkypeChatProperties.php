@@ -143,6 +143,9 @@ class SkypeChatProperties
 
     private function fromArray($raw)
     {
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->consumptionHorizonPublished = !empty($raw->consumptionhorizonpublished) ? $raw->consumptionhorizonpublished : null;
         $this->isEmptyConversation = !empty($raw->isemptyconversation) ? $raw->isemptyconversation : null;
         $this->consumptionHorizon = !empty($raw->consumptionhorizon) ? $raw->consumptionhorizon : null;

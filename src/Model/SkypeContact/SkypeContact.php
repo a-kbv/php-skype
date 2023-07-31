@@ -106,7 +106,7 @@ class SkypeContact
     }
 
     public function toArray()
-    {   
+    {
         $data['person_id'] = $this->personId;
         $data['mri'] = $this->mri;
         $data['display_name'] = $this->displayName;
@@ -127,7 +127,9 @@ class SkypeContact
 
     private function fromArray($raw)
     {
-
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->personId = !empty($raw->person_id) ? $raw->person_id : null;
         $this->mri = !empty($raw->mri) ? $raw->mri : null;
         $this->displayName = !empty($raw->display_name) ? $raw->display_name : null;
@@ -150,7 +152,7 @@ class SkypeContact
      * Get person_id
      *
      * @return  string
-     */ 
+     */
     public function getPersonId()
     {
         return $this->personId;
@@ -160,7 +162,7 @@ class SkypeContact
      * Get the unique identifier for this user.
      *
      * @return  string
-     */ 
+     */
     public function getMri()
     {
         return $this->mri;
@@ -170,7 +172,7 @@ class SkypeContact
      * Get display_name
      *
      * @return  string
-     */ 
+     */
     public function getDisplayName()
     {
         return $this->displayName;
@@ -180,7 +182,7 @@ class SkypeContact
      * Get display_name_source
      *
      * @return  string
-     */ 
+     */
     public function getDisplayNameSource()
     {
         return $this->displayNameSource;
@@ -190,7 +192,7 @@ class SkypeContact
      * Get the profile for this user.
      *
      * @return  \Akbv\PhpSkype\Models\SkypeContact\SkypeContactProfile
-     */ 
+     */
     public function getProfile()
     {
         return $this->profile;
@@ -200,7 +202,7 @@ class SkypeContact
      * Get whether this user is authorized.
      *
      * @return  bool
-     */ 
+     */
     public function getAuthorized()
     {
         return $this->authorized;
@@ -210,7 +212,7 @@ class SkypeContact
      * Get whether this user is blocked.
      *
      * @return  bool
-     */ 
+     */
     public function getBlocked()
     {
         return $this->blocked;
@@ -220,7 +222,7 @@ class SkypeContact
      * Get whether this user is explicit.
      *
      * @return  bool
-     */ 
+     */
     public function getExplicit()
     {
         return $this->explicit;
@@ -230,7 +232,7 @@ class SkypeContact
      * Get creation_time
      *
      * @return  string
-     */ 
+     */
     public function getCreationTime()
     {
         return $this->creationTime;
@@ -240,7 +242,7 @@ class SkypeContact
      * Get relationship_history
      *
      * @return  string[]
-     */ 
+     */
     public function getRelationshipHistory()
     {
         return $this->relationshipHistory;
@@ -250,7 +252,7 @@ class SkypeContact
      * Get the agent for this user.
      *
      * @return  string[]
-     */ 
+     */
     public function getAgent()
     {
         return $this->agent;
@@ -260,7 +262,7 @@ class SkypeContact
      * Get whether this user is suggested.
      *
      * @return  bool
-     */ 
+     */
     public function getSuggested()
     {
         return $this->suggested;
@@ -270,7 +272,7 @@ class SkypeContact
      * Get phone_hashes
      *
      * @return  string[]
-     */ 
+     */
     public function getPhoneHashes()
     {
         return $this->phoneHashes;
@@ -280,7 +282,7 @@ class SkypeContact
      * Get whether this user is gone.
      *
      * @return  bool
-     */ 
+     */
     public function getGone()
     {
         return $this->gone;

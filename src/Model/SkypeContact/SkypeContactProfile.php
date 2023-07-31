@@ -87,6 +87,9 @@ class SkypeContactProfile
 
     private function fromArray($raw)
     {
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->avatarUrl = !empty($raw->avatar_url) ? $raw->avatar_url : null;
         $this->locations = !empty($raw->locations) ? $raw->locations : null;
         $this->name = !empty($raw->name) ? new \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfileName($raw->name) : null;
@@ -100,7 +103,7 @@ class SkypeContactProfile
      * Get avatar_url
      *
      * @return  string
-     */ 
+     */
     public function getAvatarUrl()
     {
         return $this->avatarUrl;
@@ -110,7 +113,7 @@ class SkypeContactProfile
      * Get locations
      *
      * @return  array
-     */ 
+     */
     public function getLocations()
     {
         return $this->locations;
@@ -120,7 +123,7 @@ class SkypeContactProfile
      * Get name
      *
      * @return  \Akbv\PhpSkype\Model\SkypeContact\SkypeContactName
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -130,7 +133,7 @@ class SkypeContactProfile
      * Get about
      *
      * @return  string
-     */ 
+     */
     public function getAbout()
     {
         return $this->about;
@@ -140,7 +143,7 @@ class SkypeContactProfile
      * Get language
      *
      * @return  string
-     */ 
+     */
     public function getLanguage()
     {
         return $this->language;
@@ -150,7 +153,7 @@ class SkypeContactProfile
      * Get website
      *
      * @return  string
-     */ 
+     */
     public function getWebsite()
     {
         return $this->website;
@@ -160,7 +163,7 @@ class SkypeContactProfile
      * Get skype_handle
      *
      * @return  string
-     */ 
+     */
     public function getSkypeHandle()
     {
         return $this->skypeHandle;

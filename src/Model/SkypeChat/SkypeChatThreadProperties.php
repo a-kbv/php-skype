@@ -73,13 +73,16 @@ class SkypeChatThreadProperties {
         $conversationData['members'] = $this->members;
         $conversationData['joiningenabled'] = $this->joiningEnabled;
         $conversationData['lastleaveat'] = $this->lastLeaveAt;
-        $conversationData['picture'] = $this->picture;    
-                   
+        $conversationData['picture'] = $this->picture;
+
         return $conversationData;
     }
 
     private function fromArray($raw)
     {
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->topic = !empty($raw->topic) ? $raw->topic : null;
         $this->lastJoinAt = !empty($raw->lastjoinat) ? $raw->lastjoinat : null;
         $this->memberCount = !empty($raw->membercount) ? $raw->membercount : null;
@@ -88,5 +91,87 @@ class SkypeChatThreadProperties {
         $this->joiningEnabled = !empty($raw->joiningenabled) ? $raw->joiningenabled : null;
         $this->lastLeaveAt = !empty($raw->lastleaveat) ? $raw->lastleaveat : null;
         $this->picture = !empty($raw->picture) ? $raw->picture : null;
+    }
+
+
+
+    /**
+     * Get the Title this conversation.
+     *
+     * @return  string
+     */
+    public function getTopic()
+    {
+        return $this->topic;
+    }
+
+    /**
+     * Get lastjoinat
+     *
+     * @return  string
+     */
+    public function getLastJoinAt()
+    {
+        return $this->lastJoinAt;
+    }
+
+    /**
+     * Get membercount
+     *
+     * @return  string
+     */
+    public function getMemberCount()
+    {
+        return $this->memberCount;
+    }
+
+    /**
+     * Get the version this conversation.
+     *
+     * @return  string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * Get the members this conversation.
+     *
+     * @return  string
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * Get joiningenabled
+     *
+     * @return  string
+     */
+    public function getJoiningEnabled()
+    {
+        return $this->joiningEnabled;
+    }
+
+    /**
+     * Get lastleaveat
+     *
+     * @return  string
+     */
+    public function getLastLeaveAt()
+    {
+        return $this->lastLeaveAt;
+    }
+
+    /**
+     * Get the picture this conversation.
+     *
+     * @return  string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }

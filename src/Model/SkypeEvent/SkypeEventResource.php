@@ -280,12 +280,15 @@ class SkypeEventResource
         $data['amsreferences'] = $this->asmReferences;
         $data['s2spartnername'] = $this->s2sPartnerName;
         $data['skypeguid'] = $this->skypeGuid;
-    
+
         return $data;
     }
 
     private function fromArray($raw)
     {
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->ackRequired = !empty($raw->ackrequired) ? $raw->ackrequired : null;
         $this->type = !empty($raw->type) ? $raw->type : null;
         $this->from = !empty($raw->from) ? $raw->from : null;
@@ -300,7 +303,7 @@ class SkypeEventResource
         $this->originContextId = !empty($raw->origincontextid) ? $raw->origincontextid : null;
         $this->originalArrivalTime = !empty($raw->originalarrivaltime) ? $raw->originalarrivaltime : null;
         $this->threadTopic = !empty($raw->threadtopic) ? $raw->threadtopic : null;
-        $this->contentType = !empty($raw->contenttype) ? $raw->contenttype : null;  
+        $this->contentType = !empty($raw->contenttype) ? $raw->contenttype : null;
         $this->mlsEpoch = !empty($raw->mlsepoch) ? $raw->mlsepoch : null;
         $this->conversationLink = !empty($raw->conversationLink) ? $raw->conversationLink : null;
         $this->isActive = !empty($raw->isactive) ? $raw->isactive : null;
@@ -330,7 +333,7 @@ class SkypeEventResource
      * Get the ackrequired for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getAckRequired()
     {
         return $this->ackRequired;
@@ -340,7 +343,7 @@ class SkypeEventResource
      * Get the type for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getType()
     {
         return $this->type;
@@ -350,7 +353,7 @@ class SkypeEventResource
      * Get the from for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getFrom()
     {
         return $this->from;
@@ -360,7 +363,7 @@ class SkypeEventResource
      * Get the clientmessageid for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getClientMessageId()
     {
         return $this->clientMessageId;
@@ -370,7 +373,7 @@ class SkypeEventResource
      * Get the version for this resource.
      *
      * @return  int
-     */ 
+     */
     public function getVersion()
     {
         return $this->version;
@@ -380,7 +383,7 @@ class SkypeEventResource
      * Get messagetype
      *
      * @return  string
-     */ 
+     */
     public function getMessageType()
     {
         return $this->messageType;
@@ -390,7 +393,7 @@ class SkypeEventResource
      * Get the counterpartymessageid for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getCounterPartyMessageId()
     {
         return $this->counterPartyMessageId;
@@ -400,7 +403,7 @@ class SkypeEventResource
      * Get the imdisplayname for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getImDisplayName()
     {
         return $this->imDisplayName;
@@ -411,7 +414,7 @@ class SkypeEventResource
      * Get the content for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getContent()
     {
         return $this->content;
@@ -421,7 +424,7 @@ class SkypeEventResource
      * Get the composetime for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getComposeTime()
     {
         return $this->composeTime;
@@ -431,7 +434,7 @@ class SkypeEventResource
      * Get the origincontextid for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getOriginContextId()
     {
         return $this->originContextId;
@@ -441,7 +444,7 @@ class SkypeEventResource
      * Get the originalarrivaltime for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getOriginalArrivalTime()
     {
         return $this->originalArrivalTime;
@@ -451,7 +454,7 @@ class SkypeEventResource
      * Get the threadtopic for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getThreadTopic()
     {
         return $this->threadTopic;
@@ -461,7 +464,7 @@ class SkypeEventResource
      * Get the contenttype for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getContentType()
     {
         return $this->contentType;
@@ -471,7 +474,7 @@ class SkypeEventResource
      * Get the mlsEpoch for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getMlsEpoch()
     {
         return $this->mlsEpoch;
@@ -481,7 +484,7 @@ class SkypeEventResource
      * Get the conversationLink for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getConversationLink()
     {
         return $this->conversationLink;
@@ -491,7 +494,7 @@ class SkypeEventResource
      * Get the isactive for this resource.
      *
      * @return  bool
-     */ 
+     */
     public function getIsActive()
     {
         return $this->isActive;
@@ -501,7 +504,7 @@ class SkypeEventResource
      * Get the id for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -511,7 +514,7 @@ class SkypeEventResource
      * Get the editauthorized for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getEditAuthorized()
     {
         return $this->editAuthorized;
@@ -521,7 +524,7 @@ class SkypeEventResource
      * Get the skypeeditedid for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getSkypeEditedId()
     {
         return $this->skypeEditedId;
@@ -531,7 +534,7 @@ class SkypeEventResource
      * Get the targetLink for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getTargetLink()
     {
         return $this->targetLink;
@@ -541,7 +544,7 @@ class SkypeEventResource
      * Get the threadProperties for this resource.
      *
      * @return  \Akbv\PhpSkype\Model\SkypeEvent\SkypeEventResourceThreadProperties
-     */ 
+     */
     public function getThreadProperties()
     {
         return $this->threadProperties;
@@ -551,7 +554,7 @@ class SkypeEventResource
      * Get the properties for this resource.
      *
      * @return  \Akbv\PhpSkype\Model\SkypeEvent\SkypeEventResourceProperties
-     */ 
+     */
     public function getProperties()
     {
         return $this->properties;
@@ -561,7 +564,7 @@ class SkypeEventResource
      * Get the lastMessage for this resource.
      *
      * @return  \Akbv\PhpSkype\Model\SkypeMessage\SkypeMessage
-     */ 
+     */
     public function getLastMessage()
     {
         return $this->lastMessage;
@@ -571,7 +574,7 @@ class SkypeEventResource
      * Get the messages for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getMessages()
     {
         return $this->messages;
@@ -581,7 +584,7 @@ class SkypeEventResource
      * Get the lastUpdatedMessageId for this resource.
      *
      * @return  int
-     */ 
+     */
     public function getLastUpdatedMessageId()
     {
         return $this->lastUpdatedMessageId;
@@ -591,7 +594,7 @@ class SkypeEventResource
      * Get the botsSettings for this resource.
      *
      * @return  string[]
-     */ 
+     */
     public function getBotsSettings()
     {
         return $this->botsSettings;
@@ -601,7 +604,7 @@ class SkypeEventResource
      * Get the members for this resource.
      *
      * @return  string[]
-     */ 
+     */
     public function getMembers()
     {
         return $this->members;
@@ -611,7 +614,7 @@ class SkypeEventResource
      * Get the rosterVersion for this resource.
      *
      * @return  int
-     */ 
+     */
     public function getRosterVersion()
     {
         return $this->rosterVersion;
@@ -621,7 +624,7 @@ class SkypeEventResource
      * Get the eTag for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getETag()
     {
         return $this->eTag;
@@ -631,7 +634,7 @@ class SkypeEventResource
      * Get the contentformat for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getContentFormat()
     {
         return $this->contentFormat;
@@ -641,7 +644,7 @@ class SkypeEventResource
      * Get the has_mentions for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getHasMentions()
     {
         return $this->hasMentions;
@@ -651,7 +654,7 @@ class SkypeEventResource
      * Get the amsreferences for this resource.
      *
      * @return  string[]
-     */ 
+     */
     public function getAsmReferences()
     {
         return $this->asmReferences;
@@ -661,7 +664,7 @@ class SkypeEventResource
      * Get the s2spartnername for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getS2sPartnerName()
     {
         return $this->s2sPartnerName;
@@ -671,7 +674,7 @@ class SkypeEventResource
      * Get the skypeguid for this resource.
      *
      * @return  string
-     */ 
+     */
     public function getSkypeGuid()
     {
         return $this->skypeGuid;

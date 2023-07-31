@@ -67,13 +67,16 @@ class SkypeEvent
 
     private function fromArray($raw)
     {
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->id = !empty($raw->id) ? $raw->id : null;
         $this->type = !empty($raw->type) ? $raw->type : null;
         $this->resourceType = !empty($raw->resourceType) ? $raw->resourceType : null;
         $this->time = !empty($raw->time) ? $raw->time : null;
         $this->resourceLink = !empty($raw->resourceLink) ? $raw->resourceLink : null;
         $this->resource = new \Akbv\PhpSkype\Model\SkypeEvent\SkypeEventResource((!empty($raw->resource) ? $raw->resource : (object)[]));
-       
+
     }
 
 

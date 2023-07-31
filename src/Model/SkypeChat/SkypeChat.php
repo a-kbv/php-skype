@@ -69,12 +69,15 @@ class SkypeChat {
         $conversationData['threadProperties'] = $this->threadProperties->toArray();
         $conversationData['lastMessage'] = $this->lastMessage->toArray();
         $conversationData['messages'] = $this->messagesUrl;
-        
+
         return $conversationData;
     }
 
     private function fromArray($raw)
     {
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->id = !empty($raw->id) ? $raw->id : null;
         $this->targetLink = !empty($raw->targetLink) ? $raw->targetLink : null;
         $this->type = !empty($raw->type) ? $raw->type : null;
@@ -91,7 +94,7 @@ class SkypeChat {
      * Get the value of id
      *
      * @return  string
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -101,7 +104,7 @@ class SkypeChat {
      * Get the value of targetLink
      *
      * @return  string
-     */ 
+     */
     public function getTargetLink()
     {
         return $this->targetLink;
@@ -111,7 +114,7 @@ class SkypeChat {
      * Get the value of type
      *
      * @return  string
-     */ 
+     */
     public function getType()
     {
         return $this->type;
@@ -121,7 +124,7 @@ class SkypeChat {
      * Get the value of version
      *
      * @return  string
-     */ 
+     */
     public function getVersion()
     {
         return $this->version;
@@ -131,7 +134,7 @@ class SkypeChat {
      * Get the value of properties
      *
      * @return  \Akbv\PhpSkype\Model\SkypeChat\SkypeChatProperties
-     */ 
+     */
     public function getProperties()
     {
         return $this->properties;
@@ -141,7 +144,7 @@ class SkypeChat {
      * Get the value of threadProperties
      *
      * @return  \Akbv\PhpSkype\Model\SkypeChat\SkypeChatThreadProperties
-     */ 
+     */
     public function getThreadProperties()
     {
         return $this->threadProperties;
@@ -151,7 +154,7 @@ class SkypeChat {
      * Get the value of lastMessage
      *
      * @return  \Akbv\PhpSkype\Model\SkypeMessage\SkypeMessage
-     */ 
+     */
     public function getLastMessage()
     {
         return $this->lastMessage;
@@ -161,7 +164,7 @@ class SkypeChat {
      * Get messages
      *
      * @return  string
-     */ 
+     */
     public function getMessagesUrl()
     {
         return $this->messagesUrl;

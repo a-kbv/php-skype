@@ -69,6 +69,9 @@ class SkypeEventResourceThreadProperties
 
     private function fromArray($raw)
     {
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->lastJoinAt = !empty($raw->lastjoinat) ? $raw->lastjoinat : null;
         $this->topic = !empty($raw->topic) ? $raw->topic : null;
         $this->memberCount = !empty($raw->membercount) ? $raw->membercount : null;
@@ -77,4 +80,65 @@ class SkypeEventResourceThreadProperties
         $this->joiningEnabled = !empty($raw->joiningenabled) ? $raw->joiningenabled : null;
     }
 
+
+
+    /**
+     * Get the lastjoinat for this thread.
+     *
+     * @return  string
+     */
+    public function getLastJoinAt()
+    {
+        return $this->lastJoinAt;
+    }
+
+    /**
+     * Get the topic for this thread.
+     *
+     * @return  string
+     */
+    public function getTopic()
+    {
+        return $this->topic;
+    }
+
+    /**
+     * Get the membercount for this thread.
+     *
+     * @return  string
+     */
+    public function getMemberCount()
+    {
+        return $this->memberCount;
+    }
+
+    /**
+     * Get the members for this thread.
+     *
+     * @return  string
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * Get the version for this thread.
+     *
+     * @return  string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * Get the joiningenabled for this thread.
+     *
+     * @return  string
+     */
+    public function getJoiningEnabled()
+    {
+        return $this->joiningEnabled;
+    }
 }

@@ -132,6 +132,9 @@ class SkypeMessage
 
     private function fromArray($raw)
     {
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->id = !empty($raw->id) ? $raw->id : null;
         $this->originalArrivalTime = !empty($raw->originalarrivaltime) ? $raw->originalarrivaltime : null;
         $this->messageType = !empty($raw->messagetype) ? $raw->messagetype : null;

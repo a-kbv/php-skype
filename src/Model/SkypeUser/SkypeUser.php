@@ -109,7 +109,7 @@ class SkypeUser
     }
 
     public function toArray()
-    {   
+    {
         $data['about'] = $this->about;
         $data['avatarUrl'] = $this->avatarUrl;
         $data['birthday'] = $this->birthday;
@@ -135,7 +135,9 @@ class SkypeUser
 
     private function fromArray($raw)
     {
-
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->about = !empty($raw->about) ? $raw->about : null;
         $this->avatarUrl = !empty($raw->avatarUrl) ? $raw->avatarUrl : null;
         $this->birthday = !empty($raw->birthday) ? $raw->birthday : null;

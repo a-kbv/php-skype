@@ -182,12 +182,15 @@ class SkypeEventResourceProperties
         $data['subscription'] = $this->subscription;
         $data['alerts'] = $this->alerts;
         $data['disableanonymousjoin'] = $this->disableAnonymousJoin;
- 
+
         return $data;
     }
 
     private function fromArray($raw)
     {
+        if (!is_object($raw)) {
+            $raw = (object) $raw;
+        }
         $this->deliveryReceipt = !empty($raw->deliveryReceipt) ? $raw->deliveryReceipt : null;
         $this->consumptionHorizonPublished = !empty($raw->consumptionhorizonpublished) ? $raw->consumptionhorizonpublished : null;
         $this->lastImReceivedTime = !empty($raw->lastimreceivedtime) ? $raw->lastimreceivedtime : null;
@@ -210,14 +213,14 @@ class SkypeEventResourceProperties
         $this->awarenessConversationLiveState = !empty($raw->awareness_conversationLiveState) ? $raw->awareness_conversationLiveState : null;
         $this->subscription = !empty($raw->subscription) ? $raw->subscription : null;
         $this->alerts = !empty($raw->alerts) ? $raw->alerts : null;
-        $this->disableAnonymousJoin = !empty($raw->disableanonymousjoin) ? $raw->disableanonymousjoin : null;   
+        $this->disableAnonymousJoin = !empty($raw->disableanonymousjoin) ? $raw->disableanonymousjoin : null;
     }
 
     /**
      * Get the deliveryReceipt for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getDeliveryReceipt()
     {
         return $this->deliveryReceipt;
@@ -227,7 +230,7 @@ class SkypeEventResourceProperties
      * Get the consumptionhorizonpublished for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getConsumptionHorizonPublished()
     {
         return $this->consumptionHorizonPublished;
@@ -237,7 +240,7 @@ class SkypeEventResourceProperties
      * Get the lastimreceivedtime for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getLastImReceivedTime()
     {
         return $this->lastImReceivedTime;
@@ -247,7 +250,7 @@ class SkypeEventResourceProperties
      * Get the pinned for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getPinned()
     {
         return $this->pinned;
@@ -257,7 +260,7 @@ class SkypeEventResourceProperties
      * Get the isfollowed for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getIsFollowed()
     {
         return $this->isFollowed;
@@ -267,7 +270,7 @@ class SkypeEventResourceProperties
      * Get the isemptyconversation for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getIsEmptyConversation()
     {
         return $this->isEmptyConversation;
@@ -277,7 +280,7 @@ class SkypeEventResourceProperties
      * Get the favorite for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getFavorite()
     {
         return $this->favorite;
@@ -287,7 +290,7 @@ class SkypeEventResourceProperties
      * Get the consumptionhorizon for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getConsumptionHorizon()
     {
         return $this->consumptionHorizon;
@@ -297,7 +300,7 @@ class SkypeEventResourceProperties
      * Get the topic for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getTopic()
     {
         return $this->topic;
@@ -307,7 +310,7 @@ class SkypeEventResourceProperties
      * Get the creatorcid for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getCreatorCid()
     {
         return $this->creatorCid;
@@ -317,7 +320,7 @@ class SkypeEventResourceProperties
      * Get the moderatedthread for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getModeratedThread()
     {
         return $this->moderatedThread;
@@ -327,7 +330,7 @@ class SkypeEventResourceProperties
      * Get the creator for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getCreator()
     {
         return $this->creator;
@@ -337,7 +340,7 @@ class SkypeEventResourceProperties
      * Get the createdat for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getCreatedAt()
     {
         return $this->createdAt;
@@ -347,7 +350,7 @@ class SkypeEventResourceProperties
      * Get the picture for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getPicture()
     {
         return $this->picture;
@@ -357,7 +360,7 @@ class SkypeEventResourceProperties
      * Get the historydisclosed for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getHistoryDisclosed()
     {
         return $this->historyDisclosed;
@@ -367,7 +370,7 @@ class SkypeEventResourceProperties
      * Get the joiningenabled for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getJoiningEnabled()
     {
         return $this->joiningEnabled;
@@ -377,7 +380,7 @@ class SkypeEventResourceProperties
      * Get the capabilities for this thread.
      *
      * @return  string[]
-     */ 
+     */
     public function getCapabilities()
     {
         return $this->capabilities;
@@ -387,7 +390,7 @@ class SkypeEventResourceProperties
      * Get the conversationstatusproperties for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getConversationStatusProperties()
     {
         return $this->conversationStatusProperties;
@@ -397,7 +400,7 @@ class SkypeEventResourceProperties
      * Get the conversationstatus for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getConversationStatus()
     {
         return $this->conversationStatus;
@@ -407,7 +410,7 @@ class SkypeEventResourceProperties
      * Get the awareness_conversationLiveState for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getAwarenessConversationLiveState()
     {
         return $this->awarenessConversationLiveState;
@@ -417,7 +420,7 @@ class SkypeEventResourceProperties
      * Get the subscription for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getSubscription()
     {
         return $this->subscription;
@@ -427,7 +430,7 @@ class SkypeEventResourceProperties
      * Get the alerts for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getAlerts()
     {
         return $this->alerts;
@@ -437,7 +440,7 @@ class SkypeEventResourceProperties
      * Get the disableanonymousjoin for this thread.
      *
      * @return  string
-     */ 
+     */
     public function getDisableAnonymousJoin()
     {
         return $this->disableAnonymousJoin;
