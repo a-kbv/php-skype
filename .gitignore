@@ -4,7 +4,9 @@
 /sessions/
 /examples/sessions/
 /logs/
-.env
+.en
+/var
+/tools
 
 ### VisualStudioCode ###
 .vscode/*

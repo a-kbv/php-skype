@@ -2,79 +2,51 @@
 
 php-skype is a library that wraps Skype Web API. The library is designed to be user-friendly and comes with comprehensive documentation and examples to help integrate Skype functionality into projects quickly and easily.
 
-# Note: `library is under development, please use it with caution`
-
 ## Installation
 
 Use the package manager composer to install php-skype.
 
 ```bash
-composer require akbv/php-skype 
+composer require akbv/skype
 ```
 
 ## Usage
+Note this is just the basic example to get you started. For more examples, please see the documentation and examples folder.
 
-Note this is just the basic example to get you started. For more examples, please see the documentation [php-skype-docs](https://a-kbv.github.io/php-skype/#/)
+```php
+<?php 
+// Create a connection to Skype
+$connection = new \Akbv\PhpSkype\Connection('email', 'password', __DIR__ . '/var/session');
 
-```PHP
-<?php
+// Get all contacts
+$contacts = $connection->getContacts();
 
-/** Create session manager */
-$sessionManager = new \Akbv\PhpSkype\Services\SessionManager(
-    __DIR__ . '/sessions',
-    "hardToGuessSecretKeyUpTo32Characters"
-);
+// Start one-to-one chat with a contact
+$chat = $connection->chat('8:live:username');
 
-/** Create account Object */
-$account = new Akbv\PhpSkype\Models\Account(
-    'email@example.com',
-    'password'
-);
-
-/** Login */
-$client = new Akbv\PhpSkype\SkypeClient($sessionManager);
-$client->login($account);
-
-/** Get contacts list */
-$client->getMyContacts();
-
-/** Start chat with contact */
-$chat = $client->chat('8:live:example');
-
-/** Get messages from chat */
-$messages = $chat->getMessages();
-
-/** Send message to chat */
-$message = $chat->sendMessage('Hello world!'); 
+// Send a message to the chat
+$message = $chat->sendMessage('Hello World!');
 
 ```
 
 ## Supported features
 
-- [x] Login
-- [x] Get contacts list
-- [x] Get contact details
-- [x] Get recent chats
+- [x] Login With Microsoft Account (SOAP)
+- [0] Login With Microsoft Account (Live)
+- [x] Get Contacts
+- [x] Get Conversations
+- [x] Create a one-to-one chat
 - [x] Create a group chat
-- [x] Get user properties
 - [x] Get a user profile
 - [x] Get user invites
 - [x] Configure endpoint
 - [x] Subscribe to contact and conversation events
-- [x] Subscribe to presence_changes
-- [x] Get events
-- [x] Allow presence
-- [x] Ping endpoint (keep-alive)
-- [x] Set user presence
-- [x] Send text messages
-- [x] Edit text messages
-- [x] Delete text messages
-- [x] Send file attachments
-- [x] Send images
-- [x] Send contacts
+- [x] Send messages (text, files, images, contacts)
+- [x] Edit messages
+- [x] Delete messages
 - [x] Set consumption horizon
 - [x] Set typing indicator
-- [x] Get chat messages history
+- [x] Get chat messages
 - [x] Set group chat topic
 - [x] Set group chat as moderated/unmoderated
 - [x] Set group chat as open/closed for joining

@@ -1,9 +1,9 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()
+$finder = \PhpCsFixer\Finder::create()
     ->in(__DIR__ . "/src")
 ;
-$config = new PhpCsFixer\Config();
+$config = new \PhpCsFixer\Config();
 $config->setRules([
     '@PSR12' => true,
     'array_syntax' => ['syntax' => 'short'],
