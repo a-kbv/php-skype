@@ -32,7 +32,7 @@ $message = $chat->sendMessage('Hello World!');
 ## Supported features
 
 - [x] Login With Microsoft Account (SOAP)
-- [0] Login With Microsoft Account (Live)
+- [ ] Login With Microsoft Account (Live)
 - [x] Get Contacts
 - [x] Get Conversations
 - [x] Create a one-to-one chat
