@@ -80,6 +80,8 @@ class SkypeEvent
     }
 
 
+
+
     /**
      * Get the unique identifier for this event.
      *
@@ -213,7 +215,7 @@ class SkypeEvent
     /**
      * Set the resource of this event.
      *
-     * @param \Akbv\PhpSkype\Model\SkypeEvent\SkypeEventResource  $resource  The resource of this event.
+     * @param  \Akbv\PhpSkype\Model\SkypeEvent\SkypeEventResource  $resource  The resource of this event.
      *
      * @return  self
      */

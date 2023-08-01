@@ -8,7 +8,6 @@ namespace Akbv\PhpSkype\Model\SkypeContact;
  */
 class SkypeContact
 {
-
     /**
      * The unique identifier for this user.
      * person_id
@@ -61,9 +60,9 @@ class SkypeContact
     private $explicit;
 
     /**
-     * The creation time for this user.
-     * creation_time
-     * @var string
+    * The creation time for this user.
+    * creation_time
+    * @var string
      */
     private $creationTime;
 
@@ -159,6 +158,20 @@ class SkypeContact
     }
 
     /**
+     * Set person_id
+     *
+     * @param  string  $personId  person_id
+     *
+     * @return  self
+     */
+    public function setPersonId(string $personId)
+    {
+        $this->personId = $personId;
+
+        return $this;
+    }
+
+    /**
      * Get the unique identifier for this user.
      *
      * @return  string
@@ -166,6 +179,20 @@ class SkypeContact
     public function getMri()
     {
         return $this->mri;
+    }
+
+    /**
+     * Set the unique identifier for this user.
+     *
+     * @param  string  $mri  The unique identifier for this user.
+     *
+     * @return  self
+     */
+    public function setMri(string $mri)
+    {
+        $this->mri = $mri;
+
+        return $this;
     }
 
     /**
@@ -179,6 +206,20 @@ class SkypeContact
     }
 
     /**
+     * Set display_name
+     *
+     * @param  string  $displayName  display_name
+     *
+     * @return  self
+     */
+    public function setDisplayName(string $displayName)
+    {
+        $this->displayName = $displayName;
+
+        return $this;
+    }
+
+    /**
      * Get display_name_source
      *
      * @return  string
@@ -186,6 +227,20 @@ class SkypeContact
     public function getDisplayNameSource()
     {
         return $this->displayNameSource;
+    }
+
+    /**
+     * Set display_name_source
+     *
+     * @param  string  $displayNameSource  display_name_source
+     *
+     * @return  self
+     */
+    public function setDisplayNameSource(string $displayNameSource)
+    {
+        $this->displayNameSource = $displayNameSource;
+
+        return $this;
     }
 
     /**
@@ -199,6 +254,20 @@ class SkypeContact
     }
 
     /**
+     * Set the profile for this user.
+     *
+     * @param  \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfile  $profile  The profile for this user.
+     *
+     * @return  self
+     */
+    public function setProfile(\Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfile $profile)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
      * Get whether this user is authorized.
      *
      * @return  bool
@@ -206,6 +275,20 @@ class SkypeContact
     public function getAuthorized()
     {
         return $this->authorized;
+    }
+
+    /**
+     * Set whether this user is authorized.
+     *
+     * @param  bool  $authorized  Whether this user is authorized.
+     *
+     * @return  self
+     */
+    public function setAuthorized(bool $authorized)
+    {
+        $this->authorized = $authorized;
+
+        return $this;
     }
 
     /**
@@ -219,6 +302,20 @@ class SkypeContact
     }
 
     /**
+     * Set whether this user is blocked.
+     *
+     * @param  bool  $blocked  Whether this user is blocked.
+     *
+     * @return  self
+     */
+    public function setBlocked(bool $blocked)
+    {
+        $this->blocked = $blocked;
+
+        return $this;
+    }
+
+    /**
      * Get whether this user is explicit.
      *
      * @return  bool
@@ -226,6 +323,20 @@ class SkypeContact
     public function getExplicit()
     {
         return $this->explicit;
+    }
+
+    /**
+     * Set whether this user is explicit.
+     *
+     * @param  bool  $explicit  Whether this user is explicit.
+     *
+     * @return  self
+     */
+    public function setExplicit(bool $explicit)
+    {
+        $this->explicit = $explicit;
+
+        return $this;
     }
 
     /**
@@ -239,6 +350,20 @@ class SkypeContact
     }
 
     /**
+     * Set creation_time
+     *
+     * @param  string  $creationTime  creation_time
+     *
+     * @return  self
+     */
+    public function setCreationTime(string $creationTime)
+    {
+        $this->creationTime = $creationTime;
+
+        return $this;
+    }
+
+    /**
      * Get relationship_history
      *
      * @return  string[]
@@ -246,6 +371,20 @@ class SkypeContact
     public function getRelationshipHistory()
     {
         return $this->relationshipHistory;
+    }
+
+    /**
+     * Set relationship_history
+     *
+     * @param  string[]  $relationshipHistory  relationship_history
+     *
+     * @return  self
+     */
+    public function setRelationshipHistory(array $relationshipHistory)
+    {
+        $this->relationshipHistory = $relationshipHistory;
+
+        return $this;
     }
 
     /**
@@ -259,6 +398,20 @@ class SkypeContact
     }
 
     /**
+     * Set the agent for this user.
+     *
+     * @param  string[]  $agent  The agent for this user.
+     *
+     * @return  self
+     */
+    public function setAgent(array $agent)
+    {
+        $this->agent = $agent;
+
+        return $this;
+    }
+
+    /**
      * Get whether this user is suggested.
      *
      * @return  bool
@@ -266,6 +419,20 @@ class SkypeContact
     public function getSuggested()
     {
         return $this->suggested;
+    }
+
+    /**
+     * Set whether this user is suggested.
+     *
+     * @param  bool  $suggested  Whether this user is suggested.
+     *
+     * @return  self
+     */
+    public function setSuggested(bool $suggested)
+    {
+        $this->suggested = $suggested;
+
+        return $this;
     }
 
     /**
@@ -279,6 +446,20 @@ class SkypeContact
     }
 
     /**
+     * Set phone_hashes
+     *
+     * @param  string[]  $phoneHashes  phone_hashes
+     *
+     * @return  self
+     */
+    public function setPhoneHashes(array $phoneHashes)
+    {
+        $this->phoneHashes = $phoneHashes;
+
+        return $this;
+    }
+
+    /**
      * Get whether this user is gone.
      *
      * @return  bool
@@ -286,5 +467,19 @@ class SkypeContact
     public function getGone()
     {
         return $this->gone;
+    }
+
+    /**
+     * Set whether this user is gone.
+     *
+     * @param  bool  $gone  Whether this user is gone.
+     *
+     * @return  self
+     */
+    public function setGone(bool $gone)
+    {
+        $this->gone = $gone;
+
+        return $this;
     }
 }

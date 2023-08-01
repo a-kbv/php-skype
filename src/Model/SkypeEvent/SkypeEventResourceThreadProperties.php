@@ -82,6 +82,8 @@ class SkypeEventResourceThreadProperties
 
 
 
+
+
     /**
      * Get the lastjoinat for this thread.
      *
@@ -90,6 +92,20 @@ class SkypeEventResourceThreadProperties
     public function getLastJoinAt()
     {
         return $this->lastJoinAt;
+    }
+
+    /**
+     * Set the lastjoinat for this thread.
+     *
+     * @param  string  $lastJoinAt  The lastjoinat for this thread.
+     *
+     * @return  self
+     */
+    public function setLastJoinAt(string $lastJoinAt)
+    {
+        $this->lastJoinAt = $lastJoinAt;
+
+        return $this;
     }
 
     /**
@@ -103,6 +119,20 @@ class SkypeEventResourceThreadProperties
     }
 
     /**
+     * Set the topic for this thread.
+     *
+     * @param  string  $topic  The topic for this thread.
+     *
+     * @return  self
+     */
+    public function setTopic(string $topic)
+    {
+        $this->topic = $topic;
+
+        return $this;
+    }
+
+    /**
      * Get the membercount for this thread.
      *
      * @return  string
@@ -110,6 +140,20 @@ class SkypeEventResourceThreadProperties
     public function getMemberCount()
     {
         return $this->memberCount;
+    }
+
+    /**
+     * Set the membercount for this thread.
+     *
+     * @param  string  $memberCount  The membercount for this thread.
+     *
+     * @return  self
+     */
+    public function setMemberCount(string $memberCount)
+    {
+        $this->memberCount = $memberCount;
+
+        return $this;
     }
 
     /**
@@ -123,6 +167,20 @@ class SkypeEventResourceThreadProperties
     }
 
     /**
+     * Set the members for this thread.
+     *
+     * @param  string  $members  The members for this thread.
+     *
+     * @return  self
+     */
+    public function setMembers(string $members)
+    {
+        $this->members = $members;
+
+        return $this;
+    }
+
+    /**
      * Get the version for this thread.
      *
      * @return  string
@@ -133,6 +191,20 @@ class SkypeEventResourceThreadProperties
     }
 
     /**
+     * Set the version for this thread.
+     *
+     * @param  string  $version  The version for this thread.
+     *
+     * @return  self
+     */
+    public function setVersion(string $version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
      * Get the joiningenabled for this thread.
      *
      * @return  string
@@ -140,5 +212,19 @@ class SkypeEventResourceThreadProperties
     public function getJoiningEnabled()
     {
         return $this->joiningEnabled;
+    }
+
+    /**
+     * Set the joiningenabled for this thread.
+     *
+     * @param  string  $joiningEnabled  The joiningenabled for this thread.
+     *
+     * @return  self
+     */
+    public function setJoiningEnabled(string $joiningEnabled)
+    {
+        $this->joiningEnabled = $joiningEnabled;
+
+        return $this;
     }
 }

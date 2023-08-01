@@ -164,6 +164,8 @@ class SkypeChatProperties
         $this->color = !empty($raw->color) ? $raw->color : null;
     }
 
+
+
     /**
      * Get consumptionhorizonpublished
      *
@@ -172,6 +174,20 @@ class SkypeChatProperties
     public function getConsumptionHorizonPublished()
     {
         return $this->consumptionHorizonPublished;
+    }
+
+    /**
+     * Set consumptionhorizonpublished
+     *
+     * @param  string  $consumptionHorizonPublished  consumptionhorizonpublished
+     *
+     * @return  self
+     */
+    public function setConsumptionHorizonPublished(string $consumptionHorizonPublished)
+    {
+        $this->consumptionHorizonPublished = $consumptionHorizonPublished;
+
+        return $this;
     }
 
     /**
@@ -185,6 +201,20 @@ class SkypeChatProperties
     }
 
     /**
+     * Set isemptyconversation
+     *
+     * @param  string  $isEmptyConversation  isemptyconversation
+     *
+     * @return  self
+     */
+    public function setIsEmptyConversation(string $isEmptyConversation)
+    {
+        $this->isEmptyConversation = $isEmptyConversation;
+
+        return $this;
+    }
+
+    /**
      * Get consumptionhorizon
      *
      * @return  string
@@ -192,6 +222,20 @@ class SkypeChatProperties
     public function getConsumptionHorizon()
     {
         return $this->consumptionHorizon;
+    }
+
+    /**
+     * Set consumptionhorizon
+     *
+     * @param  string  $consumptionHorizon  consumptionhorizon
+     *
+     * @return  self
+     */
+    public function setConsumptionHorizon(string $consumptionHorizon)
+    {
+        $this->consumptionHorizon = $consumptionHorizon;
+
+        return $this;
     }
 
     /**
@@ -205,6 +249,20 @@ class SkypeChatProperties
     }
 
     /**
+     * Set isfollowed
+     *
+     * @param  string  $isFollowed  isfollowed
+     *
+     * @return  self
+     */
+    public function setIsFollowed(string $isFollowed)
+    {
+        $this->isFollowed = $isFollowed;
+
+        return $this;
+    }
+
+    /**
      * Get lastimreceivedtime
      *
      * @return  string
@@ -212,6 +270,20 @@ class SkypeChatProperties
     public function getLastImReceivedTime()
     {
         return $this->lastImReceivedTime;
+    }
+
+    /**
+     * Set lastimreceivedtime
+     *
+     * @param  string  $lastImReceivedTime  lastimreceivedtime
+     *
+     * @return  self
+     */
+    public function setLastImReceivedTime(string $lastImReceivedTime)
+    {
+        $this->lastImReceivedTime = $lastImReceivedTime;
+
+        return $this;
     }
 
     /**
@@ -225,6 +297,20 @@ class SkypeChatProperties
     }
 
     /**
+     * Set conversationstatus
+     *
+     * @param  string  $conversationStatus  conversationstatus
+     *
+     * @return  self
+     */
+    public function setConversationStatus(string $conversationStatus)
+    {
+        $this->conversationStatus = $conversationStatus;
+
+        return $this;
+    }
+
+    /**
      * Get conversationstatusproperties
      *
      * @return  string
@@ -232,6 +318,20 @@ class SkypeChatProperties
     public function getConversationStatusProperties()
     {
         return $this->conversationStatusProperties;
+    }
+
+    /**
+     * Set conversationstatusproperties
+     *
+     * @param  string  $conversationStatusProperties  conversationstatusproperties
+     *
+     * @return  self
+     */
+    public function setConversationStatusProperties(string $conversationStatusProperties)
+    {
+        $this->conversationStatusProperties = $conversationStatusProperties;
+
+        return $this;
     }
 
     /**
@@ -245,6 +345,20 @@ class SkypeChatProperties
     }
 
     /**
+     * Set onetoonethreadid
+     *
+     * @param  string  $oneToOneThreadId  onetoonethreadid
+     *
+     * @return  self
+     */
+    public function setOneToOneThreadId(string $oneToOneThreadId)
+    {
+        $this->oneToOneThreadId = $oneToOneThreadId;
+
+        return $this;
+    }
+
+    /**
      * Get conversationblocked
      *
      * @return  string
@@ -252,6 +366,20 @@ class SkypeChatProperties
     public function getConversationBlocked()
     {
         return $this->conversationBlocked;
+    }
+
+    /**
+     * Set conversationblocked
+     *
+     * @param  string  $conversationBlocked  conversationblocked
+     *
+     * @return  self
+     */
+    public function setConversationBlocked(string $conversationBlocked)
+    {
+        $this->conversationBlocked = $conversationBlocked;
+
+        return $this;
     }
 
     /**
@@ -265,6 +393,20 @@ class SkypeChatProperties
     }
 
     /**
+     * Set the delivery receipt this conversation.
+     *
+     * @param  string  $deliveryReceipt  The delivery receipt this conversation.
+     *
+     * @return  self
+     */
+    public function setDeliveryReceipt(string $deliveryReceipt)
+    {
+        $this->deliveryReceipt = $deliveryReceipt;
+
+        return $this;
+    }
+
+    /**
      * Get the pinned this conversation.
      *
      * @return  string
@@ -272,6 +414,20 @@ class SkypeChatProperties
     public function getPinned()
     {
         return $this->pinned;
+    }
+
+    /**
+     * Set the pinned this conversation.
+     *
+     * @param  string  $pinned  The pinned this conversation.
+     *
+     * @return  self
+     */
+    public function setPinned(string $pinned)
+    {
+        $this->pinned = $pinned;
+
+        return $this;
     }
 
     /**
@@ -285,6 +441,20 @@ class SkypeChatProperties
     }
 
     /**
+     * Set the favorite this conversation.
+     *
+     * @param  string  $favorite  The favorite this conversation.
+     *
+     * @return  self
+     */
+    public function setFavorite(string $favorite)
+    {
+        $this->favorite = $favorite;
+
+        return $this;
+    }
+
+    /**
      * Get conversationisblocked
      *
      * @return  string
@@ -292,6 +462,20 @@ class SkypeChatProperties
     public function getConversationIsBlocked()
     {
         return $this->conversationIsBlocked;
+    }
+
+    /**
+     * Set conversationisblocked
+     *
+     * @param  string  $conversationIsBlocked  conversationisblocked
+     *
+     * @return  self
+     */
+    public function setConversationIsBlocked(string $conversationIsBlocked)
+    {
+        $this->conversationIsBlocked = $conversationIsBlocked;
+
+        return $this;
     }
 
     /**
@@ -305,6 +489,20 @@ class SkypeChatProperties
     }
 
     /**
+     * Set clearedat
+     *
+     * @param  string  $clearedAt  clearedat
+     *
+     * @return  self
+     */
+    public function setClearedAt(string $clearedAt)
+    {
+        $this->clearedAt = $clearedAt;
+
+        return $this;
+    }
+
+    /**
      * Get the processed cleared at this conversation.
      *
      * @return  string
@@ -312,5 +510,43 @@ class SkypeChatProperties
     public function getProcessedClearedAt()
     {
         return $this->processedClearedAt;
+    }
+
+    /**
+     * Set the processed cleared at this conversation.
+     *
+     * @param  string  $processedClearedAt  The processed cleared at this conversation.
+     *
+     * @return  self
+     */
+    public function setProcessedClearedAt(string $processedClearedAt)
+    {
+        $this->processedClearedAt = $processedClearedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the color this conversation.
+     *
+     * @return  string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Set the color this conversation.
+     *
+     * @param  string  $color  The color this conversation.
+     *
+     * @return  self
+     */
+    public function setColor(string $color)
+    {
+        $this->color = $color;
+
+        return $this;
     }
 }

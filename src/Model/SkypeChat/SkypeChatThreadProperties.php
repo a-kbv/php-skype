@@ -95,6 +95,8 @@ class SkypeChatThreadProperties {
 
 
 
+
+
     /**
      * Get the Title this conversation.
      *
@@ -103,6 +105,20 @@ class SkypeChatThreadProperties {
     public function getTopic()
     {
         return $this->topic;
+    }
+
+    /**
+     * Set the Title this conversation.
+     *
+     * @param  string  $topic  The Title this conversation.
+     *
+     * @return  self
+     */
+    public function setTopic(string $topic)
+    {
+        $this->topic = $topic;
+
+        return $this;
     }
 
     /**
@@ -116,6 +132,20 @@ class SkypeChatThreadProperties {
     }
 
     /**
+     * Set lastjoinat
+     *
+     * @param  string  $lastJoinAt  lastjoinat
+     *
+     * @return  self
+     */
+    public function setLastJoinAt(string $lastJoinAt)
+    {
+        $this->lastJoinAt = $lastJoinAt;
+
+        return $this;
+    }
+
+    /**
      * Get membercount
      *
      * @return  string
@@ -123,6 +153,20 @@ class SkypeChatThreadProperties {
     public function getMemberCount()
     {
         return $this->memberCount;
+    }
+
+    /**
+     * Set membercount
+     *
+     * @param  string  $memberCount  membercount
+     *
+     * @return  self
+     */
+    public function setMemberCount(string $memberCount)
+    {
+        $this->memberCount = $memberCount;
+
+        return $this;
     }
 
     /**
@@ -136,6 +180,20 @@ class SkypeChatThreadProperties {
     }
 
     /**
+     * Set the version this conversation.
+     *
+     * @param  string  $version  The version this conversation.
+     *
+     * @return  self
+     */
+    public function setVersion(string $version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
      * Get the members this conversation.
      *
      * @return  string
@@ -143,6 +201,20 @@ class SkypeChatThreadProperties {
     public function getMembers()
     {
         return $this->members;
+    }
+
+    /**
+     * Set the members this conversation.
+     *
+     * @param  string  $members  The members this conversation.
+     *
+     * @return  self
+     */
+    public function setMembers(string $members)
+    {
+        $this->members = $members;
+
+        return $this;
     }
 
     /**
@@ -156,6 +228,20 @@ class SkypeChatThreadProperties {
     }
 
     /**
+     * Set joiningenabled
+     *
+     * @param  string  $joiningEnabled  joiningenabled
+     *
+     * @return  self
+     */
+    public function setJoiningEnabled(string $joiningEnabled)
+    {
+        $this->joiningEnabled = $joiningEnabled;
+
+        return $this;
+    }
+
+    /**
      * Get lastleaveat
      *
      * @return  string
@@ -166,6 +252,20 @@ class SkypeChatThreadProperties {
     }
 
     /**
+     * Set lastleaveat
+     *
+     * @param  string  $lastLeaveAt  lastleaveat
+     *
+     * @return  self
+     */
+    public function setLastLeaveAt(string $lastLeaveAt)
+    {
+        $this->lastLeaveAt = $lastLeaveAt;
+
+        return $this;
+    }
+
+    /**
      * Get the picture this conversation.
      *
      * @return  string
@@ -173,5 +273,19 @@ class SkypeChatThreadProperties {
     public function getPicture()
     {
         return $this->picture;
+    }
+
+    /**
+     * Set the picture this conversation.
+     *
+     * @param  string  $picture  The picture this conversation.
+     *
+     * @return  self
+     */
+    public function setPicture(string $picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
     }
 }

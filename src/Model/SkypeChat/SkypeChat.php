@@ -91,13 +91,27 @@ class SkypeChat {
 
 
     /**
-     * Get the value of id
+     * Get cloud group chat identifiers are of the form <type>:<identifier>@thread.skype.
      *
      * @return  string
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set cloud group chat identifiers are of the form <type>:<identifier>@thread.skype.
+     *
+     * @param  string  $id  Cloud group chat identifiers are of the form <type>:<identifier>@thread.skype.
+     *
+     * @return  self
+     */
+    public function setId(string $id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -111,6 +125,20 @@ class SkypeChat {
     }
 
     /**
+     * Set the value of targetLink
+     *
+     * @param  string  $targetLink
+     *
+     * @return  self
+     */
+    public function setTargetLink(string $targetLink)
+    {
+        $this->targetLink = $targetLink;
+
+        return $this;
+    }
+
+    /**
      * Get the value of type
      *
      * @return  string
@@ -118,6 +146,20 @@ class SkypeChat {
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set the value of type
+     *
+     * @param  string  $type
+     *
+     * @return  self
+     */
+    public function setType(string $type)
+    {
+        $this->type = $type;
+
+        return $this;
     }
 
     /**
@@ -131,6 +173,20 @@ class SkypeChat {
     }
 
     /**
+     * Set the value of version
+     *
+     * @param  string  $version
+     *
+     * @return  self
+     */
+    public function setVersion(string $version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
      * Get the value of properties
      *
      * @return  \Akbv\PhpSkype\Model\SkypeChat\SkypeChatProperties
@@ -138,6 +194,20 @@ class SkypeChat {
     public function getProperties()
     {
         return $this->properties;
+    }
+
+    /**
+     * Set the value of properties
+     *
+     * @param  \Akbv\PhpSkype\Model\SkypeChat\SkypeChatProperties  $properties
+     *
+     * @return  self
+     */
+    public function setProperties(\Akbv\PhpSkype\Model\SkypeChat\SkypeChatProperties $properties)
+    {
+        $this->properties = $properties;
+
+        return $this;
     }
 
     /**
@@ -151,6 +221,20 @@ class SkypeChat {
     }
 
     /**
+     * Set the value of threadProperties
+     *
+     * @param  \Akbv\PhpSkype\Model\SkypeChat\SkypeChatThreadProperties  $threadProperties
+     *
+     * @return  self
+     */
+    public function setThreadProperties(\Akbv\PhpSkype\Model\SkypeChat\SkypeChatThreadProperties $threadProperties)
+    {
+        $this->threadProperties = $threadProperties;
+
+        return $this;
+    }
+
+    /**
      * Get the value of lastMessage
      *
      * @return  \Akbv\PhpSkype\Model\SkypeMessage\SkypeMessage
@@ -161,6 +245,20 @@ class SkypeChat {
     }
 
     /**
+     * Set the value of lastMessage
+     *
+     * @param  \Akbv\PhpSkype\Model\SkypeMessage\SkypeMessage  $lastMessage
+     *
+     * @return  self
+     */
+    public function setLastMessage(\Akbv\PhpSkype\Model\SkypeMessage\SkypeMessage $lastMessage)
+    {
+        $this->lastMessage = $lastMessage;
+
+        return $this;
+    }
+
+    /**
      * Get messages
      *
      * @return  string
@@ -168,5 +266,19 @@ class SkypeChat {
     public function getMessagesUrl()
     {
         return $this->messagesUrl;
+    }
+
+    /**
+     * Set messages
+     *
+     * @param  string  $messagesUrl  messages
+     *
+     * @return  self
+     */
+    public function setMessagesUrl(string $messagesUrl)
+    {
+        $this->messagesUrl = $messagesUrl;
+
+        return $this;
     }
 }

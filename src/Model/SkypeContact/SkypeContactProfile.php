@@ -99,6 +99,8 @@ class SkypeContactProfile
         $this->skypeHandle = !empty($raw->skype_handle) ? $raw->skype_handle : null;
     }
 
+
+
     /**
      * Get avatar_url
      *
@@ -110,13 +112,41 @@ class SkypeContactProfile
     }
 
     /**
+     * Set avatar_url
+     *
+     * @param  string  $avatarUrl  avatar_url
+     *
+     * @return  self
+     */
+    public function setAvatarUrl(string $avatarUrl)
+    {
+        $this->avatarUrl = $avatarUrl;
+
+        return $this;
+    }
+
+    /**
      * Get locations
      *
-     * @return  array
+     * @return  string[]
      */
     public function getLocations()
     {
         return $this->locations;
+    }
+
+    /**
+     * Set locations
+     *
+     * @param  string[]  $locations  locations
+     *
+     * @return  self
+     */
+    public function setLocations(array $locations)
+    {
+        $this->locations = $locations;
+
+        return $this;
     }
 
     /**
@@ -130,6 +160,20 @@ class SkypeContactProfile
     }
 
     /**
+     * Set name
+     *
+     * @param  \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfileName  $name  name
+     *
+     * @return  self
+     */
+    public function setName(\Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfileName $name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
      * Get about
      *
      * @return  string
@@ -137,6 +181,20 @@ class SkypeContactProfile
     public function getAbout()
     {
         return $this->about;
+    }
+
+    /**
+     * Set about
+     *
+     * @param  string  $about  about
+     *
+     * @return  self
+     */
+    public function setAbout(string $about)
+    {
+        $this->about = $about;
+
+        return $this;
     }
 
     /**
@@ -150,6 +208,20 @@ class SkypeContactProfile
     }
 
     /**
+     * Set language
+     *
+     * @param  string  $language  language
+     *
+     * @return  self
+     */
+    public function setLanguage(string $language)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
      * Get website
      *
      * @return  string
@@ -160,6 +232,20 @@ class SkypeContactProfile
     }
 
     /**
+     * Set website
+     *
+     * @param  string  $website  website
+     *
+     * @return  self
+     */
+    public function setWebsite(string $website)
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    /**
      * Get skype_handle
      *
      * @return  string
@@ -167,5 +253,19 @@ class SkypeContactProfile
     public function getSkypeHandle()
     {
         return $this->skypeHandle;
+    }
+
+    /**
+     * Set skype_handle
+     *
+     * @param  string  $skypeHandle  skype_handle
+     *
+     * @return  self
+     */
+    public function setSkypeHandle(string $skypeHandle)
+    {
+        $this->skypeHandle = $skypeHandle;
+
+        return $this;
     }
 }

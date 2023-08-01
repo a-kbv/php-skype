@@ -53,6 +53,20 @@ class SkypeContactProfileName {
     }
 
     /**
+     * Set first
+     *
+     * @param  string  $firstName  first
+     *
+     * @return  self
+     */
+    public function setFirstName(string $firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
      * Get surname
      *
      * @return  string
@@ -60,5 +74,19 @@ class SkypeContactProfileName {
     public function getLastName()
     {
         return $this->lastName;
+    }
+
+    /**
+     * Set surname
+     *
+     * @param  string  $lastName  surname
+     *
+     * @return  self
+     */
+    public function setLastName(string $lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
     }
 }

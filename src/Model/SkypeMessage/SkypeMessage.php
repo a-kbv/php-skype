@@ -160,6 +160,8 @@ class SkypeMessage
         $this->imDisplayName = !empty($raw->imdisplayname) ? $raw->imdisplayname : null;
     }
 
+
+
     /**
      * Get unique identifier for a message.
      *
@@ -168,6 +170,20 @@ class SkypeMessage
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set unique identifier for a message.
+     *
+     * @param  string  $id  Unique identifier for a message.
+     *
+     * @return  self
+     */
+    public function setId(string $id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -181,6 +197,20 @@ class SkypeMessage
     }
 
     /**
+     * Set originalarrivaltime
+     *
+     * @param  string  $originalArrivalTime  originalarrivaltime
+     *
+     * @return  self
+     */
+    public function setOriginalArrivalTime(string $originalArrivalTime)
+    {
+        $this->originalArrivalTime = $originalArrivalTime;
+
+        return $this;
+    }
+
+    /**
      * Get messagetype
      *
      * @return  string
@@ -188,6 +218,20 @@ class SkypeMessage
     public function getMessageType()
     {
         return $this->messageType;
+    }
+
+    /**
+     * Set messagetype
+     *
+     * @param  string  $messageType  messagetype
+     *
+     * @return  self
+     */
+    public function setMessageType(string $messageType)
+    {
+        $this->messageType = $messageType;
+
+        return $this;
     }
 
     /**
@@ -201,6 +245,20 @@ class SkypeMessage
     }
 
     /**
+     * Set the version of the message.
+     *
+     * @param  string  $version  The version of the message.
+     *
+     * @return  self
+     */
+    public function setVersion(string $version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
      * Get composetime
      *
      * @return  string
@@ -208,6 +266,20 @@ class SkypeMessage
     public function getComposeTime()
     {
         return $this->composeTime;
+    }
+
+    /**
+     * Set composetime
+     *
+     * @param  string  $composeTime  composetime
+     *
+     * @return  self
+     */
+    public function setComposeTime(string $composeTime)
+    {
+        $this->composeTime = $composeTime;
+
+        return $this;
     }
 
     /**
@@ -221,6 +293,20 @@ class SkypeMessage
     }
 
     /**
+     * Set clientmessageid
+     *
+     * @param  string  $clientMessageId  clientmessageid
+     *
+     * @return  self
+     */
+    public function setClientMessageId(string $clientMessageId)
+    {
+        $this->clientMessageId = $clientMessageId;
+
+        return $this;
+    }
+
+    /**
      * Get skypeeditedid
      *
      * @return  string
@@ -228,6 +314,20 @@ class SkypeMessage
     public function getSkypeEditedId()
     {
         return $this->skypeEditedId;
+    }
+
+    /**
+     * Set skypeeditedid
+     *
+     * @param  string  $skypeEditedId  skypeeditedid
+     *
+     * @return  self
+     */
+    public function setSkypeEditedId(string $skypeEditedId)
+    {
+        $this->skypeEditedId = $skypeEditedId;
+
+        return $this;
     }
 
     /**
@@ -241,6 +341,20 @@ class SkypeMessage
     }
 
     /**
+     * Set the conversation link.
+     *
+     * @param  string  $conversationLink  The conversation link.
+     *
+     * @return  self
+     */
+    public function setConversationLink(string $conversationLink)
+    {
+        $this->conversationLink = $conversationLink;
+
+        return $this;
+    }
+
+    /**
      * Get properties.
      *
      * @return  string[]
@@ -248,6 +362,20 @@ class SkypeMessage
     public function getProperties()
     {
         return $this->properties;
+    }
+
+    /**
+     * Set properties.
+     *
+     * @param  string[]  $properties  Properties.
+     *
+     * @return  self
+     */
+    public function setProperties(array $properties)
+    {
+        $this->properties = $properties;
+
+        return $this;
     }
 
     /**
@@ -261,6 +389,20 @@ class SkypeMessage
     }
 
     /**
+     * Set the content of the message.
+     *
+     * @param  string  $content  The content of the message.
+     *
+     * @return  self
+     */
+    public function setContent(string $content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
      * Get the type of the message.
      *
      * @return  string
@@ -268,6 +410,44 @@ class SkypeMessage
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set the type of the message.
+     *
+     * @param  string  $type  The type of the message.
+     *
+     * @return  self
+     */
+    public function setType(string $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get imdisplayname sender display name
+     *
+     * @return  string
+     */
+    public function getImDisplayName()
+    {
+        return $this->imDisplayName;
+    }
+
+    /**
+     * Set imdisplayname sender display name
+     *
+     * @param  string  $imDisplayName  imdisplayname sender display name
+     *
+     * @return  self
+     */
+    public function setImDisplayName(string $imDisplayName)
+    {
+        $this->imDisplayName = $imDisplayName;
+
+        return $this;
     }
 
     /**
@@ -281,6 +461,20 @@ class SkypeMessage
     }
 
     /**
+     * Set conversationid
+     *
+     * @param  string  $conversationId  conversationid
+     *
+     * @return  self
+     */
+    public function setConversationId(string $conversationId)
+    {
+        $this->conversationId = $conversationId;
+
+        return $this;
+    }
+
+    /**
      * Get the sender of the message.
      *
      * @return  string
@@ -288,6 +482,20 @@ class SkypeMessage
     public function getFrom()
     {
         return $this->from;
+    }
+
+    /**
+     * Set the sender of the message.
+     *
+     * @param  string  $from  The sender of the message.
+     *
+     * @return  self
+     */
+    public function setFrom(string $from)
+    {
+        $this->from = $from;
+
+        return $this;
     }
 
     /**
@@ -301,6 +509,20 @@ class SkypeMessage
     }
 
     /**
+     * Set ackrequired
+     *
+     * @param  string  $ackRequired  ackrequired
+     *
+     * @return  self
+     */
+    public function setAckRequired(string $ackRequired)
+    {
+        $this->ackRequired = $ackRequired;
+
+        return $this;
+    }
+
+    /**
      * Get counterpartymessageid
      *
      * @return  string
@@ -311,10 +533,16 @@ class SkypeMessage
     }
 
     /**
-     * Get imdisplayname sender display name
+     * Set counterpartymessageid
+     *
+     * @param  string  $counterPartyMessageId  counterpartymessageid
+     *
+     * @return  self
      */
-    public function getImDisplayName()
+    public function setCounterPartyMessageId(string $counterPartyMessageId)
     {
-        return $this->imDisplayName;
+        $this->counterPartyMessageId = $counterPartyMessageId;
+
+        return $this;
     }
 }

@@ -159,6 +159,8 @@ class SkypeUser
         $this->username = !empty($raw->username) ? $raw->username : null;
     }
 
+
+
     /**
      * Get the value of about
      *
@@ -167,6 +169,20 @@ class SkypeUser
     public function getAbout()
     {
         return $this->about;
+    }
+
+    /**
+     * Set the value of about
+     *
+     * @param  string  $about
+     *
+     * @return  self
+     */
+    public function setAbout(string $about)
+    {
+        $this->about = $about;
+
+        return $this;
     }
 
     /**
@@ -180,6 +196,20 @@ class SkypeUser
     }
 
     /**
+     * Set the value of avatarUrl
+     *
+     * @param  string  $avatarUrl
+     *
+     * @return  self
+     */
+    public function setAvatarUrl(string $avatarUrl)
+    {
+        $this->avatarUrl = $avatarUrl;
+
+        return $this;
+    }
+
+    /**
      * Get the value of birthday
      *
      * @return  string
@@ -187,6 +217,20 @@ class SkypeUser
     public function getBirthday()
     {
         return $this->birthday;
+    }
+
+    /**
+     * Set the value of birthday
+     *
+     * @param  string  $birthday
+     *
+     * @return  self
+     */
+    public function setBirthday(string $birthday)
+    {
+        $this->birthday = $birthday;
+
+        return $this;
     }
 
     /**
@@ -200,6 +244,20 @@ class SkypeUser
     }
 
     /**
+     * Set the value of city
+     *
+     * @param  string  $city
+     *
+     * @return  self
+     */
+    public function setCity(string $city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
      * Get the value of country
      *
      * @return  string
@@ -207,6 +265,20 @@ class SkypeUser
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set the value of country
+     *
+     * @param  string  $country
+     *
+     * @return  self
+     */
+    public function setCountry(string $country)
+    {
+        $this->country = $country;
+
+        return $this;
     }
 
     /**
@@ -220,6 +292,20 @@ class SkypeUser
     }
 
     /**
+     * Set the value of emails
+     *
+     * @param  string[]  $emails
+     *
+     * @return  self
+     */
+    public function setEmails(array $emails)
+    {
+        $this->emails = $emails;
+
+        return $this;
+    }
+
+    /**
      * Get the value of firstName
      *
      * @return  string
@@ -227,6 +313,20 @@ class SkypeUser
     public function getFirstName()
     {
         return $this->firstName;
+    }
+
+    /**
+     * Set the value of firstName
+     *
+     * @param  string  $firstName
+     *
+     * @return  self
+     */
+    public function setFirstName(string $firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
     }
 
     /**
@@ -240,6 +340,20 @@ class SkypeUser
     }
 
     /**
+     * Set the value of gender
+     *
+     * @param  string  $gender
+     *
+     * @return  self
+     */
+    public function setGender(string $gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
      * Get the value of homepage
      *
      * @return  string
@@ -247,6 +361,20 @@ class SkypeUser
     public function getHomepage()
     {
         return $this->homepage;
+    }
+
+    /**
+     * Set the value of homepage
+     *
+     * @param  string  $homepage
+     *
+     * @return  self
+     */
+    public function setHomepage(string $homepage)
+    {
+        $this->homepage = $homepage;
+
+        return $this;
     }
 
     /**
@@ -260,6 +388,20 @@ class SkypeUser
     }
 
     /**
+     * Set the value of jobTitle
+     *
+     * @param  string  $jobTitle
+     *
+     * @return  self
+     */
+    public function setJobTitle(string $jobTitle)
+    {
+        $this->jobTitle = $jobTitle;
+
+        return $this;
+    }
+
+    /**
      * Get the value of language
      *
      * @return  string
@@ -267,6 +409,20 @@ class SkypeUser
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    /**
+     * Set the value of language
+     *
+     * @param  string  $language
+     *
+     * @return  self
+     */
+    public function setLanguage(string $language)
+    {
+        $this->language = $language;
+
+        return $this;
     }
 
     /**
@@ -280,6 +436,20 @@ class SkypeUser
     }
 
     /**
+     * Set the value of lastName
+     *
+     * @param  string  $lastName
+     *
+     * @return  self
+     */
+    public function setLastName(string $lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
      * Get the value of mood
      *
      * @return  string
@@ -287,6 +457,20 @@ class SkypeUser
     public function getMood()
     {
         return $this->mood;
+    }
+
+    /**
+     * Set the value of mood
+     *
+     * @param  string  $mood
+     *
+     * @return  self
+     */
+    public function setMood(string $mood)
+    {
+        $this->mood = $mood;
+
+        return $this;
     }
 
     /**
@@ -300,6 +484,20 @@ class SkypeUser
     }
 
     /**
+     * Set the value of phoneHome
+     *
+     * @param  string  $phoneHome
+     *
+     * @return  self
+     */
+    public function setPhoneHome(string $phoneHome)
+    {
+        $this->phoneHome = $phoneHome;
+
+        return $this;
+    }
+
+    /**
      * Get the value of phoneMobile
      *
      * @return  string
@@ -307,6 +505,20 @@ class SkypeUser
     public function getPhoneMobile()
     {
         return $this->phoneMobile;
+    }
+
+    /**
+     * Set the value of phoneMobile
+     *
+     * @param  string  $phoneMobile
+     *
+     * @return  self
+     */
+    public function setPhoneMobile(string $phoneMobile)
+    {
+        $this->phoneMobile = $phoneMobile;
+
+        return $this;
     }
 
     /**
@@ -320,6 +532,20 @@ class SkypeUser
     }
 
     /**
+     * Set the value of phoneOffice
+     *
+     * @param  string  $phoneOffice
+     *
+     * @return  self
+     */
+    public function setPhoneOffice(string $phoneOffice)
+    {
+        $this->phoneOffice = $phoneOffice;
+
+        return $this;
+    }
+
+    /**
      * Get the value of province
      *
      * @return  string
@@ -327,6 +553,20 @@ class SkypeUser
     public function getProvince()
     {
         return $this->province;
+    }
+
+    /**
+     * Set the value of province
+     *
+     * @param  string  $province
+     *
+     * @return  self
+     */
+    public function setProvince(string $province)
+    {
+        $this->province = $province;
+
+        return $this;
     }
 
     /**
@@ -340,6 +580,20 @@ class SkypeUser
     }
 
     /**
+     * Set the value of richMood
+     *
+     * @param  string  $richMood
+     *
+     * @return  self
+     */
+    public function setRichMood(string $richMood)
+    {
+        $this->richMood = $richMood;
+
+        return $this;
+    }
+
+    /**
      * Get the value of username
      *
      * @return  string
@@ -347,5 +601,19 @@ class SkypeUser
     public function getUsername()
     {
         return $this->username;
+    }
+
+    /**
+     * Set the value of username
+     *
+     * @param  string  $username
+     *
+     * @return  self
+     */
+    public function setUsername(string $username)
+    {
+        $this->username = $username;
+
+        return $this;
     }
 }
