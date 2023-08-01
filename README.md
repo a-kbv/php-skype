@@ -7,7 +7,7 @@ php-skype is a library that wraps Skype Web API. The library is designed to be u
 Use the package manager composer to install php-skype.
 
 ```bash
-composer require akbv/skype
+composer require akbv/php-skype
 ```
 
 ## Usage
