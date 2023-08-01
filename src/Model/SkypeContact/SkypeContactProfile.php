@@ -28,7 +28,7 @@ class SkypeContactProfile
     /**
      * The locations for this user.
      * locations
-     * @var array
+     * @var string[]
      */
     private $locations;
 

@@ -80,6 +80,7 @@ class SkypeMessage
 
     /**
      * imdisplayname sender display name
+     * @var string
      */
     private $imDisplayName;
 
