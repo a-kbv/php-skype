@@ -38,7 +38,7 @@ class SkypeContact
 
     /**
      * The profile for this user.
-     * @var \Akbv\PhpSkype\Models\SkypeContact\SkypeContactProfile
+     * @var \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfile
      */
     private $profile;
 
@@ -191,7 +191,7 @@ class SkypeContact
     /**
      * Get the profile for this user.
      *
-     * @return  \Akbv\PhpSkype\Models\SkypeContact\SkypeContactProfile
+     * @return  \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfile
      */
     public function getProfile()
     {
