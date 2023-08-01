@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Akbv\PhpSkype;
 
@@ -534,7 +534,11 @@ class Chat
         return $response->getStatusCode() === 200;
     }
 
-
-
-    
+    /**
+     * Get the value of chat
+     */
+    public function getChat()
+    {
+        return $this->chat;
+    }
 }
