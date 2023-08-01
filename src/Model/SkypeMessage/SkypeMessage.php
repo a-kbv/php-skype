@@ -160,12 +160,6 @@ class SkypeMessage
         $this->imDisplayName = !empty($raw->imdisplayname) ? $raw->imdisplayname : null;
     }
 
-    public function setDeleted()
-    {
-        $this->content = "";
-    }
-
-
     /**
      * Get unique identifier for a message.
      *
