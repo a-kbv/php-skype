@@ -6,7 +6,7 @@ namespace Akbv\PhpSkype\Model\SkypeContact;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class SkypeContact
+class SkypeContact extends \Akbv\PhpSkype\Model\Base
 {
     /**
      * The unique identifier for this user.

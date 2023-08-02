@@ -6,7 +6,7 @@ namespace Akbv\PhpSkype\Model\SkypeContact;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class SkypeContactProfile
+class SkypeContactProfile extends \Akbv\PhpSkype\Model\Base
 {
     // "profile": {
     //     "avatar_url": "https://avatar.skype.com/v1/avatars/echo123?auth_key=242200701",

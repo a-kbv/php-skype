@@ -6,7 +6,8 @@ namespace Akbv\PhpSkype\Model\SkypeChat;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class SkypeChatThreadProperties {
+class SkypeChatThreadProperties extends \Akbv\PhpSkype\Model\Base
+{
      /**
      * The Title this conversation.
      * @var string

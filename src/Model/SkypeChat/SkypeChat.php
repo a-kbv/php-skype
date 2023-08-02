@@ -5,7 +5,8 @@ namespace Akbv\PhpSkype\Model\SkypeChat;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class SkypeChat {
+class SkypeChat extends \Akbv\PhpSkype\Model\Base
+{
 
     /**
      * Unique identifier of the conversation.

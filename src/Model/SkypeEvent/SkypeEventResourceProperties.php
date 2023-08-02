@@ -7,7 +7,7 @@ namespace Akbv\PhpSkype\Model\SkypeEvent;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class SkypeEventResourceProperties
+class SkypeEventResourceProperties extends \Akbv\PhpSkype\Model\Base
 {
     /**
      * The deliveryReceipt for this thread.

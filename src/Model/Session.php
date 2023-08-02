@@ -6,7 +6,7 @@ namespace Akbv\PhpSkype\Model;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class Session
+class Session extends \Akbv\PhpSkype\Model\Base
 {
     /**
      * Algo to recognize cache name.
@@ -177,7 +177,7 @@ class Session
         if (false === file_put_contents($sessionFilePath, $jsonData)) {
             throw new \Akbv\PhpSkype\Exception\SessionFileSaveException($sessionFilePath);
         }
-        
+
     }
 
     private function loadSessionData()
@@ -192,7 +192,7 @@ class Session
         $jsonData = file_get_contents($sessionFilePath);
         $this->fromArray(json_decode($jsonData, true));
         return $this;
-        
+
     }
 
     /**
@@ -479,7 +479,7 @@ class Session
      * Get the value of createdAt
      *
      * @return  \DateTime
-     */ 
+     */
     public function getCreatedAt()
     {
         return $this->createdAt;
@@ -491,7 +491,7 @@ class Session
      * @param  \DateTime  $createdAt
      *
      * @return  self
-     */ 
+     */
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
@@ -503,7 +503,7 @@ class Session
      * Get the value of isDirty
      *
      * @return  bool
-     */ 
+     */
     public function getIsDirty()
     {
         return $this->isDirty;
@@ -515,7 +515,7 @@ class Session
      * @param  bool  $isDirty
      *
      * @return  self
-     */ 
+     */
     public function setIsDirty(bool $isDirty)
     {
         $this->isDirty = $isDirty;
@@ -527,7 +527,7 @@ class Session
      * Get subscribed to events.
      *
      * @return  bool
-     */ 
+     */
     public function getSubscribed()
     {
         return $this->subscribed;
@@ -539,7 +539,7 @@ class Session
      * @param  bool  $subscribed  Subscribed to events.
      *
      * @return  self
-     */ 
+     */
     public function setSubscribed(bool $subscribed)
     {
         $this->subscribed = $subscribed;

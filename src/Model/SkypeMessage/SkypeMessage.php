@@ -6,7 +6,7 @@ namespace Akbv\PhpSkype\Model\SkypeMessage;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class SkypeMessage
+class SkypeMessage extends \Akbv\PhpSkype\Model\Base
 {
     /**
     * Unique identifier for a message.
