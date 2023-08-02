@@ -85,13 +85,23 @@ class Connection
                 ]
             ];
 
-            $response = $this->httpClient->request('GET', 'https://prod.registrar.skype.com/v2/registrations', [
-                'session' => $this->session,
-                'headers' => [
-                    "Content-Type" => "application/json",
-                ],
-                'body' => json_encode($body)
-            ]);
+            $response = '';
+
+            try{
+                $response = $this->httpClient->request('GET', 'https://prod.registrar.skype.com/v2/registrations', [
+                    'session' => $this->session,
+                    'headers' => [
+                        "Content-Type" => "application/json",
+                    ],
+                    'body' => json_encode($body)
+                ]);
+            }catch(\Symfony\Component\HttpClient\Exception\ClientException $e){
+                $response = $e->getResponse();
+                if ($response->getStatusCode() >= 400) {
+                    return false;
+                }
+            }
+
             $response->getStatusCode();
             $response->getContent();
 
