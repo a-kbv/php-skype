@@ -61,7 +61,7 @@ class SkypeEvent extends \Akbv\PhpSkype\Model\Base
         $data['resourceType'] = $this->resourceType;
         $data['time'] = $this->time;
         $data['resourceLink'] = $this->resourceLink;
-        $data['resource'] = !empty($this->resource->toArray()) ? $this->resource->toArray() : null;
+        $data['resource'] = !empty($this->resource) ? $this->resource->toArray() : null;
         return $data;
     }
 

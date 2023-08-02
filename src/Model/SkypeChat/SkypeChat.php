@@ -66,9 +66,9 @@ class SkypeChat extends \Akbv\PhpSkype\Model\Base
         $conversationData['targetLink'] = $this->targetLink;
         $conversationData['type'] = $this->type;
         $conversationData['version'] = $this->version;
-        $conversationData['properties'] = !empty($this->properties->toArray()) ? $this->properties->toArray() : null;
-        $conversationData['threadProperties'] = !empty($this->threadProperties->toArray()) ? $this->threadProperties->toArray() : null;
-        $conversationData['lastMessage'] = !empty($this->lastMessage->toArray()) ? $this->lastMessage->toArray() : null;
+        $conversationData['properties'] = !empty($this->properties) ? $this->properties->toArray() : null;
+        $conversationData['threadProperties'] = !empty($this->threadProperties) ? $this->threadProperties->toArray() : null;
+        $conversationData['lastMessage'] = !empty($this->lastMessage) ? $this->lastMessage->toArray() : null;
         $conversationData['messages'] = $this->messagesUrl;
 
         return $conversationData;
