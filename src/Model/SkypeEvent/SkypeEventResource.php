@@ -265,9 +265,9 @@ class SkypeEventResource extends \Akbv\PhpSkype\Model\Base
         $data['editauthorized'] = $this->editAuthorized;
         $data['skypeeditedid'] = $this->skypeEditedId;
         $data['targetLink'] = $this->targetLink;
-        $data['threadProperties'] = $this->threadProperties->toArray();
-        $data['properties'] = $this->properties->toArray();
-        $data['lastMessage'] = $this->lastMessage->toArray();
+        $data['threadProperties'] = !empty($this->threadProperties->toArray()) ? $this->threadProperties->toArray() : null;
+        $data['properties'] = !empty($this->properties->toArray()) ? $this->properties->toArray() : null;
+        $data['lastMessage'] = !empty($this->lastMessage->toArray()) ? $this->lastMessage->toArray() : null;
         $data['messages'] = $this->messages;
         $data['lastUpdatedMessageId'] = $this->lastUpdatedMessageId;
         $data['lastUpdatedMessageVersion'] = $this->lastUpdatedMessageVersion;

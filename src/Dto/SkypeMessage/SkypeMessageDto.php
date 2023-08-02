@@ -7,7 +7,7 @@ namespace Akbv\PhpSkype\Dto\SkypeMessage;
  * @author Atanas Korabov
  */
 class SkypeMessageDto {
-    
+
     /**
      * @var \Akbv\PhpSkype\Model\SkypeMessage\SkypeMessage[] $messages
      */
@@ -18,11 +18,11 @@ class SkypeMessageDto {
      */
     private $syncState;
 
-    
+
     private function toArray() {
         return [
             'messages' => array_map(function($message) {
-                $message->toArray();
+                return $message->toArray();
             }, $this->messages),
             'syncState' => $this->syncState
         ];
@@ -33,7 +33,7 @@ class SkypeMessageDto {
      * Get $messages
      *
      * @return  \Akbv\PhpSkype\Model\SkypeMessage\SkypeMessage[]
-     */ 
+     */
     public function getMessages()
     {
         return $this->messages;
@@ -45,7 +45,7 @@ class SkypeMessageDto {
      * @param  \Akbv\PhpSkype\Model\SkypeMessage\SkypeMessage[]  $messages
      *
      * @return  self
-     */ 
+     */
     public function setMessages(array $messages)
     {
         $this->messages = $messages;
@@ -57,7 +57,7 @@ class SkypeMessageDto {
      * Get $syncState
      *
      * @return  string
-     */ 
+     */
     public function getSyncState()
     {
         return $this->syncState;
@@ -69,7 +69,7 @@ class SkypeMessageDto {
      * @param  string  $syncState  $syncState
      *
      * @return  self
-     */ 
+     */
     public function setSyncState(string $syncState)
     {
         $this->syncState = $syncState;

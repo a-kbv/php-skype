@@ -7,7 +7,7 @@ namespace Akbv\PhpSkype\Dto\SkypeChat;
  * @author Atanas Korabov
  */
 class SkypeChatDto {
-    
+
     /**
      * @var \Akbv\PhpSkype\Model\SkypeChat\SkypeChat[] $chats
      */
@@ -18,11 +18,11 @@ class SkypeChatDto {
      */
     private $syncState;
 
-    
+
     private function toArray() {
         return [
             'chats' => array_map(function($chat) {
-                $chat->toArray();
+                return $chat->toArray();
             }, $this->chats),
             'syncState' => $this->syncState
         ];
@@ -33,7 +33,7 @@ class SkypeChatDto {
      * Get $syncState
      *
      * @return  string
-     */ 
+     */
     public function getSyncState()
     {
         return $this->syncState;
@@ -45,7 +45,7 @@ class SkypeChatDto {
      * @param  string  $syncState  $syncState
      *
      * @return  self
-     */ 
+     */
     public function setSyncState(string $syncState)
     {
         $this->syncState = $syncState;
@@ -57,7 +57,7 @@ class SkypeChatDto {
      * Get $chats
      *
      * @return  \Akbv\PhpSkype\Model\SkypeChat\SkypeChat[]
-     */ 
+     */
     public function getChats()
     {
         return $this->chats;
@@ -69,7 +69,7 @@ class SkypeChatDto {
      * @param  \Akbv\PhpSkype\Model\SkypeChat\SkypeChat[]  $chats  $chats
      *
      * @return  self
-     */ 
+     */
     public function setChats(array $chats)
     {
         $this->chats = $chats;

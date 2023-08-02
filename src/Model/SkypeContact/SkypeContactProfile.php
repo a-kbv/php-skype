@@ -77,7 +77,7 @@ class SkypeContactProfile extends \Akbv\PhpSkype\Model\Base
     {
         $data['avatar_url'] = $this->avatarUrl;
         $data['locations'] = $this->locations;
-        $data['name'] = $this->name->toArray();
+        $data['name'] = !empty($this->name->toArray()) ? $this->name->toArray() : null;
         $data['about'] = $this->about;
         $data['language'] = $this->language;
         $data['website'] = $this->website;
