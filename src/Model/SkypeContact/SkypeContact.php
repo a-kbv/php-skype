@@ -110,7 +110,7 @@ class SkypeContact extends \Akbv\PhpSkype\Model\Base
         $data['mri'] = $this->mri;
         $data['display_name'] = $this->displayName;
         $data['display_name_source'] = $this->displayNameSource;
-        $data['profile'] = $this->profile->toArray();
+        $data['profile'] = !empty($this->profile) ? $this->profile->toArray(): null;
         $data['authorized'] = $this->authorized;
         $data['blocked'] = $this->blocked;
         $data['explicit'] = $this->explicit;
