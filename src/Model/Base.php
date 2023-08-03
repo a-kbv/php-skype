@@ -6,6 +6,9 @@ use JsonSerializable;
 
 abstract class Base implements JsonSerializable
 {
+    /**
+     * @return mixed
+     */
     public function jsonSerialize(): mixed
     {
         return $this->toArray();
