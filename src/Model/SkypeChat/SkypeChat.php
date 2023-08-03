@@ -89,8 +89,6 @@ class SkypeChat extends \Akbv\PhpSkype\Model\Base
         $this->messagesUrl = !empty($raw->messages) ? $raw->messages : null;
     }
 
-
-
     /**
      * Get cloud group chat identifiers are of the form <type>:<identifier>@thread.skype.
      *
