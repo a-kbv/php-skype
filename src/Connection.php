@@ -87,7 +87,7 @@ class Connection
 
             $response = '';
 
-            try{
+            try {
                 $response = $this->httpClient->request('GET', 'https://prod.registrar.skype.com/v2/registrations', [
                     'session' => $this->session,
                     'headers' => [
@@ -95,7 +95,7 @@ class Connection
                     ],
                     'body' => json_encode($body)
                 ]);
-            }catch(\Symfony\Component\HttpClient\Exception\ClientException $e){
+            } catch(\Symfony\Component\HttpClient\Exception\ClientException $e) {
                 $response = $e->getResponse();
                 if ($response->getStatusCode() >= 400) {
                     return false;
@@ -259,7 +259,7 @@ class Connection
         return $eventMessages;
     }
 
-    public function searchPeople(string $searchString)
+    public function searchSkypeUsers(string $searchString)
     {
 
         $url = 'https://skypegraph.skype.com/v2.0/search';
@@ -279,7 +279,30 @@ class Connection
         ]);
 
         $result = json_decode($response->getContent(), true);
-        return $result;
+        $people = array_map(function ($person) {
+            return $person['nodeProfileData'];
+        }, $result['results'] ?? []);
+
+        $contacts = array_map(function ($person) {
+
+            $contactModel = new \Akbv\PhpSkype\Model\SkypeContact\SkypeContact([]);
+
+            $contactModel->setMri(isset($person['skypeId']) ? $person['skypeId'] : $person['skypeHandle']);
+            $contactModel->setPersonId(isset($person['skypeHandle']) ? $person['skypeHandle'] : $person['skypeId']);
+            $contactModel->setDisplayName(isset($person['name']) ? $person['name'] : $person['skypeHandle']);
+            //split name if is set and set first and last name
+            if(isset($person['name'])) {
+                $name = explode(' ', $person['name']);
+                $contactModel->getProfile()->setName(new \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfileName((object)[
+                    'first' => isset($name[0]) ? $name[0] : null,
+                    'surname' => isset($name[1]) ? $name[1] : null
+                ]));
+            }
+            $contactModel->getProfile()->setAvatarUrl(isset($person['avatarUrl']) ? $person['avatarUrl'] : null);
+            return $contactModel;
+        }, $people);
+
+        return $contacts;
     }
 
     public function chat($id)

@@ -92,7 +92,7 @@ class SkypeContactProfile extends \Akbv\PhpSkype\Model\Base
         }
         $this->avatarUrl = !empty($raw->avatar_url) ? $raw->avatar_url : null;
         $this->locations = !empty($raw->locations) ? $raw->locations : null;
-        $this->name = !empty($raw->name) ? new \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfileName($raw->name) : null;
+        $this->name = !empty($raw->name) ? new \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfileName($raw->name) : new \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfileName((object)[]);
         $this->about = !empty($raw->about) ? $raw->about : null;
         $this->language = !empty($raw->language) ? $raw->language : null;
         $this->website = !empty($raw->website) ? $raw->website : null;

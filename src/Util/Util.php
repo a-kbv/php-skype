@@ -10,6 +10,30 @@ class Util
 {
 
     /**
+     * Extract all params from arrays and merge them into one array recursively.
+     * @param mixed[] $arrays
+     * @return mixed[]
+     */
+    public static function deepMerge($arrays): array
+    {
+        $result = [];
+        foreach ($arrays as $array) {
+            foreach ($array as $key => $value) {
+                if (!isset($result[$key])) {
+                    $result[$key] = $value;
+                } else {
+                    if (is_array($result[$key]) && is_array($value)) {
+                        $result[$key] = self::deepMerge([$result[$key], $value]);
+                    } else {
+                        $result[$key] = $value;
+                    }
+                }
+            }
+        }
+        return $result;
+    }
+
+    /**
      * Remove the type prefix from a chat identifier (e.g. "8:" for a one-to-one, "19:" for a group).
      * @param string $string string to transform
      * @return null|string|string[]
@@ -83,7 +107,7 @@ class Util
         $messageId = $url ? substr(strrchr($url, "/"), 1) : null;
         return $messageId;
     }
-    
+
     /**
     * Formats the string to be bold
     *

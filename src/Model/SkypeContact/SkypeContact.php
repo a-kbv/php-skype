@@ -133,7 +133,7 @@ class SkypeContact extends \Akbv\PhpSkype\Model\Base
         $this->mri = !empty($raw->mri) ? $raw->mri : null;
         $this->displayName = !empty($raw->display_name) ? $raw->display_name : null;
         $this->displayNameSource = !empty($raw->display_name_source) ? $raw->display_name_source : null;
-        $this->profile = !empty($raw->profile) ? new \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfile($raw->profile) : null;
+        $this->profile = !empty($raw->profile) ? new \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfile($raw->profile) : new \Akbv\PhpSkype\Model\SkypeContact\SkypeContactProfile((object)[]);
         $this->authorized = !empty($raw->authorized) ? $raw->authorized : null;
         $this->blocked = !empty($raw->blocked) ? $raw->blocked : null;
         $this->explicit = !empty($raw->explicit) ? $raw->explicit : null;
