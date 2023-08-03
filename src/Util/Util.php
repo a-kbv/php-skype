@@ -70,6 +70,10 @@ class Util
     {
         $pattern = "/conversations\/([0-9]+:[^\/]+)/";
         $match = preg_match($pattern, $url, $matches);
+        if (!$match){
+            $pattern = "/threads\/([0-9]+:[^\/]+)/";
+            $match = preg_match($pattern, $url, $matches);
+        }
         return ($match) ? $matches[1] : null;
     }
 
