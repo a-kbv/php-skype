@@ -154,7 +154,7 @@ class SkypeMessage extends \Akbv\PhpSkype\Model\Base
         $this->content = !empty($raw->content) ? $raw->content : null;
         $this->type = !empty($raw->type) ? $raw->type : null;
         $this->conversationId = !empty($raw->conversationid) ? $raw->conversationid : null;
-        $this->from = !empty($raw->from) ? \Akbv\PhpSkype\Util\Util::userUrlToId($raw->from) : null;
+        $this->from = !empty($raw->from) ? $raw->from : null;
         $this->ackRequired = !empty($raw->ackrequired) ? $raw->ackrequired : null;
         $this->counterPartyMessageId = !empty($raw->counterpartymessageid) ? $raw->counterpartymessageid : null;
         $this->imDisplayName = !empty($raw->imdisplayname) ? $raw->imdisplayname : null;

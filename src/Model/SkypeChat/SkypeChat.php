@@ -80,7 +80,7 @@ class SkypeChat extends \Akbv\PhpSkype\Model\Base
             $raw = (object) $raw;
         }
         $this->id = !empty($raw->id) ? $raw->id : null;
-        $this->targetLink = !empty($raw->targetLink) ? \Akbv\PhpSkype\Util\Util::chatUrlToId($raw->targetLink) : null;
+        $this->targetLink = !empty($raw->targetLink) ? $raw->targetLink : null;
         $this->type = !empty($raw->type) ? $raw->type : null;
         $this->version = !empty($raw->version) ? $raw->version : null;
         $this->properties = !empty($raw->properties) ? new \Akbv\PhpSkype\Model\SkypeChat\SkypeChatProperties($raw->properties) : null;
