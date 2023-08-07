@@ -113,6 +113,20 @@ class Util
     }
 
     /**
+     *  https://azscus1-client-s.gateway.messenger.live.com/v1/users/ME/contacts/8:live:atanaskorabov
+     *  https://azscus1-client-s.gateway.messenger.live.com/v1/users/ME/conversations/19:f91a8342d12548ba832765fd5a041ad8@thread.skype
+     *  https://azscus1-client-s.gateway.messenger.live.com/v1/users/ME/conversations/8:live:stefanbakardjiev
+     *  https://azwcus1-client-s.gateway.messenger.live.com/v1/threads/19:b09aae53a2ca474c915493413fefb846@thread.skype
+     */
+    public static function parseUrlToId(string $url): string
+    {
+        $pattern = '/\/(\d{1,2}:[\w@:]+|[\w:@]+@[\w\.]+)/';
+        preg_match($pattern, $url, $matches);
+
+        return $matches[1];
+    }
+
+    /**
     * Formats the string to be bold
     *
     * @param string $string
