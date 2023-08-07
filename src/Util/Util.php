@@ -123,7 +123,7 @@ class Util
         $pattern = '/\/(\d{1,2}:[\w@:]+|[\w:@]+@[\w\.]+)/';
         preg_match($pattern, $url, $matches);
 
-        return $matches[1];
+        return isset($matches[1]) ? $matches[1] : $url;
     }
 
     /**
