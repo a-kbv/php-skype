@@ -119,7 +119,7 @@ class Util
      */
     public static function parseUrlToId(string $url): string
     {
-        $pattern = '/\/([^\/]+)$/'; // Update the pattern to match the last part after the last /
+        $pattern = '/([^\/]+)$/'; // Update the pattern to match the last part after the last /
         preg_match($pattern, $url, $matches);
 
         return isset($matches[1]) ? $matches[1] : $url;
