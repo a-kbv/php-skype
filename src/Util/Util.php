@@ -112,18 +112,17 @@ class Util
     }
 
     /**
-     *  https://azscus1-client-s.gateway.messenger.live.com/v1/users/ME/contacts/8:live:test
      *  https://azscus1-client-s.gateway.messenger.live.com/v1/users/ME/conversations/19:test@thread.skype
+     *  https://azscus1-client-s.gateway.messenger.live.com/v1/users/ME/contacts/8:live:test
      *  https://azscus1-client-s.gateway.messenger.live.com/v1/users/ME/conversations/8:live:test
      *  https://azwcus1-client-s.gateway.messenger.live.com/v1/threads/19:test@thread.skype
      */
     public static function parseUrlToId(string $url): string
     {
-        $pattern = '/\/(\d{1,2}:[\w@:]+|[\w:@]+@[\w\.]+\w+)/'; // Update the pattern to include \w+ before the ending /
+        $pattern = '/\/([^\/]+)$/'; // Update the pattern to match the last part after the last /
         preg_match($pattern, $url, $matches);
 
-        return isset($matches[1]) ? $matches[1] :
-        $url;
+        return isset($matches[1]) ? $matches[1] : $url;
     }
 
     /**
