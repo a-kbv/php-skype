@@ -123,7 +123,8 @@ class Connection
             ],
         ]);
         $result = json_decode($response->getContent());
-        return $result;
+
+        return new \Akbv\PhpSkype\Model\SkypeUser\SkypeUser($result);
     }
 
     public function fetchContacts()
