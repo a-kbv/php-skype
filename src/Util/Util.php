@@ -8,7 +8,6 @@ namespace Akbv\PhpSkype\Util;
  */
 class Util
 {
-
     /**
      * Extract all params from arrays and merge them into one array recursively.
      * @param mixed[] $arrays
@@ -70,7 +69,7 @@ class Util
     {
         $pattern = "/conversations\/([0-9]+:[^\/]+)/";
         $match = preg_match($pattern, $url, $matches);
-        if (!$match){
+        if (!$match) {
             $pattern = "/threads\/([0-9]+:[^\/]+)/";
             $match = preg_match($pattern, $url, $matches);
         }
@@ -120,10 +119,11 @@ class Util
      */
     public static function parseUrlToId(string $url): string
     {
-        $pattern = '/\/(\d{1,2}:[\w@:]+|[\w:@]+@[\w\.]+)/';
+        $pattern = '/\/(\d{1,2}:[\w@:]+|[\w:@]+@[\w\.]+\w+)/'; // Update the pattern to include \w+ before the ending /
         preg_match($pattern, $url, $matches);
 
-        return isset($matches[1]) ? $matches[1] : $url;
+        return isset($matches[1]) ? $matches[1] :
+        $url;
     }
 
     /**
