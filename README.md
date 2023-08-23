@@ -1,4 +1,4 @@
-![php-skype-logo](/php-skype.png)
+![php-skype-logo](/php-skype-logo.png)
 
 # php-skype
 
