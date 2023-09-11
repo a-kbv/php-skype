@@ -118,23 +118,23 @@ class SkypeDirectoryMessage extends \Akbv\PhpSkype\Model\Base
 
     public function toArray()
     {
-        $data['Content'] = $this->content;
-        $data['ContentType'] = $this->contentType;
-        $data['ConversationId'] = $this->conversationId;
-        $data['ConversationType'] = $this->conversationType;
-        $data['CreationDate'] = $this->creationDate;
-        $data['MessageId'] = $this->messageId;
-        $data['From'] = $this->from;
-        $data['To'] = $this->to;
-        $data['ClientMessageId'] = $this->clientMessageId;
-        $data['ServerMessageId'] = $this->serverMessageId;
-        $data['ThreadId'] = $this->threadId;
-        $data['GroupId'] = $this->groupId;
-        $data['ParentReferenceId'] = $this->parentReferenceId;
-        $data['SenderDisplayName'] = $this->senderDisplayName;
-        $data['MessageType'] = $this->messageType;
-        $data['MessageSubtype'] = $this->messageSubtype;
-        $data['MetadataList'] = $this->metadataList;
+        $data['content'] = $this->content;
+        $data['contentType'] = $this->contentType;
+        $data['conversationId'] = $this->conversationId;
+        $data['conversationType'] = $this->conversationType;
+        $data['creationDate'] = $this->creationDate;
+        $data['messageId'] = $this->messageId;
+        $data['from'] = $this->from;
+        $data['to'] = $this->to;
+        $data['clientMessageId'] = $this->clientMessageId;
+        $data['serverMessageId'] = $this->serverMessageId;
+        $data['threadId'] = $this->threadId;
+        $data['groupId'] = $this->groupId;
+        $data['parentReferenceId'] = $this->parentReferenceId;
+        $data['senderDisplayName'] = $this->senderDisplayName;
+        $data['messageType'] = $this->messageType;
+        $data['messageSubtype'] = $this->messageSubtype;
+        $data['metadataList'] = $this->metadataList;
 
         return $data;
     }
