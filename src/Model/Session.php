@@ -92,7 +92,7 @@ class Session extends \Akbv\PhpSkype\Model\Base
      * If cached data are absent or expired, then skip population.
      * @throws SessionFileLoadException
      */
-    public function loadSession():void
+    public function loadSession(): void
     {
         if ($this->loadSessionData()) {
             $session = $this->loadSessionData();

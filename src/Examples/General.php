@@ -47,12 +47,12 @@ $chat = $connection->chat('19:test3');
  */
 $chat = $connection->groupChat(
     [
-    'live:.cid.3e1fbf86661d076d',
-    'live:.cid.3e1fbf88961d076d',
-    'live:.cid.3e1fbf88961d076d',
+        'live:.cid.3e1fbf86661d076d',
+        'live:.cid.3e1fbf88961d076d',
+        'live:.cid.3e1fbf88961d076d',
     ],
     [
-    $connection->getUser()->getUsername(),
+        $connection->getUser()->getUsername(),
     ]
 );
 
@@ -159,11 +159,11 @@ $connection->getEvents();
 
 $eventLoop = new \Akbv\PhpSkype\Service\EventLoop($connection);
 
-$eventLoop->onEvent(function($event){
+$eventLoop->onEvent(function ($event) {
     var_dump($event);
 });
 
-$eventLoop->onError(function($error){
+$eventLoop->onError(function ($error) {
     var_dump($error);
 });
 
@@ -176,5 +176,3 @@ $eventLoop->run();
  * Stop the event loop.
  */
 $eventLoop->stop();
-
-

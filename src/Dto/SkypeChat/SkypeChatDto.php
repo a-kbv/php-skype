@@ -6,8 +6,8 @@ namespace Akbv\PhpSkype\Dto\SkypeChat;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class SkypeChatDto {
-
+class SkypeChatDto
+{
     /**
      * @var \Akbv\PhpSkype\Model\SkypeChat\SkypeChat[] $chats
      */
@@ -19,9 +19,10 @@ class SkypeChatDto {
     private $syncState;
 
 
-    private function toArray() {
+    private function toArray()
+    {
         return [
-            'chats' => array_map(function($chat) {
+            'chats' => array_map(function ($chat) {
                 return $chat->toArray();
             }, $this->chats),
             'syncState' => $this->syncState

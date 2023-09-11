@@ -8,10 +8,10 @@ namespace Akbv\PhpSkype\Model\SkypeChat;
  */
 class SkypeChatThreadProperties extends \Akbv\PhpSkype\Model\Base
 {
-     /**
-     * The Title this conversation.
-     * @var string
-     */
+    /**
+    * The Title this conversation.
+    * @var string
+    */
     private $topic;
 
     /**

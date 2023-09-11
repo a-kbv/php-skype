@@ -1,6 +1,7 @@
 <?php
 
 namespace Akbv\PhpSkype\Service;
+use JsonSerializable;
 
 class SoapLogin
 {
@@ -76,10 +77,10 @@ class SoapLogin
      * @throws ClientSecurityTokenException
      */
     private function getSecurityTokenR(): void
-    {   
-      
+    {
+
         $template = file_get_contents(__DIR__. '.../../Resource/soapTemplate.xml') .PHP_EOL;
-   
+
 
         // Replace placeholders in the template with actual values
         $template = str_replace('{username}', $this->username, $template);
@@ -168,7 +169,7 @@ class SoapLogin
         $endpointResponse = null;
 
         while (!$registrationToken) {
-          
+
             $headers = [
                 "BehaviorOverride" => "redirectAs404",
                 "Authentication" => 'skypetoken=' . $this->skypeToken,
@@ -238,7 +239,7 @@ class SoapLogin
      * Get the value of skypeToken
      *
      * @return  string
-     */ 
+     */
     public function getSkypeToken()
     {
         return $this->skypeToken;
@@ -248,7 +249,7 @@ class SoapLogin
      * Get the value of securityToken
      *
      * @return  string
-     */ 
+     */
     public function getSecurityToken()
     {
         return $this->securityToken;
@@ -259,7 +260,7 @@ class SoapLogin
      * Get the value of registrationToken
      *
      * @return  string
-     */ 
+     */
     public function getRegistrationToken()
     {
         return $this->registrationToken;
@@ -269,7 +270,7 @@ class SoapLogin
      * Get the value of endpointId
      *
      * @return  string
-     */ 
+     */
     public function getEndpointId()
     {
         return $this->endpointId;
@@ -279,7 +280,7 @@ class SoapLogin
      * Get the value of skypeTokenExpires
      *
      * @return  \DateTime
-     */ 
+     */
     public function getSkypeTokenExpires()
     {
         return $this->skypeTokenExpires;
@@ -289,7 +290,7 @@ class SoapLogin
      * Get the value of registrationTokenExpires
      *
      * @return  \DateTime
-     */ 
+     */
     public function getRegistrationTokenExpires()
     {
         return $this->registrationTokenExpires;
@@ -299,7 +300,7 @@ class SoapLogin
      * Get the value of messengerHost
      *
      * @return  string
-     */ 
+     */
     public function getMessengerHost()
     {
         return $this->messengerHost;

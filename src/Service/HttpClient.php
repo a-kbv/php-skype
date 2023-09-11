@@ -6,8 +6,8 @@ namespace Akbv\PhpSkype\Service;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class HttpClient {
-
+class HttpClient
+{
     private $httpClientOptions = [
         'headers' => [
             'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36',
@@ -17,7 +17,8 @@ class HttpClient {
 
     private $httpClient;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->httpClient = \Symfony\Component\HttpClient\HttpClient::create($this->httpClientOptions);
     }
 

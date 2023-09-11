@@ -1,13 +1,13 @@
 <?php
 
 namespace Akbv\PhpSkype\Model\SkypeChat;
+
 /**
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
 class SkypeChat extends \Akbv\PhpSkype\Model\Base
 {
-
     /**
      * Unique identifier of the conversation.
      * One-to-one chats have identifiers of the form <type>:<username>.

@@ -9,12 +9,12 @@ namespace Akbv\PhpSkype;
 class Chat
 {
     /**
-     * @var \Akbv\PhpSkype\Connection
+     * @param \Akbv\PhpSkype\Connection
      */
     private $connection;
 
     /**
-     * @param \Akbv\PhpSkype\Models\SkypeChat\SkypeChat
+     * @var \Akbv\PhpSkype\Models\SkypeChat\SkypeChat
      */
     private $chat;
 
@@ -41,6 +41,12 @@ class Chat
         $this->chat =  new \Akbv\PhpSkype\Model\SkypeChat\SkypeChat($json);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $syncStateUrl
+     * @param integer $pageSize
+     */
     public function getMessages($syncStateUrl=null, $pageSize=30): \Akbv\PhpSkype\Dto\SkypeMessage\SkypeMessageDto
     {
         if (empty($this->chat->getId())) {
@@ -310,9 +316,9 @@ class Chat
         return $this->processMessage($body, $msgType, null, null);
     }
 
-     /**
-     * {@inheritdoc}
-     */
+    /**
+    * {@inheritdoc}
+    */
     public function sendContacts(array $contacts): \Akbv\PhpSkype\Model\SkypeMessage\SkypeMessage
     {
         $contactTags = array_map(function ($contact) {

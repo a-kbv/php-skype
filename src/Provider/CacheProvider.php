@@ -8,12 +8,13 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class CacheProvider {
+class CacheProvider
+{
     /**
      * @var FilesystemAdapter
      */
     private $cache;
-    
+
     public function __construct()
     {
         $this->cache = new FilesystemAdapter();
@@ -26,16 +27,16 @@ class CacheProvider {
     }
 
     public function save($key, $item, $expiration = null)
-{
-    $cacheItem = $this->cache->getItem($key);
-    $cacheItem->set($item);
-    
-    // Set expiration if provided
-    if ($expiration !== null) {
-        $cacheItem->expiresAfter($expiration);
+    {
+        $cacheItem = $this->cache->getItem($key);
+        $cacheItem->set($item);
+
+        // Set expiration if provided
+        if ($expiration !== null) {
+            $cacheItem->expiresAfter($expiration);
+        }
+        $this->cache->save($cacheItem);
     }
-    $this->cache->save($cacheItem);
-}
 
     //delete item from cache
     public function deleteItem($key)

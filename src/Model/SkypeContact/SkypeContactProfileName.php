@@ -8,7 +8,6 @@ namespace Akbv\PhpSkype\Model\SkypeContact;
  */
 class SkypeContactProfileName extends \Akbv\PhpSkype\Model\Base
 {
-
     /**
      * first
      * @var string

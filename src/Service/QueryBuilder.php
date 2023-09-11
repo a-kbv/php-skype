@@ -75,7 +75,7 @@ class QueryBuilder
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
-                'X-Skypetoken' => $this->getSession()->getSkypeToken()->getSkypeToken(),
+                'X-Skypetoken' => $this->getSession()->getSkypeToken(),
             ],
             'json' => $query,
         ]);

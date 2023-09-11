@@ -6,8 +6,8 @@ namespace Akbv\PhpSkype\Dto\SkypeMessage;
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
  */
-class SkypeMessageDto {
-
+class SkypeMessageDto
+{
     /**
      * @var \Akbv\PhpSkype\Model\SkypeMessage\SkypeMessage[] $messages
      */
@@ -19,9 +19,10 @@ class SkypeMessageDto {
     private $syncState;
 
 
-    private function toArray() {
+    private function toArray()
+    {
         return [
-            'messages' => array_map(function($message) {
+            'messages' => array_map(function ($message) {
                 return $message->toArray();
             }, $this->messages),
             'syncState' => $this->syncState
