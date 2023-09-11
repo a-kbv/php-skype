@@ -2,7 +2,7 @@
     "name": "akbv/php-skype",
     "description": "PHP library that wraps Skype Web API",
     "type": "library",
-    "version": "3.0.0",
+    "version": "3.0.22",
     "autoload": {
         "psr-4": {
             "Akbv\\PhpSkype\\": "src/"
