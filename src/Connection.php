@@ -24,13 +24,13 @@ class Connection
      */
     private $user;
 
-    public function __construct($username, $password, $sessionDir = null)
+    public function __construct(private string $username, private string $password, private string $sessionDir)
     {
         $this->session = new \Akbv\PhpSkype\Model\Session($username, $password, $sessionDir);
         $this->httpClient = new \Akbv\PhpSkype\Service\HttpClient();
 
         if($this->session->getIsDirty()) {
-            if(!$this->isValidSkypeToken()) {
+            if (!$this->isValidSession()) {
                 $this->session->destroySession();
             }
         } else {
@@ -38,11 +38,6 @@ class Connection
         }
 
         $this->user = new \Akbv\PhpSkype\Model\SkypeUser\SkypeUser($this->getAuthenticatedUser());
-        // $this->conversations = new \Akbv\PhpSkype\Conversation($this);
-        // $this->contacts = $this->fetchContacts();
-        // $this->chats = $this->fetchChats()['conversations'];
-        // $messages = $this->getConversationMessages("19:f91a8342d12548ba832765fd5a041ad8@thread.skype", null, 30)['messages'];
-
     }
 
     private function login($username, $password)
@@ -57,6 +52,15 @@ class Connection
         $this->session->setIsDirty(true);
         $this->session->setCreatedAt(new \DateTime('+6 hours'));
         $this->session->saveSession();
+    }
+
+    private function isValidSession()
+    {
+        if ($this->username == $this->session->getUsername() &&
+        md5($this->password) == $this->session->getPassword()) {
+            return $this->isValidSkypeToken();
+        }
+        return false;
     }
 
     private function isValidSkypeToken()
@@ -103,6 +107,7 @@ class Connection
             }
 
             $response->getStatusCode();
+            var_dump($response->getStatusCode());
             $response->getContent();
 
             if ($response->getStatusCode() >= 400) {
@@ -143,7 +148,7 @@ class Connection
         return $result;
     }
 
-    public function fetchConversations($syncStateUrl=null, $pageSize=30): \Akbv\PhpSkype\Dto\SkypeChat\SkypeChatDto
+    public function fetchConversations($syncStateUrl = null, $pageSize = 30): \Akbv\PhpSkype\Dto\SkypeChat\SkypeChatDto
     {
         if (empty($syncStateUrl)) {
             $url = sprintf(
@@ -314,7 +319,7 @@ class Connection
     /**
          * {@inheritdoc}
          */
-    public function groupChat(array $contacts, array $admins, bool $moderated=false): Chat
+    public function groupChat(array $contacts, array $admins, bool $moderated = false): Chat
     {
         $url = sprintf(
             '%s/threads',

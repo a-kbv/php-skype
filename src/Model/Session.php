@@ -82,7 +82,7 @@ class Session extends \Akbv\PhpSkype\Model\Base
     public function __construct(string $username, string $password, string $sessionDir = null)
     {
         $this->username = $username;
-        $this->password = $password;
+        $this->password = md5($password);
         $this->sessionDir = $sessionDir;
         $this->loadSession();
     }
