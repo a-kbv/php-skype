@@ -19,7 +19,7 @@ class SkypeChatDto
     private $syncState;
 
 
-    private function toArray()
+    public function toArray()
     {
         return [
             'chats' => array_map(function ($chat) {
