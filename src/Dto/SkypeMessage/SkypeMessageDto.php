@@ -19,7 +19,7 @@ class SkypeMessageDto
     private $syncState;
 
 
-    private function toArray()
+    public function toArray()
     {
         return [
             'messages' => array_map(function ($message) {
