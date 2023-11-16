@@ -107,7 +107,6 @@ class Connection
             }
 
             $response->getStatusCode();
-            var_dump($response->getStatusCode());
             $response->getContent();
 
             if ($response->getStatusCode() >= 400) {
