@@ -208,17 +208,20 @@ class Session extends \Akbv\PhpSkype\Model\Base
     private function removeSessionFile()
     {
         $sessionFilePath = $this->getSessionDir() . '/' . $this->buildSessionFileName();
-        if (false === unlink($sessionFilePath)) {
+        if (file_exists($sessionFilePath) && !unlink($sessionFilePath)) {
             throw new \Akbv\PhpSkype\Exception\SessionFileRemoveException($sessionFilePath);
         }
     }
 
     /**
+     * Prepare the session directory. Grant only necessary permissions, and follow
+     * a recursive directory creation if needed.
+     *
      * @throws SessionDirCreateException
      */
     private function prepareSessionDir(): void
     {
-        if (!file_exists($this->sessionDir) && !mkdir($this->sessionDir)) {
+        if (!file_exists($this->sessionDir) && !mkdir($this->sessionDir, 0755, true)) {
             throw new \Akbv\PhpSkype\Exception\SessionDirCreateException($this->sessionDir);
         }
     }
