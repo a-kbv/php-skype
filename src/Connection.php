@@ -2,6 +2,8 @@
 
 namespace Akbv\PhpSkype;
 
+use Symfony\Component\HttpClient\Exception\ClientException;
+
 /**
  * @license https://opensource.org/licenses/BSD-3-Clause  BSD 3-Clause License
  * @author Atanas Korabov
@@ -63,33 +65,34 @@ class Connection
         return false;
     }
 
-    private function isValidSkypeToken()
+    private function isValidSkypeToken(): bool
     {
-        if (!empty($this->session->getSkypeToken())) {
+        $cacheKey = 'valid_skype_token';
+        $cachedValue = $this->session->getCache($cacheKey);
 
+        if ($cachedValue !== null) {
+            return $cachedValue;
+        }
+
+        if (!empty($this->session->getSkypeToken())) {
+            // Prepare request payload
             $body = [
                 'registrationId' => '07baca20-cccf-45dd-aa45-fda5cc870035',
-                'nodeId' => '',
                 'clientDescription' => [
                     'appId' => 'com.microsoft.skype.s4l-df.web',
                     'platform' => 'web',
                     'languageId' => 'en-US',
                     'templateKey' => 'com.microsoft.skype.s4l-df.web:2.9',
-                    'platformUIVersion' => '1418/8.98.0.208/'
                 ],
                 'transports' => [
                     'TROUTER' => [
                         [
-                            'context' => '',
-                            'creationTime' => '',
                             'path' => 'https://trouter-azsc-uswe-0-a.trouter.skype.com:3443/v4/f/nPlBszDljUOure16-KLeMw/',
-                            'ttl' => 586304
-                        ]
-                    ]
-                ]
+                            'ttl' => 586304,
+                        ],
+                    ],
+                ],
             ];
-
-            $response = '';
 
             try {
                 $response = $this->httpClient->request('GET', 'https://prod.registrar.skype.com/v2/registrations', [
@@ -97,24 +100,24 @@ class Connection
                     'headers' => [
                         "Content-Type" => "application/json",
                     ],
-                    'body' => json_encode($body)
+                    'body' => json_encode($body),
                 ]);
-            } catch(\Symfony\Component\HttpClient\Exception\ClientException $e) {
+            } catch (ClientException $e) {
                 $response = $e->getResponse();
                 if ($response->getStatusCode() >= 400) {
                     return false;
                 }
             }
 
-            $response->getStatusCode();
-            $response->getContent();
-
             if ($response->getStatusCode() >= 400) {
                 return false;
             }
+
+            $this->session->setCache($cacheKey, true, 60); // Cache result for 1 minute
             return true;
         }
 
+        return false;
     }
 
     public function getAuthenticatedUser()

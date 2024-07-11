@@ -79,6 +79,12 @@ class Session extends \Akbv\PhpSkype\Model\Base
      */
     private $subscribed = false;
 
+    /**
+     * Cache for session data.
+     * @var array
+     */
+    private $cache = [];
+
     public function __construct(string $username, string $password, string $sessionDir = null)
     {
         $this->username = $username;
@@ -121,6 +127,7 @@ class Session extends \Akbv\PhpSkype\Model\Base
             'endpointId' => $this->getEndpointId(),
             'subscribed' => $this->getSubscribed(),
             'messengerHost' => $this->getMessengerHost(),
+            'cache' => $this->cache,
         ];
     }
 
@@ -164,6 +171,9 @@ class Session extends \Akbv\PhpSkype\Model\Base
         }
         if (isset($array['messengerHost'])) {
             $this->setMessengerHost($array['messengerHost']);
+        }
+        if (isset($array['cache'])) {
+            $this->cache = $array['cache'];
         }
         return $this;
     }
@@ -549,4 +559,40 @@ class Session extends \Akbv\PhpSkype\Model\Base
 
         return $this;
     }
+
+    /**
+     * Get the value of a cached item.
+     *
+     * @param string $key Cache item key
+     * @return mixed|null Cached value or null if expired/not found
+     */
+    public function getCache($key)
+    {
+        if (isset($this->cache[$key])) {
+            $cacheItem = $this->cache[$key];
+            if ($cacheItem['expires_at'] > time()) {
+                return $cacheItem['value'];
+            }
+            unset($this->cache[$key]); // Remove expired cache item
+        }
+        return null;
+    }
+
+    /**
+     * Set the value of a cached item.
+     *
+     * @param string $key Cache item key
+     * @param mixed $value Cache item value
+     * @param int $ttl Time-to-live in seconds
+     */
+    public function setCache($key, $value, $ttl)
+    {
+        $this->cache[$key] = [
+            'value' => $value,
+            'expires_at' => time() + $ttl,
+        ];
+
+        $this->saveSession();
+    }
+
 }
